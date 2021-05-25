@@ -1,3 +1,0 @@
-<DataSourceConnItems>
-  <DataSourceConnItem Type="ExcelFile" Excel="C:\Users\Administrator\Desktop\解密文件_20200820110331\解密文件_20200820110331\科达 测试数据文件.xlsx" Server="" DatabaseName="" ColumnName="" UserName="" Password="" IsWinLogin="False" TableName="科达 测试数据文件" Condition="" OrderBy="" CreateDateTime="2020/8/20" IsSelected="True" />
-</DataSourceConnItems>
