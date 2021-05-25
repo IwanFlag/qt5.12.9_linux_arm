@@ -1,0 +1,3 @@
+2021-03-25 15:01:59.229Exception -->System.DivideByZeroException: Attempted to divide by zero.
+   at DrawToolLib.DrawArea.SpaceAcross()
+   at LabelDesigner.MainForm.DSbXynT9ds(Object  , EventArgs  )

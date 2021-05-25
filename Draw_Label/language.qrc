@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>language/draw_label_en.qm</file>
+        <file>language/draw_label_zh.qm</file>
+    </qresource>
+</RCC>
