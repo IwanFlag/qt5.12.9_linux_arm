@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     cameramedia/cameramedia.cpp \
     fileview/fileio.cpp \
+    login/login.cpp \
         main.cpp \
     weather/myjsonparse.cpp \
     weather/mymodel.cpp \
@@ -60,6 +61,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     cameramedia/cameramedia.h \
     fileview/fileio.h \
+    login/login.h \
     weather/myjsonparse.h \
     weather/mymodel.h \
     weather/weatherdata.h \

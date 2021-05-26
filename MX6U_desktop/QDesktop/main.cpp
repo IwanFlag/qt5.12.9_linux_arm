@@ -46,6 +46,8 @@ Copyright © Deng Zhimao Co., Ltd. 1990-2030. All rights reserved.
 
 #include <QDir>
 #include <QApplication>
+#include "login/login.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -64,34 +66,22 @@ int main(int argc, char *argv[])
     qmlRegisterType<IndexData>("an.weather", 1, 0, "IndexData");
     qmlRegisterType<WeatherData>("an.weather", 1, 0, "WeatherData");
     qmlRegisterType<MyModel>("an.model", 1, 0, "MyModel");
-
     qmlRegisterType<lyricModel>("dataModel", 1, 0, "LyricModel");
     qmlRegisterType<playListModel>("dataModel", 1, 0, "PlayListModel");
-
     qmlRegisterType<mediaListModel>("mediaModel", 1, 0, "MediaListModel");
-
     qmlRegisterType<wirelessListModel>("wirelessModel", 1, 0, "WirelessListModel");
-
     qmlRegisterType<myTcpclient>("mytcpclient", 1, 0, "MyTcpclient");
-
     qmlRegisterType<myTcpserver>("mytcpserver", 1, 0, "MyTcpserver");
-
     qmlRegisterType<UdpSender>("udpsender", 1, 0, "UdpSender");
     qmlRegisterType<UdpReciver>("udpreciver", 1, 0, "UdpReciver");
-
     qmlRegisterType<Beep>("beep", 1, 0, "Beep");
-
     qmlRegisterType<Ap3216c>("ap3216c", 1, 0, "Ap3216c");
     qmlRegisterType<Icm20608>("icm20608", 1, 0, "Icm20608");
-
-
     qmlRegisterType<myRadio>("radio", 1, 0, "MyRadio");
-
     qmlRegisterType<MyDesktop>("myDesktop", 1, 0, "MyDesktop");
-
     qmlRegisterType<FileIO, 1>("fileIO", 1, 0, "FileIO");
-
     qmlRegisterType<CameraMedia, 1>("MyCameraMedia", 1, 0, "CameraMedia");
+    qmlRegisterType<Login>("login", 1, 0, "Login");
 
     QQmlApplicationEngine engine;
 
@@ -112,11 +102,35 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("myModel", myModel);
     engine.rootContext()->setContextProperty("myDesktop", myDesktop);
 
+    Login *lg = new Login;
+
+    engine.rootContext()->setContextProperty("lg", lg);
+
     myPhoto->add(QCoreApplication::applicationDirPath() + "/src/images/");
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+
+    //
+//    QObject::connect()
+
+
+    //login_verift_slot
+    //engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+
+
+
+
+    engine.load(QUrl(QStringLiteral("qrc:/main_factory.qml")));
+    //QQuickItem *robj = engine.rootObjects();
+
     if (engine.rootObjects().isEmpty())
         return -1;
+
+
+    //connect(engine.rootObjects(), SIGNAL(login_verify_signal(int)), lg, SLOT(login_verift_slot(int)));
+
+
 
     return app.exec();
 }

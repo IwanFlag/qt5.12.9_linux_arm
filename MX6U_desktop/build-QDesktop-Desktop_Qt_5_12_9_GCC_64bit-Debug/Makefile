@@ -54,6 +54,7 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../QDesktop/cameramedia/cameramedia.cpp \
 		../QDesktop/fileview/fileio.cpp \
+		../QDesktop/login/login.cpp \
 		../QDesktop/main.cpp \
 		../QDesktop/weather/myjsonparse.cpp \
 		../QDesktop/weather/mymodel.cpp \
@@ -75,6 +76,7 @@ SOURCES       = ../QDesktop/cameramedia/cameramedia.cpp \
 		../QDesktop/radio/radio.cpp qrc_qml.cpp \
 		moc_cameramedia.cpp \
 		moc_fileio.cpp \
+		moc_login.cpp \
 		moc_mymodel.cpp \
 		moc_weatherdata.cpp \
 		moc_lyricmodel.cpp \
@@ -94,6 +96,7 @@ SOURCES       = ../QDesktop/cameramedia/cameramedia.cpp \
 		moc_radio.cpp
 OBJECTS       = cameramedia.o \
 		fileio.o \
+		login.o \
 		main.o \
 		myjsonparse.o \
 		mymodel.o \
@@ -116,6 +119,7 @@ OBJECTS       = cameramedia.o \
 		qrc_qml.o \
 		moc_cameramedia.o \
 		moc_fileio.o \
+		moc_login.o \
 		moc_mymodel.o \
 		moc_weatherdata.o \
 		moc_lyricmodel.o \
@@ -307,6 +311,7 @@ DIST          = ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pr
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
+		../QDesktop/.qmake.stash \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -328,6 +333,7 @@ DIST          = ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pr
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/lex.prf \
 		../QDesktop/QDesktop.pro ../QDesktop/cameramedia/cameramedia.h \
 		../QDesktop/fileview/fileio.h \
+		../QDesktop/login/login.h \
 		../QDesktop/weather/myjsonparse.h \
 		../QDesktop/weather/mymodel.h \
 		../QDesktop/weather/weatherdata.h \
@@ -347,6 +353,7 @@ DIST          = ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pr
 		../QDesktop/iotest/keysthread.h \
 		../QDesktop/radio/radio.h ../QDesktop/cameramedia/cameramedia.cpp \
 		../QDesktop/fileview/fileio.cpp \
+		../QDesktop/login/login.cpp \
 		../QDesktop/main.cpp \
 		../QDesktop/weather/myjsonparse.cpp \
 		../QDesktop/weather/mymodel.cpp \
@@ -551,6 +558,7 @@ Makefile: ../QDesktop/QDesktop.pro ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspe
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -747,6 +755,7 @@ Makefile: ../QDesktop/QDesktop.pro ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspe
 ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf:
@@ -784,8 +793,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../QDesktop/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.h ../QDesktop/fileview/fileio.h ../QDesktop/weather/myjsonparse.h ../QDesktop/weather/mymodel.h ../QDesktop/weather/weatherdata.h ../QDesktop/music/lyricmodel.h ../QDesktop/music/playlistmodel.h ../QDesktop/media/mediaListModel.h ../QDesktop/wireless/wirelessmodel.h ../QDesktop/tcpclient/mytcpclient.h ../QDesktop/tcpserver/mytcpserver.h ../QDesktop/desktop/desktop.h ../QDesktop/udpchat/udpreciver.h ../QDesktop/udpchat/udpsender.h ../QDesktop/photoview/photolistmodel.h ../QDesktop/iotest/beep.h ../QDesktop/sensor/ap3216c.h ../QDesktop/sensor/icm20608.h ../QDesktop/iotest/keysthread.h ../QDesktop/radio/radio.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.cpp ../QDesktop/fileview/fileio.cpp ../QDesktop/main.cpp ../QDesktop/weather/myjsonparse.cpp ../QDesktop/weather/mymodel.cpp ../QDesktop/weather/weatherdata.cpp ../QDesktop/music/lyricmodel.cpp ../QDesktop/music/playlistmodel.cpp ../QDesktop/media/mediaListModel.cpp ../QDesktop/wireless/wirelessmodel.cpp ../QDesktop/tcpclient/mytcpclient.cpp ../QDesktop/tcpserver/mytcpserver.cpp ../QDesktop/desktop/desktop.cpp ../QDesktop/udpchat/udpreciver.cpp ../QDesktop/udpchat/udpsend.cpp ../QDesktop/photoview/photolistmodel.cpp ../QDesktop/iotest/beep.cpp ../QDesktop/sensor/ap3216c.cpp ../QDesktop/sensor/icm20608.cpp ../QDesktop/iotest/keysthread.cpp ../QDesktop/radio/radio.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.h ../QDesktop/fileview/fileio.h ../QDesktop/login/login.h ../QDesktop/weather/myjsonparse.h ../QDesktop/weather/mymodel.h ../QDesktop/weather/weatherdata.h ../QDesktop/music/lyricmodel.h ../QDesktop/music/playlistmodel.h ../QDesktop/media/mediaListModel.h ../QDesktop/wireless/wirelessmodel.h ../QDesktop/tcpclient/mytcpclient.h ../QDesktop/tcpserver/mytcpserver.h ../QDesktop/desktop/desktop.h ../QDesktop/udpchat/udpreciver.h ../QDesktop/udpchat/udpsender.h ../QDesktop/photoview/photolistmodel.h ../QDesktop/iotest/beep.h ../QDesktop/sensor/ap3216c.h ../QDesktop/sensor/icm20608.h ../QDesktop/iotest/keysthread.h ../QDesktop/radio/radio.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.cpp ../QDesktop/fileview/fileio.cpp ../QDesktop/login/login.cpp ../QDesktop/main.cpp ../QDesktop/weather/myjsonparse.cpp ../QDesktop/weather/mymodel.cpp ../QDesktop/weather/weatherdata.cpp ../QDesktop/music/lyricmodel.cpp ../QDesktop/music/playlistmodel.cpp ../QDesktop/media/mediaListModel.cpp ../QDesktop/wireless/wirelessmodel.cpp ../QDesktop/tcpclient/mytcpclient.cpp ../QDesktop/tcpserver/mytcpserver.cpp ../QDesktop/desktop/desktop.cpp ../QDesktop/udpchat/udpreciver.cpp ../QDesktop/udpchat/udpsend.cpp ../QDesktop/photoview/photolistmodel.cpp ../QDesktop/iotest/beep.cpp ../QDesktop/sensor/ap3216c.cpp ../QDesktop/sensor/icm20608.cpp ../QDesktop/iotest/keysthread.cpp ../QDesktop/radio/radio.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -815,6 +824,7 @@ compiler_rcc_clean:
 qrc_qml.cpp: ../QDesktop/qml.qrc \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/bin/rcc \
 		../QDesktop/qtquickcontrols2.conf \
+		../QDesktop/main_factory.qml \
 		../QDesktop/main.qml \
 		../QDesktop/helpbutton/HelpMessages.qml \
 		../QDesktop/helpbutton/images/about.png \
@@ -998,9 +1008,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_cameramedia.cpp moc_fileio.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
+compiler_moc_header_make_all: moc_cameramedia.cpp moc_fileio.cpp moc_login.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_cameramedia.cpp moc_fileio.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
+	-$(DEL_FILE) moc_cameramedia.cpp moc_fileio.cpp moc_login.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
 moc_cameramedia.cpp: ../QDesktop/cameramedia/cameramedia.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
@@ -1133,6 +1143,76 @@ moc_fileio.cpp: ../QDesktop/fileview/fileio.h \
 		moc_predefs.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/bin/moc
 	/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/bin/moc $(DEFINES) --include /home/ysheng/code/qt5.12.9/MX6U_desktop/build-QDesktop-Desktop_Qt_5_12_9_GCC_64bit-Debug/moc_predefs.h -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++ -I/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuickControls2 -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtMultimedia -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtPositioning -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QDesktop/fileview/fileio.h -o moc_fileio.cpp
+
+moc_login.cpp: ../QDesktop/login/login.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnamespace.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlogging.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qflags.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmutex.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnumeric.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstring.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qchar.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearray.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qrefcount.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qarraydata.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringview.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiterator.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpair.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringlist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qregexp.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmetatype.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qdebug.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhash.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmap.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtextstream.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiodevice.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlocale.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvariant.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qshareddata.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvector.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpoint.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qset.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		moc_predefs.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/bin/moc
+	/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/bin/moc $(DEFINES) --include /home/ysheng/code/qt5.12.9/MX6U_desktop/build-QDesktop-Desktop_Qt_5_12_9_GCC_64bit-Debug/moc_predefs.h -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++ -I/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuickControls2 -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtMultimedia -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtPositioning -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QDesktop/login/login.h -o moc_login.cpp
 
 moc_mymodel.cpp: ../QDesktop/weather/mymodel.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
@@ -2550,6 +2630,156 @@ fileio.o: ../QDesktop/fileview/fileio.cpp ../QDesktop/fileview/fileio.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtextcodec.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fileio.o ../QDesktop/fileview/fileio.cpp
 
+login.o: ../QDesktop/login/login.cpp ../QDesktop/login/login.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnamespace.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlogging.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qflags.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmutex.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnumeric.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstring.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qchar.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearray.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qrefcount.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qarraydata.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringliteral.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringalgorithms.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringview.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiterator.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpair.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringlist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qregexp.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmetatype.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qdebug.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhash.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmap.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtextstream.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiodevice.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlocale.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvariant.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qshareddata.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvector.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpoint.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qset.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QGuiApplication \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtguiglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtgui-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qeventloop.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsize.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/QQmlContext \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlcontext.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qurl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qurlquery.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qjsvalue.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qtqmlglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qtqml-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/QQuickItem \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qquickitem.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qtquickglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qtquick-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqml.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlprivate.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlparserstatus.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlpropertyvaluesource.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmllist.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmetaobject.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlcomponent.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlerror.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QList \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qevent.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qregion.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qrect.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmargins.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qdatastream.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qfile.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qvector2d.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfont.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qaccessible.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qcolor.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qrgb.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qrgba64.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/QQuickView \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qquickview.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qquickwindow.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qsgrendererinterface.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qsgnode.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick/qsggeometry.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qopengl.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qt_windows.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qopengles2ext.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qopenglext.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QRectF \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QMatrix4x4 \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qmatrix4x4.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qvector3d.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qvector4d.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qquaternion.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qgenericmatrix.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qwindow.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QEvent \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QMargins \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QRect \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qsurface.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qsurfaceformat.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpixmap.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qimage.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpixelformat.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtransform.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qmatrix.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpolygon.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qline.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpainterpath.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qcursor.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmldebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o ../QDesktop/login/login.cpp
+
 main.o: ../QDesktop/main.cpp ../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QGuiApplication \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qguiapplication.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qtguiglobal.h \
@@ -2770,7 +3000,8 @@ main.o: ../QDesktop/main.cpp ../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtG
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfont.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontmetrics.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontinfo.h \
-		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qsizepolicy.h
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../QDesktop/login/login.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../QDesktop/main.cpp
 
 myjsonparse.o: ../QDesktop/weather/myjsonparse.cpp ../QDesktop/weather/myjsonparse.h \
@@ -4229,6 +4460,9 @@ moc_cameramedia.o: moc_cameramedia.cpp
 
 moc_fileio.o: moc_fileio.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_fileio.o moc_fileio.cpp
+
+moc_login.o: moc_login.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_login.o moc_login.cpp
 
 moc_mymodel.o: moc_mymodel.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mymodel.o moc_mymodel.cpp

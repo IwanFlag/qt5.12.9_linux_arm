@@ -59,6 +59,7 @@ Window {
         onSysVolumeChanged: {
             system_volume_slider.value = Number(sysVolume)
         }
+        //CPU temperature
         onCpuTempChanged: {
             displayCpuTemp.text = "CPU:" + cpuTemp + "℃"
         }
@@ -90,6 +91,8 @@ Window {
             }
         }
     }
+
+    //return bt
     RoundButton {
         id: backBtn
         z: 109
@@ -368,47 +371,48 @@ Window {
         }
     }
 
-    Item {
-        id: topMenu
-        anchors.top: mainWindow.top
-        anchors.left: mainWindow.left
-        width: mainWindow.width
-        height: 30
-        Rectangle {
-            anchors.fill: topMenu
-            //color: "#55111111"
-            color: "transparent"
-            Text {
-                id: netText
-                text: qsTr("www.openedv.com")
-                color: "white"
-                font.bold: true
-                font.pixelSize: 20
-                anchors.left: alientek.right
-                anchors.leftMargin: 10
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            Image {
-                id: alientek
-                source: "qrc:/desktop/images/alientek.png"
-                anchors.left: parent.left
-                //anchors.leftMargin: mainSwipeView.currentIndex == 0 ? 5 : 40
-                anchors.leftMargin: 5
-                anchors.verticalCenter: parent.verticalCenter
-            }
+    //delete this @ysheng
+//    Item {
+//        id: topMenu
+//        anchors.top: mainWindow.top
+//        anchors.left: mainWindow.left
+//        width: mainWindow.width
+//        height: 30
+//        Rectangle {
+//            anchors.fill: topMenu
+//            //color: "#55111111"
+//            color: "transparent"
+//            Text {
+//                id: netText
+//                text: qsTr("www.openedv.com")
+//                color: "white"
+//                font.bold: true
+//                font.pixelSize: 20
+//                anchors.left: alientek.right
+//                anchors.leftMargin: 10
+//                anchors.verticalCenter: parent.verticalCenter
+//            }
+//            Image {
+//                id: alientek
+//                source: "qrc:/desktop/images/alientek.png"
+//                anchors.left: parent.left
+//                //anchors.leftMargin: mainSwipeView.currentIndex == 0 ? 5 : 40
+//                anchors.leftMargin: 5
+//                anchors.verticalCenter: parent.verticalCenter
+//            }
 
-            Text {
-                id: displayCpuTemp
-                anchors.verticalCenter: alientek.verticalCenter
-                anchors.left: netText.right
-                anchors.leftMargin: 10
-                text: qsTr("CPU:50℃")
-                color: "white"
-                font.bold: true
-                font.pixelSize: 20
-            }
-        }
-    }
+//            Text {
+//                id: displayCpuTemp
+//                anchors.verticalCenter: alientek.verticalCenter
+//                anchors.left: netText.right
+//                anchors.leftMargin: 10
+//                text: qsTr("CPU:50℃")
+//                color: "white"
+//                font.bold: true
+//                font.pixelSize: 20
+//            }
+//        }
+//    }
 
     Rectangle {
         anchors.left: parent.left
