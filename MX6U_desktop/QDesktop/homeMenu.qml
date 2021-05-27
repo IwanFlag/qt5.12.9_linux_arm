@@ -35,6 +35,7 @@ import "./system"
 import "./radio"
 import "./settings"
 import "./cameramedia"
+import "./factorytool"
 
 
 Rectangle{
@@ -452,8 +453,10 @@ Rectangle{
             System{}
             Settings{}
             MyCameraMedia{}
+            Factorytool{}           //18
+
             onCurrentIndexChanged : {
-                //mainSwipeView.currentItem.visible = true
+                mainSwipeView.currentItem.visible = true
                 for (var i = 0; i < mainSwipeView.count; i++){
                     if (i != mainSwipeView.currentIndex)
                         mainSwipeView.itemAt(i).visible = false

@@ -519,6 +519,43 @@ Item {
                         anchors.bottomMargin: 3
                     }
                 }
+//#################################### soudian ########
+
+                Button {
+                    id: factoryTool_app
+                    anchors.left: settings_app.right
+                    anchors.top: weather_app.bottom
+                    anchors.topMargin: 5
+                    width: 100
+                    height: 102
+                    style: ButtonStyle {
+                        background: Rectangle {
+                            color: "#80397b"
+                            border.color: "#bbbbbbbb"
+                            border.width: control.hovered ? 1 : 0
+                        }
+                    }
+                    Image {
+                        anchors.centerIn: parent
+                        source: "qrc:/desktop/winstyleicons/settings_app.png"
+                    }
+                    onClicked: {
+                        mainSwipeView.setCurrentIndex(18)
+                    }
+                    Text {
+                        text: qsTr("factoryTool")
+                        color: "white"
+                        font.pixelSize: 15
+                        font.bold: true
+                        anchors.leftMargin: 3
+                        anchors.left: parent.left
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 3
+                    }
+                }
+
+
+
 
 
                 Button {
