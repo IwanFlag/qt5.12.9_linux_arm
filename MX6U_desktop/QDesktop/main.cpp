@@ -103,32 +103,16 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("myDesktop", myDesktop);
 
     Login *lg = new Login;
-
     engine.rootContext()->setContextProperty("lg", lg);
-
     myPhoto->add(QCoreApplication::applicationDirPath() + "/src/images/");
 
 
-
-    //
-//    QObject::connect()
-
-
-    //login_verift_slot
-    //engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-
-
-
-
     engine.load(QUrl(QStringLiteral("qrc:/main_factory.qml")));
-    //QQuickItem *robj = engine.rootObjects();
+    //engine.load(QUrl(QStringLiteral("qrc:/main_factory.qml")));
+
 
     if (engine.rootObjects().isEmpty())
         return -1;
-
-
-    //connect(engine.rootObjects(), SIGNAL(login_verify_signal(int)), lg, SLOT(login_verift_slot(int)));
 
 
 

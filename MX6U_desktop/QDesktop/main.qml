@@ -452,7 +452,7 @@ Window {
             Settings{}
             MyCameraMedia{}
             onCurrentIndexChanged : {
-                mainSwipeView.currentItem.visible = true
+                //mainSwipeView.currentItem.visible = true
                 for (var i = 0; i < mainSwipeView.count; i++){
                     if (i != mainSwipeView.currentIndex)
                         mainSwipeView.itemAt(i).visible = false

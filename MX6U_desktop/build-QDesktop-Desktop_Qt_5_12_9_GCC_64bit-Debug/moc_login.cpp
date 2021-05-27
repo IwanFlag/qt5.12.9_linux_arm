@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Login_t {
-    QByteArrayData data[5];
-    char stringdata0[38];
+    QByteArrayData data[6];
+    char stringdata0[43];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,10 +35,12 @@ QT_MOC_LITERAL(0, 0, 5), // "Login"
 QT_MOC_LITERAL(1, 6, 8), // "sig_disp"
 QT_MOC_LITERAL(2, 15, 0), // ""
 QT_MOC_LITERAL(3, 16, 17), // "login_verift_slot"
-QT_MOC_LITERAL(4, 34, 3) // "val"
+QT_MOC_LITERAL(4, 34, 4), // "name"
+QT_MOC_LITERAL(5, 39, 3) // "pwd"
 
     },
-    "Login\0sig_disp\0\0login_verift_slot\0val"
+    "Login\0sig_disp\0\0login_verift_slot\0"
+    "name\0pwd"
 };
 #undef QT_MOC_LITERAL
 
@@ -59,13 +61,13 @@ static const uint qt_meta_data_Login[] = {
        1,    0,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    1,   25,    2, 0x0a /* Public */,
+       3,    2,   25,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    4,    5,
 
        0        // eod
 };
@@ -77,7 +79,7 @@ void Login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->sig_disp(); break;
-        case 1: _t->login_verift_slot((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->login_verift_slot((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

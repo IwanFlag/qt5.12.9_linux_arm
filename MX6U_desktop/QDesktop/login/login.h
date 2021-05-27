@@ -15,6 +15,6 @@ signals:
     void sig_disp();
 
 public slots:
-    void login_verift_slot(int val);
+    void login_verift_slot(QString name, QString pwd);
 };
 #endif // LOGIN_H

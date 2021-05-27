@@ -53,6 +53,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../QDesktop/cameramedia/cameramedia.cpp \
+		../QDesktop/factorytool/factorytool.cpp \
 		../QDesktop/fileview/fileio.cpp \
 		../QDesktop/login/login.cpp \
 		../QDesktop/main.cpp \
@@ -95,6 +96,7 @@ SOURCES       = ../QDesktop/cameramedia/cameramedia.cpp \
 		moc_keysthread.cpp \
 		moc_radio.cpp
 OBJECTS       = cameramedia.o \
+		factorytool.o \
 		fileio.o \
 		login.o \
 		main.o \
@@ -332,6 +334,7 @@ DIST          = ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pr
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/yacc.prf \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/lex.prf \
 		../QDesktop/QDesktop.pro ../QDesktop/cameramedia/cameramedia.h \
+		../QDesktop/factorytool/factorytool.h \
 		../QDesktop/fileview/fileio.h \
 		../QDesktop/login/login.h \
 		../QDesktop/weather/myjsonparse.h \
@@ -352,6 +355,7 @@ DIST          = ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pr
 		../QDesktop/sensor/icm20608.h \
 		../QDesktop/iotest/keysthread.h \
 		../QDesktop/radio/radio.h ../QDesktop/cameramedia/cameramedia.cpp \
+		../QDesktop/factorytool/factorytool.cpp \
 		../QDesktop/fileview/fileio.cpp \
 		../QDesktop/login/login.cpp \
 		../QDesktop/main.cpp \
@@ -793,8 +797,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../QDesktop/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.h ../QDesktop/fileview/fileio.h ../QDesktop/login/login.h ../QDesktop/weather/myjsonparse.h ../QDesktop/weather/mymodel.h ../QDesktop/weather/weatherdata.h ../QDesktop/music/lyricmodel.h ../QDesktop/music/playlistmodel.h ../QDesktop/media/mediaListModel.h ../QDesktop/wireless/wirelessmodel.h ../QDesktop/tcpclient/mytcpclient.h ../QDesktop/tcpserver/mytcpserver.h ../QDesktop/desktop/desktop.h ../QDesktop/udpchat/udpreciver.h ../QDesktop/udpchat/udpsender.h ../QDesktop/photoview/photolistmodel.h ../QDesktop/iotest/beep.h ../QDesktop/sensor/ap3216c.h ../QDesktop/sensor/icm20608.h ../QDesktop/iotest/keysthread.h ../QDesktop/radio/radio.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.cpp ../QDesktop/fileview/fileio.cpp ../QDesktop/login/login.cpp ../QDesktop/main.cpp ../QDesktop/weather/myjsonparse.cpp ../QDesktop/weather/mymodel.cpp ../QDesktop/weather/weatherdata.cpp ../QDesktop/music/lyricmodel.cpp ../QDesktop/music/playlistmodel.cpp ../QDesktop/media/mediaListModel.cpp ../QDesktop/wireless/wirelessmodel.cpp ../QDesktop/tcpclient/mytcpclient.cpp ../QDesktop/tcpserver/mytcpserver.cpp ../QDesktop/desktop/desktop.cpp ../QDesktop/udpchat/udpreciver.cpp ../QDesktop/udpchat/udpsend.cpp ../QDesktop/photoview/photolistmodel.cpp ../QDesktop/iotest/beep.cpp ../QDesktop/sensor/ap3216c.cpp ../QDesktop/sensor/icm20608.cpp ../QDesktop/iotest/keysthread.cpp ../QDesktop/radio/radio.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.h ../QDesktop/factorytool/factorytool.h ../QDesktop/fileview/fileio.h ../QDesktop/login/login.h ../QDesktop/weather/myjsonparse.h ../QDesktop/weather/mymodel.h ../QDesktop/weather/weatherdata.h ../QDesktop/music/lyricmodel.h ../QDesktop/music/playlistmodel.h ../QDesktop/media/mediaListModel.h ../QDesktop/wireless/wirelessmodel.h ../QDesktop/tcpclient/mytcpclient.h ../QDesktop/tcpserver/mytcpserver.h ../QDesktop/desktop/desktop.h ../QDesktop/udpchat/udpreciver.h ../QDesktop/udpchat/udpsender.h ../QDesktop/photoview/photolistmodel.h ../QDesktop/iotest/beep.h ../QDesktop/sensor/ap3216c.h ../QDesktop/sensor/icm20608.h ../QDesktop/iotest/keysthread.h ../QDesktop/radio/radio.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.cpp ../QDesktop/factorytool/factorytool.cpp ../QDesktop/fileview/fileio.cpp ../QDesktop/login/login.cpp ../QDesktop/main.cpp ../QDesktop/weather/myjsonparse.cpp ../QDesktop/weather/mymodel.cpp ../QDesktop/weather/weatherdata.cpp ../QDesktop/music/lyricmodel.cpp ../QDesktop/music/playlistmodel.cpp ../QDesktop/media/mediaListModel.cpp ../QDesktop/wireless/wirelessmodel.cpp ../QDesktop/tcpclient/mytcpclient.cpp ../QDesktop/tcpserver/mytcpserver.cpp ../QDesktop/desktop/desktop.cpp ../QDesktop/udpchat/udpreciver.cpp ../QDesktop/udpchat/udpsend.cpp ../QDesktop/photoview/photolistmodel.cpp ../QDesktop/iotest/beep.cpp ../QDesktop/sensor/ap3216c.cpp ../QDesktop/sensor/icm20608.cpp ../QDesktop/iotest/keysthread.cpp ../QDesktop/radio/radio.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -882,6 +886,7 @@ qrc_qml.cpp: ../QDesktop/qml.qrc \
 		../QDesktop/music/images/btn_next.png \
 		../QDesktop/music/images/btn_listscircle_single.png \
 		../QDesktop/music/images/btn_listsingle.png \
+		../QDesktop/factorytool/Factorytool.qml \
 		../QDesktop/fileview/FileView.qml \
 		../QDesktop/fileview/images/other_file.png.png \
 		../QDesktop/fileview/images/next.png \
@@ -2557,6 +2562,9 @@ cameramedia.o: ../QDesktop/cameramedia/cameramedia.cpp ../QDesktop/cameramedia/c
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cameramedia.o ../QDesktop/cameramedia/cameramedia.cpp
 
+factorytool.o: ../QDesktop/factorytool/factorytool.cpp ../QDesktop/factorytool/factorytool.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool.o ../QDesktop/factorytool/factorytool.cpp
+
 fileio.o: ../QDesktop/fileview/fileio.cpp ../QDesktop/fileview/fileio.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
@@ -2777,7 +2785,22 @@ login.o: ../QDesktop/login/login.cpp ../QDesktop/login/login.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qline.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpainterpath.h \
 		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qcursor.h \
-		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmldebug.h
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmldebug.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QMessageBox \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qdialog.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qpalette.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qbrush.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontinfo.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/QQmlApplicationEngine \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlapplicationengine.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qqmlengine.h \
+		../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml/qjsengine.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o ../QDesktop/login/login.cpp
 
 main.o: ../QDesktop/main.cpp ../../../../tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QGuiApplication \

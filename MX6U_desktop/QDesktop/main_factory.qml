@@ -112,11 +112,12 @@ ApplicationWindow {
         property int grid_h: 60
 
         //
-        signal login_verify_signal(int ret)
+        //signal login_verify_signal(int ret)
+        signal login_verify_signal(string name, string pwd)
         //signal btn_2dec_click(string str_num)
         Component.onCompleted:
         {
-            //qml 信号连接c++ slot
+            //qml 信号 连接 c++ slot
             login_verify_signal.connect(lg.login_verift_slot);
         }
 
@@ -224,18 +225,17 @@ ApplicationWindow {
                     if(val_user_name.text === "sd" && val_user_pwd.text == "123")
                     {
                         console.log("login:ok");
-                        //emit login_verify_signal(1)
                     }
                     else
                     {
                         console.log("login:error!");
 
                     }
-                    login_rect.login_verify_signal(1);
+                    login_rect.login_verify_signal(val_user_name.text, val_user_pwd.text);
+                    //Settings.visible = true;
                 }
             }
-
-
         }
     }
+    Settings{}
 }
