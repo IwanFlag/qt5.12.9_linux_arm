@@ -7,59 +7,77 @@ import QtGraphicalEffects 1.12
 import QtQuick.Controls 1.2
 import "../helpbutton"
 import myDesktop 1.0
+import QtQuick.Layouts 1.1
 
-Item {
-    id: settings
-    visible: false
-    width: 480;
-    height: 320;
-        //title: "AnchorLayout";
 
-        Rectangle{
-            id:rect1;
-            width: parent.width;
-            height:50;
-            color:"blue";
-            anchors.top: parent.top;
-            Text{ text: "Top"; anchors.horizontalCenter: parent.horizontalCenter;anchors.top:parent.top; color:"white"; }
+Rectangle {
+    id: compFactoryTool
+    visible: true
+    x: 0
+    y: 0         //50//factoryToolstatusBar.bottom
+    width: 480
+    height: 320
+    color: "gray"
+
+
+    //status bar
+    StatusBar{
+        id: factoryToolstatusBar
+        visible: true
+        width: parent.width
+        height: 50
+
+
+        //row layout
+        RowLayout{
+            spacing: 20  //相邻间距
+
+            //conn status
+            Text{
+                id:tcp_conn_status
+                text: qsTr("not connect")
+                height: factoryToolstatusBar.height
+
+                font.bold:  true;
+                font.pointSize:              18;
+            }
+
+            //remote ip addr
+            Text{
+                id:remote_ip_addr
+                text: qsTr("127.0.0.1")
+                height: factoryToolstatusBar.height
+
+                font.bold:  true;
+                font.pointSize:              18;
+
+            }
+
+            //nowtimestamp
+            Text{
+                id:nowtimestamp
+                text: qsTr("2021.5.26 15:17:01")
+                height: factoryToolstatusBar.height
+
+                font.bold:  true;
+                font.pointSize:              18;
+            }
+
+            Button{
+                id: bt_return
+                y:factoryToolstatusBar.width - bt_return.width
+                text: "return"
+                height: factoryToolstatusBar.height
+                onClicked:{
+                    console.log("bt_return");
+                    //close present page
+
+                }
+            }
         }
+    }
 
-        Rectangle{
-            id:rect2;
-            width: parent.width/4;
-            color: "red";
-            anchors.top:rect1.bottom;
-            anchors.bottom: rect4.top
-            anchors.left: parent.left;
-            Text{ text: "Left"; anchors.verticalCenter: parent.verticalCenter; anchors.left: parent.left;color:"white"; }
-        }
-
-        Rectangle{
-            id:rect3;
-            color: "green";
-            width:rect2.width;
-            anchors.top:rect1.bottom;
-            anchors.bottom: rect4.top;
-            anchors.right:parent.right;
-            Text{ text: "Right";anchors.right: parent.right;anchors.verticalCenter: parent.verticalCenter;color:"white"; }
-        }
-
-        Rectangle{
-            id:rect4;
-            width: parent.width;
-            height:50;
-            color:"yellow";
-            anchors.bottom: parent.bottom;
-            Text{ text: "Bottom"; anchors.horizontalCenter: parent.horizontalCenter;anchors.bottom: parent.bottom;color:"blue";}
-        }
-
-        Rectangle{
-            id:rect5;
-            color:"#FF605066";
-            anchors.top:rect1.bottom;
-            anchors.bottom: rect4.top;
-            anchors.left: rect2.right;
-            anchors.right: rect3.left;
-            Text{ text: "Center";anchors.centerIn: parent; color:"white";}
-        }
+    //display main menu
+    FactoryMenu{}
 }
+

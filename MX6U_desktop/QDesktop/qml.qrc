@@ -178,6 +178,8 @@
         <file>main.qml</file>
         <file>factorytool/Factorytool.qml</file>
         <file>login/Login.qml</file>
+        <file>factorytool/Product.qml</file>
+        <file>factorytool/FactoryMenu.qml</file>
         <file>homeMenu.qml</file>
     </qresource>
 </RCC>
