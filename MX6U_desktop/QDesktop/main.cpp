@@ -107,8 +107,7 @@ int main(int argc, char *argv[])
     myPhoto->add(QCoreApplication::applicationDirPath() + "/src/images/");
 
 
-    engine.load(QUrl(QStringLiteral("qrc:/main_factory.qml")));
-    //engine.load(QUrl(QStringLiteral("qrc:/main_factory.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 
     if (engine.rootObjects().isEmpty())

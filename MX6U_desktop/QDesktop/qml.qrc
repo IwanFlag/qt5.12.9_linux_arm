@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>weather/image/cloudy_moon.png</file>
         <file>weather/image/cloudy_sun.png</file>
         <file>weather/image/fine_moon.png</file>
@@ -176,7 +175,9 @@
         <file>aircondition/images/dialbg.png</file>
         <file>desktop/winstyleicons/aircondition_app.png</file>
         <file>cameramedia/MyCameraMedia.qml</file>
-        <file>main_factory.qml</file>
+        <file>main.qml</file>
         <file>factorytool/Factorytool.qml</file>
+        <file>login/Login.qml</file>
+        <file>homeMenu.qml</file>
     </qresource>
 </RCC>
