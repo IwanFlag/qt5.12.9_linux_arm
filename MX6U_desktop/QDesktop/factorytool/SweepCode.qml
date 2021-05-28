@@ -14,10 +14,10 @@ import QtQuick.Layouts 1.1
 Rectangle {
     id: compSweepCodeMenu
     visible: true
-    x: factoryToolstatusBar.x
-    y: factoryToolstatusBar.height         //50//factoryToolstatusBar.bottom
+    x: compFactoryStatusBar.x
+    y: compFactoryStatusBar.height         //50//compFactoryStatusBar.bottom
     width: parent.width
-    height: parent.height - factoryToolstatusBar.height
+    height: parent.height - compFactoryStatusBar.height
     color: "gray"
     property int grid_w: Screen.desktopAvailableWidth/4   //100
     property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
@@ -35,10 +35,10 @@ Rectangle {
     Button{
         id: bt_return
         x: parent.width - bt_return.width
-        //y:factoryToolstatusBar.height
-        //anchors.top: factoryToolstatusBar.bottom
+        //y:compFactoryStatusBar.height
+        //anchors.top: compFactoryStatusBar.bottom
         text: "return"
-        height: factoryToolstatusBar.height
+        height: compFactoryStatusBar.height
         onClicked:{
             console.log("bt_return");
             //close present page

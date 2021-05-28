@@ -187,5 +187,6 @@
         <file>factorytool/SendOut.qml</file>
         <file>factorytool/PhotoSetting.qml</file>
         <file>factorytool/Packet.qml</file>
+        <file>factorytool/FactoryStatusBar.qml</file>
     </qresource>
 </RCC>

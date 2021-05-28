@@ -10,15 +10,14 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
-//factoryToolMenu
 Rectangle {
-    id: compFactoryMenu
-    visible: true
-    x: factoryToolstatusBar.x
-    y: factoryToolstatusBar.height         //50//factoryToolstatusBar.bottom
-    width: parent.width
-    height: parent.height - factoryToolstatusBar.height
-    color: "gray"
+//    id: compFactoryMenu
+//    visible: true
+//    x: factoryToolstatusBar.x
+//    y: factoryToolstatusBar.height         //50//factoryToolstatusBar.bottom
+//    width: parent.width
+//    height: parent.height - factoryToolstatusBar.height
+//    color: "gray"
     property int grid_w: Screen.desktopAvailableWidth/4   //100
     property int grid_h: Screen.desktopAvailableHeight/4         //60
 

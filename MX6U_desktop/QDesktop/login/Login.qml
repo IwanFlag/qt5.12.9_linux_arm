@@ -14,16 +14,7 @@ import "../factorytool"
 
 //login frame:
 Rectangle {
-    id: compLogin
-    visible: true
-//    x: statusBar.x
-//    y: statusBar.height         //50//statusBar.bottom
-    width: parent.width
-    height: parent.height
-//    anchors.fill: parent
-    color: "gray"
-    property int grid_w: 100
-    property int grid_h: 60
+
 
     //
     signal login_verify_signal(string name, string pwd)
@@ -45,12 +36,13 @@ Rectangle {
         //anchors.centerIn: parent
         anchors.horizontalCenter: parent.horizontalCenter
         //anchors.verticalCenter: parent.verticalCenter
-
+        property int grid_w: 200
+        property int grid_h: 60
 
         //welcome tips
         Rectangle{
-                width: compLogin.grid_w
-                height: compLogin.grid_h
+                width:parent.grid_w
+                height: parent.grid_h
                 color: "lightgray";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -66,8 +58,8 @@ Rectangle {
 
         //user name
         Rectangle{
-                width: compLogin.grid_w
-                height: compLogin.grid_h
+                width: parent.grid_w
+                height: parent.grid_h
                 color: "lightgray";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -82,8 +74,8 @@ Rectangle {
         //user name input
         Rectangle{
 //                    id: val_user_name
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
+                width: parent.grid_w * 2
+                height: parent.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -96,8 +88,8 @@ Rectangle {
 
         //user pwd
         Rectangle{
-                width: compLogin.grid_w
-                height: compLogin.grid_h
+                width: parent.grid_w
+                height: parent.grid_h
                 color: "lightgray";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -112,8 +104,8 @@ Rectangle {
         //user input
         Rectangle{
                 //id: val_user_pwd
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
+                width: parent.grid_w * 2
+                height: parent.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -129,23 +121,15 @@ Rectangle {
         Button{
             id: login_button
             text: "Login"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
+            width: parent.grid_w / 2
+            height: parent.grid_h
             Layout.columnSpan: 2
             onClicked:{
                 console.log("login:%s,%s", val_user_name.text, val_user_pwd.text);
-//                if(val_user_name.text === "sd" && val_user_pwd.text == "123")
-//                {
-//                    console.log("login:ok");
-//                }
-//                else
-//                {
-//                    console.log("login:error!");
-//                }
-                //compLogin.login_verify_signal(val_user_name.text, val_user_pwd.text);
+                //parent.login_verify_signal(val_user_name.text, val_user_pwd.text);
 
                 // 隐藏登录页面
-                compLogin.visible = false;
+                parent.visible = false;
                 // 在主窗口（mainWindow）上显示主页面
                 //var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Factorytool.qml").createObject(mainWindow, {x:50, y:50, width:200, height:250});
 //                var compFactorytoolPage = Qt.createComponent("qrc:/main.qml").createObject(mainWindow, {});

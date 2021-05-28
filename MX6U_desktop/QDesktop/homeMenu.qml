@@ -50,8 +50,7 @@ Rectangle{
     property bool poweroffFlag: false
     property bool backFlag: false
     visible: true
-    width: WINenv ? 800 : Screen.desktopAvailableWidth
-    height: WINenv ? 480 : Screen.desktopAvailableHeight
+    anchors.fill: parent
     property bool smallScreen: width == 480 ? true : false
 
     //flags:Qt.FramelessWindowHint

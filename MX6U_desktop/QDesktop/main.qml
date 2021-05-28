@@ -43,62 +43,21 @@ import "./login"
 ApplicationWindow {
     id: mainWindow
     visible: true
-    //width: 640
-    //height: 480
     width: WINenv ? 480 : Screen.desktopAvailableWidth
     height: WINenv ? 320 : Screen.desktopAvailableHeight
     property bool smallScreen: width == 480 ? true : false
-    title: qsTr("sd factory tool")
+    title: qsTr("soudian")
     color: "gray"
     //flags:  Qt.FramelessWindowHint
 
 
-    //status bar
-//    StatusBar{
-//        id: statusBar
-//        visible: true
-//        width: parent.width
-//        height: 50
-
-
-//        //row layout
-//        RowLayout{
-//            spacing: 20  //相邻间距
-
-//            //conn status
-//            Text{
-//                id:tcp_conn_status
-//                text: qsTr("not connect")
-//                height: statusBar.height
-
-//                font.bold:  true;
-//                font.pointSize:              18;
-//            }
-
-//            //remote ip addr
-//            Text{
-//                id:remote_ip_addr
-//                text: qsTr("127.0.0.1")
-//                height: statusBar.height
-
-//                font.bold:  true;
-//                font.pointSize:              18;
-
-//            }
-
-//            //nowtimestamp
-//            Text{
-//                id:nowtimestamp
-//                text: qsTr("2021.5.26 15:17:01")
-//                height: statusBar.height
-
-//                font.bold:  true;
-//                font.pointSize:              18;
-//            }
-//        }
-//    }
-
-
     //login frame:
-    Login{}
+    Login{
+        id: compLogin
+        visible: true
+//        width: parent.width
+//        height: parent.height
+        anchors.fill: parent
+        color: "gray"
+    }
 }
