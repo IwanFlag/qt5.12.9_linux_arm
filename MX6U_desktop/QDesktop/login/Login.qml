@@ -16,10 +16,11 @@ import "../factorytool"
 Rectangle {
     id: compLogin
     visible: true
-    x: statusBar.x
-    y: statusBar.height         //50//statusBar.bottom
+//    x: statusBar.x
+//    y: statusBar.height         //50//statusBar.bottom
     width: parent.width
-    height: parent.height - statusBar.height
+    height: parent.height
+//    anchors.fill: parent
     color: "gray"
     property int grid_w: 100
     property int grid_h: 60

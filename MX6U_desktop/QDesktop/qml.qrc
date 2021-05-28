@@ -181,5 +181,11 @@
         <file>factorytool/Product.qml</file>
         <file>factorytool/FactoryMenu.qml</file>
         <file>homeMenu.qml</file>
+        <file>factorytool/SweepCode.qml</file>
+        <file>factorytool/Setting.qml</file>
+        <file>factorytool/Service.qml</file>
+        <file>factorytool/SendOut.qml</file>
+        <file>factorytool/PhotoSetting.qml</file>
+        <file>factorytool/Packet.qml</file>
     </qresource>
 </RCC>

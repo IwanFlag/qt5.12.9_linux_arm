@@ -64,15 +64,15 @@ Rectangle {
                         console.log("product");
 
                         // 隐藏登录页面
-                        //compFactoryTool.visible = false;
                         compFactoryMenu.visible = false;
                         // 在主窗口（mainWindow）上显示主页面
                         var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Product.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 1;
                     }
                 }
         }
 
-        //2.package menu
+        //2.packet menu
         Rectangle{
                 id: package_menu
                 width: compLogin.grid_w * 2
@@ -83,12 +83,18 @@ Rectangle {
 
                 Button{
                     id: bt_package_menu
-                    text: "package"
+                    text: "packet"
                     width: parent.width
                     height: parent.height
                     Layout.columnSpan: 2
                     onClicked:{
-                        console.log("package");
+                        console.log("packet");
+                        // 隐藏登录页面
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Packet.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 2;
+
                     }
                 }
         }
@@ -110,6 +116,11 @@ Rectangle {
                     Layout.columnSpan: 2
                     onClicked:{
                         console.log("sendOut_menu");
+                        // 隐藏登录页面
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/SendOut.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 3;
                     }
                 }
         }
@@ -131,6 +142,11 @@ Rectangle {
                     Layout.columnSpan: 2
                     onClicked:{
                         console.log("service");
+                        // 隐藏登录页面
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Service.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 4;
                     }
                 }
         }
@@ -153,6 +169,11 @@ Rectangle {
                     Layout.columnSpan: 2
                     onClicked:{
                         console.log("setting");
+                        // 隐藏登录页面
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Setting.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 5;
                     }
                 }
         }
@@ -175,6 +196,11 @@ Rectangle {
                     Layout.columnSpan: 2
                     onClicked:{
                         console.log("photo_setting");
+                        // 隐藏登录页面
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/PhotoSetting.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 6;
                     }
                 }
         }
@@ -196,6 +222,11 @@ Rectangle {
                     Layout.columnSpan: 2
                     onClicked:{
                         console.log("sweepCode");
+                        // 隐藏登录页面
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/PhotoSetting.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 7;
                     }
                 }
         }

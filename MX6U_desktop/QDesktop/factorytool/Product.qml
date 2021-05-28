@@ -12,7 +12,7 @@ import QtQuick.Layouts 1.1
 
 //productMenu
 Rectangle {
-    id: compproductMenu
+    id: compProductMenu
     visible: true
     x: factoryToolstatusBar.x
     y: factoryToolstatusBar.height         //50//factoryToolstatusBar.bottom
@@ -30,13 +30,27 @@ Rectangle {
 //            login_verify_signal.connect(lg.login_verift_slot);
     }
 
+    Button{
+        id: bt_return
+        x: parent.width - bt_return.width
+        text: "return"
+        height: factoryToolstatusBar.height
+        onClicked:{
+            console.log("bt_return");
+            //close present page
+            compProductMenu.visible = false;
+            compFactoryMenu.visible = true;
+        }
+    }
 
     //gridlayout
     GridLayout{
         id: menu_grid;
         columns: 4;
         rows: 4;
-        anchors.fill: parent
+        anchors.top: bt_return.bottom
+        width: parent.width;
+        height: parent.height - bt_return.height
         anchors.margins: 5;
         columnSpacing: 50;
         rowSpacing: 50;
@@ -48,8 +62,8 @@ Rectangle {
         //1.1 readImei
         Rectangle{
                 id: readImei
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -76,8 +90,8 @@ Rectangle {
         //1.2 showImei
         Rectangle{
                 id: showImei
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -92,8 +106,8 @@ Rectangle {
         //1.3 readSimnum
         Rectangle{
                 id: readSimnum
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -113,8 +127,8 @@ Rectangle {
         //1.4 showSimnum
         Rectangle{
                 id: showSimnum
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -134,8 +148,8 @@ Rectangle {
         //2.1 re_TwoCode
         Rectangle{
                 id: re_TwoCode
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -148,8 +162,8 @@ Rectangle {
         //2.2 showTwoCode
         Rectangle{
                 id: showTwoCode
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -162,8 +176,8 @@ Rectangle {
         //2.3 re_adaptor
         Rectangle{
                 id: re_adaptor
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -176,8 +190,8 @@ Rectangle {
         //2.4 showAdaptor
         Rectangle{
                 id: showAdaptor
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -190,8 +204,8 @@ Rectangle {
         //3.1 ??
         Rectangle{
                 id: lineTxt_show
-                width: compproductMenu.grid_w * 2
-                height: compproductMenu.grid_h
+                width: compProductMenu.grid_w * 2
+                height: compProductMenu.grid_h
                 //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;

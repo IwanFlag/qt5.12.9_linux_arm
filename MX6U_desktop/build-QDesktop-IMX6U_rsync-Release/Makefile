@@ -93,7 +93,13 @@ SOURCES       = ../QDesktop/cameramedia/cameramedia.cpp \
 		music_Music_qml.cpp \
 		factorytool_FactoryMenu_qml.cpp \
 		factorytool_Product_qml.cpp \
+		factorytool_Setting_qml.cpp \
+		factorytool_SweepCode_qml.cpp \
+		factorytool_SendOut_qml.cpp \
 		factorytool_Factorytool_qml.cpp \
+		factorytool_Service_qml.cpp \
+		factorytool_PhotoSetting_qml.cpp \
+		factorytool_Packet_qml.cpp \
 		fileview_FileView_qml.cpp \
 		settings_Settings_qml.cpp \
 		desktop_Clock_qml.cpp \
@@ -184,7 +190,13 @@ OBJECTS       = cameramedia.o \
 		music_Music_qml.o \
 		factorytool_FactoryMenu_qml.o \
 		factorytool_Product_qml.o \
+		factorytool_Setting_qml.o \
+		factorytool_SweepCode_qml.o \
+		factorytool_SendOut_qml.o \
 		factorytool_Factorytool_qml.o \
+		factorytool_Service_qml.o \
+		factorytool_PhotoSetting_qml.o \
+		factorytool_Packet_qml.o \
 		fileview_FileView_qml.o \
 		settings_Settings_qml.o \
 		desktop_Clock_qml.o \
@@ -827,7 +839,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../QDesktop/homeMenu.qml ../QDesktop/main.qml ../QDesktop/helpbutton/HelpMessages.qml ../QDesktop/sensor/Sensor.qml ../QDesktop/tcpserver/TcpServer.qml ../QDesktop/udpchat/UdpChat.qml ../QDesktop/calculator/Calculator.qml ../QDesktop/calculator/Display.qml ../QDesktop/calculator/calculator.js ../QDesktop/calculator/NumberPad.qml ../QDesktop/calculator/Calbutton.qml ../QDesktop/system/System.qml ../QDesktop/wireless/MyTextField.qml ../QDesktop/wireless/MyWireless.qml ../QDesktop/wireless/MyWifiKeyInput.qml ../QDesktop/iotest/Iotest.qml ../QDesktop/music/Music.qml ../QDesktop/factorytool/FactoryMenu.qml ../QDesktop/factorytool/Product.qml ../QDesktop/factorytool/Factorytool.qml ../QDesktop/fileview/FileView.qml ../QDesktop/settings/Settings.qml ../QDesktop/desktop/Clock.qml ../QDesktop/desktop/DeskTop.qml ../QDesktop/desktop/WinStyleDesktop.qml ../QDesktop/desktop/Applications.qml ../QDesktop/alarms/TumblerDelegate.qml ../QDesktop/alarms/AlarmDelegate.qml ../QDesktop/alarms/Alarm.qml ../QDesktop/alarms/AlarmDialog.qml ../QDesktop/alarms/AlarmModel.qml ../QDesktop/media/ButtonImage.qml ../QDesktop/media/Media.qml ../QDesktop/cameramedia/MyCameraMedia.qml ../QDesktop/aircondition/Aircondition.qml ../QDesktop/aircondition/CircularProgress.qml ../QDesktop/aircondition/CustomDial.qml ../QDesktop/aircondition/MyDial.qml ../QDesktop/tcpclient/TcpClient.qml ../QDesktop/photoview/DisplayPhoto.qml ../QDesktop/photoview/PhotoListView.qml ../QDesktop/photoview/PhotoView.qml ../QDesktop/login/Login.qml ../QDesktop/radio/Radio.qml ../QDesktop/weather/WeatherPage1.qml ../QDesktop/weather/Weather.qml ../QDesktop/weather/WeatherPage2.qml $(DISTDIR)/
+	$(COPY_FILE) --parents ../QDesktop/homeMenu.qml ../QDesktop/main.qml ../QDesktop/helpbutton/HelpMessages.qml ../QDesktop/sensor/Sensor.qml ../QDesktop/tcpserver/TcpServer.qml ../QDesktop/udpchat/UdpChat.qml ../QDesktop/calculator/Calculator.qml ../QDesktop/calculator/Display.qml ../QDesktop/calculator/calculator.js ../QDesktop/calculator/NumberPad.qml ../QDesktop/calculator/Calbutton.qml ../QDesktop/system/System.qml ../QDesktop/wireless/MyTextField.qml ../QDesktop/wireless/MyWireless.qml ../QDesktop/wireless/MyWifiKeyInput.qml ../QDesktop/iotest/Iotest.qml ../QDesktop/music/Music.qml ../QDesktop/factorytool/FactoryMenu.qml ../QDesktop/factorytool/Product.qml ../QDesktop/factorytool/Setting.qml ../QDesktop/factorytool/SweepCode.qml ../QDesktop/factorytool/SendOut.qml ../QDesktop/factorytool/Factorytool.qml ../QDesktop/factorytool/Service.qml ../QDesktop/factorytool/PhotoSetting.qml ../QDesktop/factorytool/Packet.qml ../QDesktop/fileview/FileView.qml ../QDesktop/settings/Settings.qml ../QDesktop/desktop/Clock.qml ../QDesktop/desktop/DeskTop.qml ../QDesktop/desktop/WinStyleDesktop.qml ../QDesktop/desktop/Applications.qml ../QDesktop/alarms/TumblerDelegate.qml ../QDesktop/alarms/AlarmDelegate.qml ../QDesktop/alarms/Alarm.qml ../QDesktop/alarms/AlarmDialog.qml ../QDesktop/alarms/AlarmModel.qml ../QDesktop/media/ButtonImage.qml ../QDesktop/media/Media.qml ../QDesktop/cameramedia/MyCameraMedia.qml ../QDesktop/aircondition/Aircondition.qml ../QDesktop/aircondition/CircularProgress.qml ../QDesktop/aircondition/CustomDial.qml ../QDesktop/aircondition/MyDial.qml ../QDesktop/tcpclient/TcpClient.qml ../QDesktop/photoview/DisplayPhoto.qml ../QDesktop/photoview/PhotoListView.qml ../QDesktop/photoview/PhotoView.qml ../QDesktop/login/Login.qml ../QDesktop/radio/Radio.qml ../QDesktop/weather/WeatherPage1.qml ../QDesktop/weather/Weather.qml ../QDesktop/weather/WeatherPage2.qml $(DISTDIR)/
 	$(COPY_FILE) --parents ../QDesktop/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../QDesktop/cameramedia/cameramedia.h ../QDesktop/factorytool/factorytool.h ../QDesktop/fileview/fileio.h ../QDesktop/login/login.h ../QDesktop/weather/myjsonparse.h ../QDesktop/weather/mymodel.h ../QDesktop/weather/weatherdata.h ../QDesktop/music/lyricmodel.h ../QDesktop/music/playlistmodel.h ../QDesktop/media/mediaListModel.h ../QDesktop/wireless/wirelessmodel.h ../QDesktop/tcpclient/mytcpclient.h ../QDesktop/tcpserver/mytcpserver.h ../QDesktop/desktop/desktop.h ../QDesktop/udpchat/udpreciver.h ../QDesktop/udpchat/udpsender.h ../QDesktop/photoview/photolistmodel.h ../QDesktop/iotest/beep.h ../QDesktop/sensor/ap3216c.h ../QDesktop/sensor/icm20608.h ../QDesktop/iotest/keysthread.h ../QDesktop/radio/radio.h $(DISTDIR)/
@@ -857,9 +869,9 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_qmlcache_make_all: homeMenu_qml.cpp main_qml.cpp helpbutton_HelpMessages_qml.cpp sensor_Sensor_qml.cpp tcpserver_TcpServer_qml.cpp udpchat_UdpChat_qml.cpp calculator_Calculator_qml.cpp calculator_Display_qml.cpp calculator_calculator_js.cpp calculator_NumberPad_qml.cpp calculator_Calbutton_qml.cpp system_System_qml.cpp wireless_MyTextField_qml.cpp wireless_MyWireless_qml.cpp wireless_MyWifiKeyInput_qml.cpp iotest_Iotest_qml.cpp music_Music_qml.cpp factorytool_FactoryMenu_qml.cpp factorytool_Product_qml.cpp factorytool_Factorytool_qml.cpp fileview_FileView_qml.cpp settings_Settings_qml.cpp desktop_Clock_qml.cpp desktop_DeskTop_qml.cpp desktop_WinStyleDesktop_qml.cpp desktop_Applications_qml.cpp alarms_TumblerDelegate_qml.cpp alarms_AlarmDelegate_qml.cpp alarms_Alarm_qml.cpp alarms_AlarmDialog_qml.cpp alarms_AlarmModel_qml.cpp media_ButtonImage_qml.cpp media_Media_qml.cpp cameramedia_MyCameraMedia_qml.cpp aircondition_Aircondition_qml.cpp aircondition_CircularProgress_qml.cpp aircondition_CustomDial_qml.cpp aircondition_MyDial_qml.cpp tcpclient_TcpClient_qml.cpp photoview_DisplayPhoto_qml.cpp photoview_PhotoListView_qml.cpp photoview_PhotoView_qml.cpp login_Login_qml.cpp radio_Radio_qml.cpp weather_WeatherPage1_qml.cpp weather_Weather_qml.cpp weather_WeatherPage2_qml.cpp
+compiler_qmlcache_make_all: homeMenu_qml.cpp main_qml.cpp helpbutton_HelpMessages_qml.cpp sensor_Sensor_qml.cpp tcpserver_TcpServer_qml.cpp udpchat_UdpChat_qml.cpp calculator_Calculator_qml.cpp calculator_Display_qml.cpp calculator_calculator_js.cpp calculator_NumberPad_qml.cpp calculator_Calbutton_qml.cpp system_System_qml.cpp wireless_MyTextField_qml.cpp wireless_MyWireless_qml.cpp wireless_MyWifiKeyInput_qml.cpp iotest_Iotest_qml.cpp music_Music_qml.cpp factorytool_FactoryMenu_qml.cpp factorytool_Product_qml.cpp factorytool_Setting_qml.cpp factorytool_SweepCode_qml.cpp factorytool_SendOut_qml.cpp factorytool_Factorytool_qml.cpp factorytool_Service_qml.cpp factorytool_PhotoSetting_qml.cpp factorytool_Packet_qml.cpp fileview_FileView_qml.cpp settings_Settings_qml.cpp desktop_Clock_qml.cpp desktop_DeskTop_qml.cpp desktop_WinStyleDesktop_qml.cpp desktop_Applications_qml.cpp alarms_TumblerDelegate_qml.cpp alarms_AlarmDelegate_qml.cpp alarms_Alarm_qml.cpp alarms_AlarmDialog_qml.cpp alarms_AlarmModel_qml.cpp media_ButtonImage_qml.cpp media_Media_qml.cpp cameramedia_MyCameraMedia_qml.cpp aircondition_Aircondition_qml.cpp aircondition_CircularProgress_qml.cpp aircondition_CustomDial_qml.cpp aircondition_MyDial_qml.cpp tcpclient_TcpClient_qml.cpp photoview_DisplayPhoto_qml.cpp photoview_PhotoListView_qml.cpp photoview_PhotoView_qml.cpp login_Login_qml.cpp radio_Radio_qml.cpp weather_WeatherPage1_qml.cpp weather_Weather_qml.cpp weather_WeatherPage2_qml.cpp
 compiler_qmlcache_clean:
-	-$(DEL_FILE) homeMenu_qml.cpp main_qml.cpp helpbutton_HelpMessages_qml.cpp sensor_Sensor_qml.cpp tcpserver_TcpServer_qml.cpp udpchat_UdpChat_qml.cpp calculator_Calculator_qml.cpp calculator_Display_qml.cpp calculator_calculator_js.cpp calculator_NumberPad_qml.cpp calculator_Calbutton_qml.cpp system_System_qml.cpp wireless_MyTextField_qml.cpp wireless_MyWireless_qml.cpp wireless_MyWifiKeyInput_qml.cpp iotest_Iotest_qml.cpp music_Music_qml.cpp factorytool_FactoryMenu_qml.cpp factorytool_Product_qml.cpp factorytool_Factorytool_qml.cpp fileview_FileView_qml.cpp settings_Settings_qml.cpp desktop_Clock_qml.cpp desktop_DeskTop_qml.cpp desktop_WinStyleDesktop_qml.cpp desktop_Applications_qml.cpp alarms_TumblerDelegate_qml.cpp alarms_AlarmDelegate_qml.cpp alarms_Alarm_qml.cpp alarms_AlarmDialog_qml.cpp alarms_AlarmModel_qml.cpp media_ButtonImage_qml.cpp media_Media_qml.cpp cameramedia_MyCameraMedia_qml.cpp aircondition_Aircondition_qml.cpp aircondition_CircularProgress_qml.cpp aircondition_CustomDial_qml.cpp aircondition_MyDial_qml.cpp tcpclient_TcpClient_qml.cpp photoview_DisplayPhoto_qml.cpp photoview_PhotoListView_qml.cpp photoview_PhotoView_qml.cpp login_Login_qml.cpp radio_Radio_qml.cpp weather_WeatherPage1_qml.cpp weather_Weather_qml.cpp weather_WeatherPage2_qml.cpp
+	-$(DEL_FILE) homeMenu_qml.cpp main_qml.cpp helpbutton_HelpMessages_qml.cpp sensor_Sensor_qml.cpp tcpserver_TcpServer_qml.cpp udpchat_UdpChat_qml.cpp calculator_Calculator_qml.cpp calculator_Display_qml.cpp calculator_calculator_js.cpp calculator_NumberPad_qml.cpp calculator_Calbutton_qml.cpp system_System_qml.cpp wireless_MyTextField_qml.cpp wireless_MyWireless_qml.cpp wireless_MyWifiKeyInput_qml.cpp iotest_Iotest_qml.cpp music_Music_qml.cpp factorytool_FactoryMenu_qml.cpp factorytool_Product_qml.cpp factorytool_Setting_qml.cpp factorytool_SweepCode_qml.cpp factorytool_SendOut_qml.cpp factorytool_Factorytool_qml.cpp factorytool_Service_qml.cpp factorytool_PhotoSetting_qml.cpp factorytool_Packet_qml.cpp fileview_FileView_qml.cpp settings_Settings_qml.cpp desktop_Clock_qml.cpp desktop_DeskTop_qml.cpp desktop_WinStyleDesktop_qml.cpp desktop_Applications_qml.cpp alarms_TumblerDelegate_qml.cpp alarms_AlarmDelegate_qml.cpp alarms_Alarm_qml.cpp alarms_AlarmDialog_qml.cpp alarms_AlarmModel_qml.cpp media_ButtonImage_qml.cpp media_Media_qml.cpp cameramedia_MyCameraMedia_qml.cpp aircondition_Aircondition_qml.cpp aircondition_CircularProgress_qml.cpp aircondition_CustomDial_qml.cpp aircondition_MyDial_qml.cpp tcpclient_TcpClient_qml.cpp photoview_DisplayPhoto_qml.cpp photoview_PhotoListView_qml.cpp photoview_PhotoView_qml.cpp login_Login_qml.cpp radio_Radio_qml.cpp weather_WeatherPage1_qml.cpp weather_Weather_qml.cpp weather_WeatherPage2_qml.cpp
 homeMenu_qml.cpp: ../QDesktop/homeMenu.qml \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
 	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o homeMenu_qml.cpp ../QDesktop/homeMenu.qml
@@ -936,9 +948,33 @@ factorytool_Product_qml.cpp: ../QDesktop/factorytool/Product.qml \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
 	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_Product_qml.cpp ../QDesktop/factorytool/Product.qml
 
+factorytool_Setting_qml.cpp: ../QDesktop/factorytool/Setting.qml \
+		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
+	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_Setting_qml.cpp ../QDesktop/factorytool/Setting.qml
+
+factorytool_SweepCode_qml.cpp: ../QDesktop/factorytool/SweepCode.qml \
+		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
+	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_SweepCode_qml.cpp ../QDesktop/factorytool/SweepCode.qml
+
+factorytool_SendOut_qml.cpp: ../QDesktop/factorytool/SendOut.qml \
+		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
+	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_SendOut_qml.cpp ../QDesktop/factorytool/SendOut.qml
+
 factorytool_Factorytool_qml.cpp: ../QDesktop/factorytool/Factorytool.qml \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
 	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_Factorytool_qml.cpp ../QDesktop/factorytool/Factorytool.qml
+
+factorytool_Service_qml.cpp: ../QDesktop/factorytool/Service.qml \
+		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
+	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_Service_qml.cpp ../QDesktop/factorytool/Service.qml
+
+factorytool_PhotoSetting_qml.cpp: ../QDesktop/factorytool/PhotoSetting.qml \
+		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
+	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_PhotoSetting_qml.cpp ../QDesktop/factorytool/PhotoSetting.qml
+
+factorytool_Packet_qml.cpp: ../QDesktop/factorytool/Packet.qml \
+		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
+	/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen --resource=/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/qml.qrc -o factorytool_Packet_qml.cpp ../QDesktop/factorytool/Packet.qml
 
 fileview_FileView_qml.cpp: ../QDesktop/fileview/FileView.qml \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/qmlcachegen
@@ -1332,8 +1368,26 @@ factorytool_FactoryMenu_qml.o: factorytool_FactoryMenu_qml.cpp
 factorytool_Product_qml.o: factorytool_Product_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_Product_qml.o factorytool_Product_qml.cpp
 
+factorytool_Setting_qml.o: factorytool_Setting_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_Setting_qml.o factorytool_Setting_qml.cpp
+
+factorytool_SweepCode_qml.o: factorytool_SweepCode_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_SweepCode_qml.o factorytool_SweepCode_qml.cpp
+
+factorytool_SendOut_qml.o: factorytool_SendOut_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_SendOut_qml.o factorytool_SendOut_qml.cpp
+
 factorytool_Factorytool_qml.o: factorytool_Factorytool_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_Factorytool_qml.o factorytool_Factorytool_qml.cpp
+
+factorytool_Service_qml.o: factorytool_Service_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_Service_qml.o factorytool_Service_qml.cpp
+
+factorytool_PhotoSetting_qml.o: factorytool_PhotoSetting_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_PhotoSetting_qml.o factorytool_PhotoSetting_qml.cpp
+
+factorytool_Packet_qml.o: factorytool_Packet_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool_Packet_qml.o factorytool_Packet_qml.cpp
 
 fileview_FileView_qml.o: fileview_FileView_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fileview_FileView_qml.o fileview_FileView_qml.cpp

@@ -18,6 +18,7 @@ Rectangle {
     width: 480
     height: 320
     color: "gray"
+    property int sonMenuIndex: 0              //0:mei you jin ru zicai dan
 
 
     //status bar
@@ -65,13 +66,18 @@ Rectangle {
 
             Button{
                 id: bt_return
-                y:factoryToolstatusBar.width - bt_return.width
+                x: compFactoryTool.width - bt_return.width
+                //y:factoryToolstatusBar.height
+                //anchors.top: factoryToolstatusBar.bottom
+
                 text: "return"
                 height: factoryToolstatusBar.height
                 onClicked:{
                     console.log("bt_return");
                     //close present page
-
+                    FactoryMenu.visible = false;
+//                    compFactoryMenu.visible = true;
+                    FactoryMenu.visible = true;
                 }
             }
         }
