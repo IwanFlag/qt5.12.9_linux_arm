@@ -55,8 +55,6 @@ ApplicationWindow {
     Login{
         id: compLogin
         visible: true
-//        width: parent.width
-//        height: parent.height
         anchors.fill: parent
         color: "gray"
     }
