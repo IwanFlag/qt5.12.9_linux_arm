@@ -10,6 +10,10 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
+//!!!!!!!!!!!!!!
+
+// Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
+
 //productMenu
 Rectangle {
     id: compProductMenu
@@ -19,16 +23,7 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
 
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
 
     Button{
         id: bt_return
@@ -44,219 +39,329 @@ Rectangle {
     }
 
     //gridlayout
-    GridLayout{
-        id: menu_grid;
-        columns: 4;
-        rows: 4;
-        anchors.top: bt_return.bottom
+    Rectangle{
+        color: "red"
         width: parent.width;
         height: parent.height - bt_return.height
-        anchors.margins: 5;
-        columnSpacing: 50;
-        rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
+
+        GridLayout{
+//            id: menu_grid;
+            columns: 8;
+            rows: 4;
+            width: parent.width
+            height: parent.height
+            anchors.margins: 5;
+            columnSpacing: 10;
+            rowSpacing: 10;
 
 
-        //1.1 readImei
-        Rectangle{
-                id: readImei
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //1.1 readImei
+            Rectangle{
+                    id: readImei
+//                    color: "blue";
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
 
-                Button{
-                    id: bt_readImei
-                    text: "readImei"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
 
-                    onClicked:{
-                        console.log("readImei");
+                    Button{
+                        id: bt_readImei
+                        text: qsTr("readImei")
+                        //                    width: parent.width
+                        //                    height: parent.height
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
 
-//                        // 隐藏登录页面
-//                        compFactoryTool.visible = false;
 
-//                        // 在主窗口（mainWindow）上显示主页面
-//                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Product.qml").createObject(mainWindow, {});
+                            onClicked:{
+                                console.log("readImei");
+                            }
                     }
-                }
-        }
+            }
 
-        //1.2 showImei
-        Rectangle{
-                id: showImei
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    id: txt_showImei
-                    text: qsTr("txt_showImei")
-                    anchors.centerIn: parent
-                    font.pointSize:              14;
-                }
-        }
+            //1.2 showImei
+            Rectangle{
+                    id: showImei
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
 
-        //1.3 readSimnum
-        Rectangle{
-                id: readSimnum
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
 
-                Button{
-                    id: bt_readSimnum
-                    text: "readSimnum"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("readSimnum");
+//                    color: "yellow"
+                    Text {
+                        id: txt_showImei
+                        //text: qsTr("txt_showImei")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
                     }
-                }
-        }
+            }
 
-        //1.4 showSimnum
-        Rectangle{
-                id: showSimnum
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //1.3 readSimnum
+            Rectangle{
+                    id: readSimnum
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "green"
 
-                Button{
-                    id: bt_showSimnum
-                    text: "showSimnum"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("showSimnum");
+                    Button{
+                        id: bt_readSimnum
+                        text: qsTr("readSimnum")
+    //                    width: parent.width
+    //                    height: parent.height
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("readSimnum");
+                        }
                     }
-                }
-        }
+            }
 
-        //2.1 re_TwoCode
-        Rectangle{
-                id: re_TwoCode
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //1.4 showSimnum
+            Rectangle{
+                    id: showSimnum
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "orange"
+                    Text {
+                        //id: txt_showImei
+                        //text: qsTr("txt_showImei")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
+
+            //2.1 re_TwoCode
+            Rectangle{
+                    id: re_TwoCode
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                        Label{
+                            //id: name
+                            text: qsTr("pls sweep TwoCode:")
+                            //anchors.fill: parent
+                            anchors.centerIn: parent
+                            font.pointSize: 20
+                            }
+                    }
+
+            //2.2 showTwoCode
+            Rectangle{
+                    id: showTwoCode
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Text {
+                            //id: name
+                            //text: qsTr("showTwoCode")
+                            anchors.fill: parent
+                    }
+            }
+
+            //2.3 re_adaptor
+            Rectangle{
+                    id: re_adaptor
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Label{
+                        //id: name
+                        text: qsTr("adaptor:")
+                        //anchors.fill: parent
+                        anchors.centerIn: parent
+                        font.pointSize: 20
+                        }
+                    }
+
+            //2.4 showAdaptor
+            Rectangle{
+                    id: showAdaptor
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+
                     Text {
                         //id: name
-                        text: qsTr("TwoCode")
-                        }
-                }
+                        //text: qsTr("showAdaptor")
+                        anchors.fill: parent
 
-        //2.2 showTwoCode
-        Rectangle{
-                id: showTwoCode
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showTwoCode")
-                }
-        }
+                    }
+            }
 
-        //2.3 re_adaptor
-        Rectangle{
-                id: re_adaptor
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //3.1 ??
+            Rectangle{
+                    id: lineTxt_show
+                    Layout.row:  3
+                    Layout.column: 1
+                    Layout.preferredWidth: 6
+                    Layout.columnSpan: 6
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
                     Text {
                         //id: name
-                        text: qsTr("adaptor")
+                        //text: qsTr("lineTxt_show")
+                        anchors.fill: parent
+
                         }
-                }
-
-        //2.4 showAdaptor
-        Rectangle{
-                id: showAdaptor
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showAdaptor")
-                }
-        }
-
-        //3.1 ??
-        Rectangle{
-                id: lineTxt_show
-                width: compProductMenu.grid_w * 2
-                height: compProductMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Layout.columnSpan: 4
-                Text {
-                    //id: name
-                    text: qsTr("lineTxt_show")
                     }
-                }
 
-        //4.1 clear
-        Button{
-            id: bt_clear
-            text: "clear"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_clear");
+            //4.1 clear
+            Rectangle{
+                Layout.row:  4
+                Layout.column: 0
+                    Layout.preferredWidth: 2
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_clear
+                        text: qsTr("clear")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                                         }
+                            }
+                        onClicked:{
+                            console.log("bt_clear");
+                        }
+                    }
+
             }
-        }
 
-        //4.2 bind
-        Button{
-            id: bt_bind
-            text: "bind"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_bind");
+            //4.2 bind
+            Rectangle{
+                Layout.row:  4
+                Layout.column: 2
+                Layout.preferredWidth: 2
+                Layout.columnSpan: 2
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_bind
+                        text: qsTr("bind")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_bind");
+                        }
+                    }
             }
-        }
 
-        //4.3 unbind
-        Button{
-            id: bt_unbind
-            text: "unbind"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_unbind");
+
+            //4.3 unbind
+            Rectangle{
+                Layout.row:  4
+                Layout.column: 4
+                Layout.preferredWidth: 2
+                Layout.columnSpan: 2
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_unbind
+                        text: qsTr("unbind")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_unbind");
+                        }
+                    }
             }
-        }
 
-        //4.4 popup
-        Button{
-            id: bt_popup
-            text: "popup"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_popup");
+
+            //4.4 popup
+            Rectangle{
+                Layout.row:  4
+                Layout.column: 6
+                Layout.preferredWidth: 2
+                Layout.columnSpan: 2
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_popup
+                        text: qsTr("popup")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_popup");
+                        }
+                    }
             }
         }
     }

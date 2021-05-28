@@ -11,23 +11,14 @@ import QtQuick.Layouts 1.1
 
 
 Rectangle {
-//    id: compFactoryMenu
-//    visible: true
-//    x: factoryToolstatusBar.x
-//    y: factoryToolstatusBar.height         //50//factoryToolstatusBar.bottom
-//    width: parent.width
-//    height: parent.height - factoryToolstatusBar.height
-//    color: "gray"
     property int grid_w: Screen.desktopAvailableWidth/4   //100
     property int grid_h: Screen.desktopAvailableHeight/4         //60
 
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
+//    signal login_verify_signal(string name, string pwd)
+//    Component.onCompleted:
+//    {
+//        login_verify_signal.connect(lg.login_verift_slot);
+//    }
 
 
     //gridlayout
@@ -39,26 +30,35 @@ Rectangle {
         anchors.margins: 5;
         columnSpacing: 50;
         rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.centerIn: parent
+        //anchors.horizontalCenter: parent.horizontalCenter
         //anchors.verticalCenter: parent.verticalCenter
 
 
         //1.product menu
         Rectangle{
                 id: product_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_product_menu
-                    text: "product"
+                    text: qsTr("Product")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("product");
 
@@ -74,18 +74,27 @@ Rectangle {
         //2.packet menu
         Rectangle{
                 id: package_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_package_menu
-                    text: "packet"
+                    text: qsTr("Packet")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("packet");
                         // 隐藏登录页面
@@ -101,18 +110,27 @@ Rectangle {
         //3.sendOut
         Rectangle{
                 id: sendOut_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_sendOut_menu
-                    text: "sendOut"
+                    text: qsTr("SendOut")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("sendOut_menu");
                         // 隐藏登录页面
@@ -127,18 +145,27 @@ Rectangle {
         //4.service menu
         Rectangle{
                 id: service_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_service_menu
-                    text: "service"
+                    text: qsTr("Service")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("service");
                         // 隐藏登录页面
@@ -154,18 +181,27 @@ Rectangle {
         //5.setting menu
         Rectangle{
                 id: setting_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_setting_menu
-                    text: "setting"
+                    text: qsTr("Setting")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("setting");
                         // 隐藏登录页面
@@ -181,18 +217,27 @@ Rectangle {
         //6.photo_setting menu
         Rectangle{
                 id: photo_setting_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_photo_setting_menu
-                    text: "photo_setting"
+                    text: qsTr("PhotoSetting")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("photo_setting");
                         // 隐藏登录页面
@@ -207,18 +252,27 @@ Rectangle {
         //7.sweepCode menu
         Rectangle{
                 id: sweepCode_menu
-                width: compLogin.grid_w * 2
-                height: compLogin.grid_h
-                //color: "blue";
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
 
                 Button{
                     id: bt_sweepCode_menu
-                    text: "sweepCode"
+                    text: qsTr("SweepCode")
                     width: parent.width
                     height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
                     onClicked:{
                         console.log("sweepCode");
                         // 隐藏登录页面
