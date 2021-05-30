@@ -94,26 +94,29 @@ Rectangle{
     }
 
     //return bt
-    RoundButton {
+//    RoundButton {
+        Button {
         id: backBtn
         z: 109
-        x: parent.x + parent.width - 90
-        y: parent.y + parent.height / 2 - 50
+        x: parent.x + parent.width - backBtn.width
+        //y: parent.y + parent.height / 2 - 50
         width: 60
-        height: 60
+        height: 50
         focus: false
         visible: mainSwipeView.currentIndex != 0
-        hoverEnabled: enabled
+//        hoverEnabled: enabled
         opacity: hovered ? 1 : 0.5
-        background: Rectangle{
-            color: "#55ffffff"
-            radius: parent.width / 2
-        }
-        Image {
-            anchors.centerIn: parent
-            id: backImage
-            source: "qrc:/desktop/images/back.png"
-        }
+//        background: Rectangle{
+//            color: "#55ffffff"
+//            radius: parent.width / 2
+//        }
+//        Image {
+//            anchors.centerIn: parent
+//            id: backImage
+//            source: "qrc:/desktop/images/back.png"
+//        }
+
+        text: qsTr("return")
         MouseArea {
             anchors.fill: parent
             drag.target: backBtn
@@ -122,12 +125,38 @@ Rectangle{
             drag.maximumX: mainWindow.width - 60
             drag.maximumY: mainWindow.height - 60
             onClicked: {
-                if (mainSwipeView.currentIndex == 3)
-                    mainSwipeView.currentIndex = 0
-                if (mainSwipeView.currentIndex != 0 && mainSwipeView.currentIndex != 3 && backFlag != true)
-                    WINStyle ? mainSwipeView.currentIndex = 0 : mainSwipeView.currentIndex = 3
-                if (backFlag)
-                    mainSwipeView.currentIndex = 0
+                //if()
+                console.log("bb,backFlag=%d", backFlag);
+
+                {
+                    if (mainSwipeView.currentIndex == 3)
+                    {
+                        mainSwipeView.currentIndex = 0
+                        console.log("aa");
+
+                    }
+
+                    if (mainSwipeView.currentIndex != 0 && mainSwipeView.currentIndex != 3 && backFlag != true)
+                    {
+                        WINStyle ? mainSwipeView.currentIndex = 0 : mainSwipeView.currentIndex = 3
+                        console.log("bb,WINStyle=%d", WINStyle);
+
+                    }
+
+                    if (backFlag)
+                    {
+                        mainSwipeView.currentIndex = 0
+                        console.log("cc");
+
+                    }
+                }
+//                else
+//                {
+
+//                }
+
+
+
             }
         }
     }
