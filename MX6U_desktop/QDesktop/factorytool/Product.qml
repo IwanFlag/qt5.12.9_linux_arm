@@ -47,9 +47,10 @@ Rectangle {
         GridLayout{
 //            id: menu_grid;
             columns: 8;
-            rows: 4;
-            width: parent.width
-            height: parent.height
+//            rows: 4;
+//            width: parent.width
+//            height: parent.height
+            anchors.fill: parent
             anchors.margins: 5;
             columnSpacing: 10;
             rowSpacing: 10;
@@ -242,9 +243,9 @@ Rectangle {
             //4.1 clear
             Rectangle{
                 Layout.row:  4
-                Layout.column: 0
-                    Layout.preferredWidth: 2
-                    Layout.columnSpan: 2
+                Layout.column: 2
+                    Layout.preferredWidth: 20
+                    Layout.columnSpan: 1
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
                     Button{
@@ -272,9 +273,9 @@ Rectangle {
             //4.2 bind
             Rectangle{
                 Layout.row:  4
-                Layout.column: 2
-                Layout.preferredWidth: 2
-                Layout.columnSpan: 2
+                Layout.column: 3
+                Layout.preferredWidth: 20
+                Layout.columnSpan: 1
 
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
@@ -305,8 +306,8 @@ Rectangle {
             Rectangle{
                 Layout.row:  4
                 Layout.column: 4
-                Layout.preferredWidth: 2
-                Layout.columnSpan: 2
+                Layout.preferredWidth: 20
+                Layout.columnSpan: 1
 
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
@@ -336,9 +337,9 @@ Rectangle {
             //4.4 popup
             Rectangle{
                 Layout.row:  4
-                Layout.column: 6
-                Layout.preferredWidth: 2
-                Layout.columnSpan: 2
+                Layout.column: 5
+                Layout.preferredWidth: 20
+                Layout.columnSpan: 1
 
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
