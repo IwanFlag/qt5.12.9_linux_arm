@@ -14,8 +14,8 @@ import "../login"
 Rectangle {
     id: compFactoryTool
     visible: true
-    width:compHomeMenu.width
-    height: compHomeMenu.height
+    width:parent.width
+    height: parent.height
     color: "gray"
     property int sonMenuIndex: 0              //0:mei you jin ru zicai dan
 

@@ -891,6 +891,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../factorytool/Setting.qml \
 		../../factorytool/SweepCode.qml \
 		../../factorytool/SendOut.qml \
+		../../factorytool/FactoryTitleBar.qml \
 		../../factorytool/Factorytool.qml \
 		../../factorytool/Service.qml \
 		../../factorytool/PhotoSetting.qml \

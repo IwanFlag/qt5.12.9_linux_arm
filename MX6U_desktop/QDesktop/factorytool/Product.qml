@@ -25,22 +25,52 @@ Rectangle {
     color: "gray"
 
 
-    Button{
-        id: bt_return
-        x: parent.width - bt_return.width
-        text: "return"
-        height: compFactoryStatusBar.height
-        onClicked:{
-            console.log("bt_return");
-            //close present page
-            compProductMenu.visible = false;
-            compFactoryMenu.visible = true;
+    //title
+    Rectangle{
+        id:compFactoryTitleBar
+        width: parent.width
+        height: 50
+
+
+        Row{
+            anchors.fill: parent
+            Rectangle{
+                width: parent.width/2
+                height: 50
+                //color: "red"
+                Label{
+                    //id: name
+                    text: qsTr("Product")
+                    //anchors.fill: parent
+                    //anchors.centerIn: parent
+                    font.pointSize: 20
+                    }
+                }
+
+            Rectangle{
+                //color: "green"
+
+                width: parent.width/2
+                height: 50
+
+                Button{
+                    id: bt_return
+                    text: "return"
+                    anchors.fill: parent
+                    onClicked:{
+                        console.log("bt_return");
+                        compProductMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    }
+                }
+            }
         }
     }
 
     //gridlayout
     Rectangle{
         color: "red"
+        anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
 

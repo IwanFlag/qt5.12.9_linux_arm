@@ -70,18 +70,24 @@ Rectangle {
             }
 
 
-//            Button{
-//                id: bt_return
-//                x: parent.width - bt_return.width
-//                text: "return"
-//                height: compFactoryStatusBar.height
-//                onClicked:{
-//                    console.log("bt_return");
-//                    //close present page
-//                    //FactoryMenu.visible = false;
-//                    //FactoryMenu.visible = true;
-//                }
-//            }
+//            Rectangle {
+//                color: 'lightgray'
+//                Layout.fillWidth: true
+//                Layout.fillHeight: true
+//                            Button{
+//                                id: bt_return
+//                                x: parent.width - bt_return.width
+//                                text: "return"
+//                                height: compFactoryStatusBar.height
+//                                onClicked:{
+//                                    console.log("bt_return");
+//                                    //close present page
+//                                    //FactoryMenu.visible = false;
+//                                    //FactoryMenu.visible = true;
+//                                    compFactoryMenu
+//                                }
+//                            }
+//                    }
         }
     }
 }

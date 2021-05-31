@@ -148,7 +148,12 @@ Rectangle {
                         // 在主窗口（mainWindow）上显示主页面
                         //var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Factorytool.qml").createObject(mainWindow, {x:50, y:50, width:200, height:250});
         //                var compFactorytoolPage = Qt.createComponent("qrc:/main.qml").createObject(mainWindow, {});
-                        var compFactorytoolPage = Qt.createComponent("qrc:/Homemenu.qml").createObject(mainWindow, {});
+                        //var compFactorytoolPage = Qt.createComponent("qrc:/Homemenu.qml").createObject(mainWindow, {});
+                        var comp = Qt.createComponent("qrc:/factorytool/Factorytool.qml");
+                        if(comp.status === Component.Ready)
+                        {
+                            var compFactorytoolObj = comp.createObject(mainWindow, {});
+                        }
                     }
                 }
         }

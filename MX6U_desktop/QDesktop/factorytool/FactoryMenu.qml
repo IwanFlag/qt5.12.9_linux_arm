@@ -13,7 +13,6 @@ import QtQuick.Layouts 1.1
 Rectangle {
     property int grid_w: Screen.desktopAvailableWidth/4   //100
     property int grid_h: Screen.desktopAvailableHeight/4         //60
-
 //    signal login_verify_signal(string name, string pwd)
 //    Component.onCompleted:
 //    {
@@ -62,10 +61,9 @@ Rectangle {
                     onClicked:{
                         console.log("product");
 
-                        // 隐藏登录页面
-                        compFactoryMenu.visible = false;
+                        //compFactoryMenu.visible = false;
                         // 在主窗口（mainWindow）上显示主页面
-                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Product.qml").createObject(mainWindow, {});
+                        Qt.createComponent("qrc:/factorytool/Product.qml").createObject(mainWindow, {});
                         compFactoryTool.sonMenuIndex = 1;
                     }
                 }
