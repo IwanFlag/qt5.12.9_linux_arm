@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.12.2, 2021-05-28T15:12:56. -->
+<!-- Written by QtCreator 4.12.2, 2021-05-31T19:34:48. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -8,7 +8,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">0</value>
+  <value type="int">1</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -258,13 +258,13 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedFiles">
        <value type="QString">/home/ysheng/code/qt5.12.9/build-demo-IMX6U_rsync-Debug/demo</value>
-       <value type="QString">/home/ysheng/code/qt5.12.9/build-demo-IMX6U_rsync-Release/demo</value>
        <value type="QString">/home/ysheng/code/qt5.12.9/build-demo-IMX6U_rsync-Debug/demo</value>
+       <value type="QString">/home/ysheng/code/qt5.12.9/build-demo-IMX6U_rsync-Release/demo</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedHosts">
+       <value type="QString">172.16.100.64</value>
        <value type="QString">172.16.100.49</value>
        <value type="QString">172.16.100.100</value>
-       <value type="QString">172.16.100.64</value>
       </valuelist>
       <valuelist type="QVariantList" key="ProjectExplorer.RunConfiguration.LastDeployedRemotePaths">
        <value type="QString">/opt/demo/bin</value>
@@ -279,14 +279,14 @@
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>
       <valuelist type="QVariantList" key="RemoteLinux.LastDeployedLocalTimes">
+       <value type="QDateTime">2021-05-24T14:55:38.755</value>
        <value type="QDateTime">2021-05-24T14:11:30.912</value>
        <value type="QDateTime">2021-05-27T21:34:33.699</value>
-       <value type="QDateTime">2021-05-24T14:55:38.755</value>
       </valuelist>
       <valuelist type="QVariantList" key="RemoteLinux.LastDeployedRemoteTimes">
+       <value type="QDateTime">2021-02-23T05:01:15.000</value>
        <value type="QDateTime">2021-05-24T22:11:43.000</value>
        <value type="QDateTime">2021-02-23T06:10:22.000</value>
-       <value type="QDateTime">2021-02-23T05:01:15.000</value>
       </valuelist>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">3</value>
@@ -632,7 +632,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default"></value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/ysheng/code/qt5.12.9/build-demo-Desktop_Qt_5_12_9_GCC_64bit-Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

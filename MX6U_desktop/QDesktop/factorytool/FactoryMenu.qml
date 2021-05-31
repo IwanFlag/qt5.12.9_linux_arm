@@ -281,5 +281,40 @@ Rectangle {
                     }
                 }
         }
+
+        //8.uart config
+        Rectangle{
+                //id: sweepCode_menu
+                Layout.fillWidth: true;
+                Layout.fillHeight: true;
+
+                Button{
+                    //id: bt_sweepCode_menu
+                    text: qsTr("Uart")
+                    width: parent.width
+                    height: parent.height
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 36
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
+                    onClicked:{
+                        console.log("sweepCode");
+                        //
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        Qt.createComponent("qrc:/uart/Uart.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 8;
+                    }
+                }
+        }
     }
 }

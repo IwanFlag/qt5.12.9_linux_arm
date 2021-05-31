@@ -891,7 +891,6 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../factorytool/Setting.qml \
 		../../factorytool/SweepCode.qml \
 		../../factorytool/SendOut.qml \
-		../../factorytool/FactoryTitleBar.qml \
 		../../factorytool/Factorytool.qml \
 		../../factorytool/Service.qml \
 		../../factorytool/PhotoSetting.qml \
@@ -1003,6 +1002,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../radio/images/next.png \
 		../../radio/images/preview.png \
 		../../radio/images/button.png \
+		../../uart/Uart.qml \
 		../../weather/WeatherPage1.qml \
 		../../weather/Weather.qml \
 		../../weather/WeatherPage2.qml \

@@ -188,5 +188,6 @@
         <file>factorytool/Packet.qml</file>
         <file>factorytool/FactoryStatusBar.qml</file>
         <file>Homemenu.qml</file>
+        <file>uart/Uart.qml</file>
     </qresource>
 </RCC>
