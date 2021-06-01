@@ -26,7 +26,7 @@ Rectangle {
             visible: true
             width: parent.width
             height: 50
-            color:                          "gray"
+            color: "gray"
     }
 
     //2.display main menu
@@ -36,7 +36,7 @@ Rectangle {
         anchors.top: compFactoryStatusBar.bottom
         width: parent.width
         height: parent.height - compFactoryStatusBar.height
-        color: "gray"
+        color: "blue"
     }
 }
 

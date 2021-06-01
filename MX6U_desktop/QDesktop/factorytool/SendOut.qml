@@ -10,7 +10,11 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
-//productMenu
+//!!!!!!!!!!!!!!
+
+// Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
+
+//Send menu
 Rectangle {
     id: compSendOutMenu
     visible: true
@@ -19,141 +23,197 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
 
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
 
-    Button{
-        id: bt_return
-        x: parent.width - bt_return.width
-        //y:compFactoryStatusBar.height
-        //anchors.top: compFactoryStatusBar.bottom
-        text: "return"
-        height: compFactoryStatusBar.height
-        onClicked:{
-            console.log("bt_return");
-            //close present page
-            compSendOutMenu.visible = false;
-            compFactoryMenu.visible = true;
+    //title
+    Rectangle{
+        id:compFactoryTitleBar
+        width: parent.width
+        height: 50
+
+
+        Row{
+            anchors.fill: parent
+            Rectangle{
+                width: parent.width/2
+                height: 50
+                //color: "red"
+                Label{
+                    //id: name
+                    text: qsTr("SendOut")
+                    //anchors.fill: parent
+                    //anchors.centerIn: parent
+                    font.pointSize: 20
+                    }
+                }
+
+            Rectangle{
+                //color: "green"
+
+                width: parent.width/2
+                height: 50
+
+                Button{
+                    id: bt_return
+                    text: "return"
+                    anchors.fill: parent
+                    onClicked:{
+                        console.log("bt_return");
+                        compSendOutMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    }
+                }
+            }
         }
     }
+
     //gridlayout
-    GridLayout{
-        id: menu_grid;
-        columns: 4;
-        rows: 4;
-        anchors.top: bt_return.bottom
+    Rectangle{
+        color: "blue"
+        anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
-//        anchors.fill: parent
-        anchors.margins: 5;
-        columnSpacing: 50;
-        rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
+
+        GridLayout{
+            columns: 5;
+            anchors.fill: parent
+            anchors.margins: 5;
+            columnSpacing: 10;
+            rowSpacing: 10;
 
 
-        //1.1 readFile
-        Rectangle{
-                id: readImei
-                width: compSendOutMenu.grid_w * 2
-                height: compSendOutMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //0.4 file
+            Rectangle{
+//                Layout.preferredWidth: 20
+//                Layout.columnSpan: 1
+                Layout.row:  0
+                Layout.column: 4
 
-                Button{
-                    id: bt_readImei
-                    text: qsTr("readFile")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_bind
+                        text: qsTr("file")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
 
-                    onClicked:{
-                        console.log("readFile");
-
+                        onClicked:{
+                            console.log("bt_file");
+                        }
                     }
-                }
-        }
+            }
 
-        //2.1 txt_plsName
-        Rectangle{
-                id: showImei
-                width: compSendOutMenu.grid_w * 2
-                height: compSendOutMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    id: txt_showImei
-                    text: qsTr("txt_plsName")
-                    anchors.centerIn: parent
-                    font.pointSize:              14;
-                }
-        }
-
-        //2.2 inputName
-        Rectangle{
-                id: readSimnum
-                width: compSendOutMenu.grid_w * 2
-                height: compSendOutMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                TextInput {
-                            id: val_inputName
-                            anchors.fill: parent
-                            font.pointSize:              14;
-                }
-        }
-
-        //3.1 clear
-        Rectangle{
-                //id: showSimnum
-                width: compSendOutMenu.grid_w * 2
-                height: compSendOutMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-
-                Button{
-                    id: bt_clear
-                    text: qsTr("clear")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("clear");
+            //1.1 readImei
+            Rectangle{
+                    //id: readImei
+//                    color: "blue";
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+                    Text {
+                        //id: txt_showImei
+                        text: qsTr("Pls Enter Name")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+                        font.pointSize:              14;
                     }
-                }
-        }
+            }
 
-        //3.2 sweepCode
-        Rectangle{
-                //id: re_TwoCode
-                width: compSendOutMenu.grid_w * 2
-                height: compSendOutMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Button{
-                    id: bt_sweepCode
-                    text: qsTr("sweepCode")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("sweepCode");
-                             }
+            //1.2
+            Rectangle{
+                    id: showImei
+                    Layout.preferredWidth: 4
+                    Layout.columnSpan: 4
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        //id: txt_showImei
+                        //text: qsTr("txt_showImei")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
                     }
-                }
+            }
+
+
+
+
+            //3.1 clear
+            Rectangle{
+//                    Layout.preferredWidth: 20
+//                    Layout.columnSpan: 1
+                Layout.row:  3
+                Layout.column: 1
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_clear
+                        text: qsTr("clear")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                                         }
+                            }
+                        onClicked:{
+                            console.log("bt_clear");
+                        }
+                    }
+
+            }
+
+            //3.2 SweepCode
+            Rectangle{
+//                Layout.preferredWidth: 20
+//                Layout.columnSpan: 1
+                Layout.row:  3
+                Layout.column: 3
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        //id: bt_bind
+                        text: qsTr("SweepCode")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_bind");
+                        }
+                    }
+            }
+        }
     }
 }

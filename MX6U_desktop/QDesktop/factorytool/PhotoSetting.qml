@@ -10,7 +10,7 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
-//productMenu
+//compPhotoMenu
 Rectangle {
     id: compPhotoSettingMenu
     visible: true
@@ -19,248 +19,596 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
 
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
 
-    Button{
-        id: bt_return
-        x: parent.width - bt_return.width
-        //y:compFactoryStatusBar.height
-        //anchors.top: compFactoryStatusBar.bottom
-        text: "return"
-        height: compFactoryStatusBar.height
-        onClicked:{
-            console.log("bt_return");
-            //close present page
-            compPhotoSettingMenu.visible = false;
-            compFactoryMenu.visible = true;
+    //title
+    Rectangle{
+        id:compFactoryTitleBar
+        width: parent.width
+        height: 50
+
+
+        Row{
+            anchors.fill: parent
+            Rectangle{
+                width: parent.width/2
+                height: 50
+                Label{
+                    text: qsTr("Product")
+                    font.pointSize: 20
+                    }
+                }
+
+            Rectangle{
+                //color: "green"
+
+                width: parent.width/2
+                height: 50
+
+                Button{
+                    id: bt_return
+                    text: "return"
+                    anchors.fill: parent
+                    onClicked:{
+                        console.log("bt_return");
+                        compPhotoSettingMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    }
+                }
+            }
         }
     }
 
     //gridlayout
-    GridLayout{
-        id: menu_grid;
-        columns: 4;
-        rows: 4;
-        anchors.top: bt_return.bottom
+    Rectangle{
+        color: "blue"
+        anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
-//        anchors.fill: parent
-        anchors.margins: 5;
-        columnSpacing: 50;
-        rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
+
+        GridLayout{
+            columns: 8;
+            anchors.fill: parent
+            anchors.margins: 5;
+            columnSpacing: 10;
+            rowSpacing: 10;
 
 
-        //1.1 readImei
-        Rectangle{
-                id: readImei
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //0.0
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
 
-                Button{
-                    id: bt_readImei
-                    text: "readImei"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
 
-                    onClicked:{
-                        console.log("readImei");
+                    Button{
+                        id: bt_readImei
+                        text: qsTr("lat")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
 
-//                        // 隐藏登录页面
-//                        compFactoryTool.visible = false;
 
-//                        // 在主窗口（mainWindow）上显示主页面
-//                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Product.qml").createObject(mainWindow, {});
+                            onClicked:{
+                                console.log("lat");
+                            }
                     }
-                }
-        }
+            }
 
-        //1.2 showImei
-        Rectangle{
-                id: showImei
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    id: txt_showImei
-                    text: qsTr("txt_showImei")
-                    anchors.centerIn: parent
-                    font.pointSize:              14;
-                }
-        }
+            //0.1
+            Rectangle{
+                    id: showImei
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
 
-        //1.3 readSimnum
-        Rectangle{
-                id: readSimnum
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
 
-                Button{
-                    id: bt_readSimnum
-                    text: "readSimnum"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("readSimnum");
-                    }
-                }
-        }
-
-        //1.4 showSimnum
-        Rectangle{
-                id: showSimnum
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-
-                Button{
-                    id: bt_showSimnum
-                    text: "showSimnum"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("showSimnum");
-                    }
-                }
-        }
-
-        //2.1 re_TwoCode
-        Rectangle{
-                id: re_TwoCode
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+//                    color: "yellow"
                     Text {
-                        //id: name
-                        text: qsTr("TwoCode")
-                        }
-                }
+                        id: txt_showImei
+                        anchors.fill: parent
 
-        //2.2 showTwoCode
-        Rectangle{
-                id: showTwoCode
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showTwoCode")
-                }
-        }
-
-        //2.3 re_adaptor
-        Rectangle{
-                id: re_adaptor
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                    Text {
-                        //id: name
-                        text: qsTr("adaptor")
-                        }
-                }
-
-        //2.4 showAdaptor
-        Rectangle{
-                id: showAdaptor
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showAdaptor")
-                }
-        }
-
-        //3.1 ??
-        Rectangle{
-                id: lineTxt_show
-                width: compPhotoSettingMenu.grid_w * 2
-                height: compPhotoSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Layout.columnSpan: 4
-                Text {
-                    //id: name
-                    text: qsTr("lineTxt_show")
+                        font.pointSize:              14;
                     }
-                }
-
-        //4.1 clear
-        Button{
-            id: bt_clear
-            text: "clear"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_clear");
             }
-        }
 
-        //4.2 bind
-        Button{
-            id: bt_bind
-            text: "bind"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_bind");
-            }
-        }
+            //0.2
+            Rectangle{
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "green"
 
-        //4.3 unbind
-        Button{
-            id: bt_unbind
-            text: "unbind"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_unbind");
-            }
-        }
+                    Button{
+                        text: qsTr("lon")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                font.pointSize: 20
+                                text: control.text
+                              }
+                        }
 
-        //4.4 popup
-        Button{
-            id: bt_popup
-            text: "popup"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_popup");
+                        onClicked:{
+                            console.log("readSimnum");
+                        }
+                    }
             }
+
+            //0.3
+            Rectangle{
+                    id: showSimnum
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Text {
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
+
+
+
+            //--------------------
+            //1.0
+            Rectangle{
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("photoid")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //1.1
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
+            //1.2
+            Rectangle{
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "green"
+
+                    Button{
+                        text: qsTr("postcode")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                font.pointSize: 20
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("readSimnum");
+                        }
+                    }
+            }
+
+            //1.3
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Text {
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
+//----------------------
+
+            //--------------------
+            //2.0
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("FTP addr")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //2.1
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
+            //2.2
+            Rectangle{
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "green"
+
+                    Button{
+                        text: qsTr("FTP pwd")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                font.pointSize: 20
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("readSimnum");
+                        }
+                    }
+            }
+
+            //2.3
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Text {
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
+//----------------------
+
+            //--------------------
+            //3.0
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("get lat config")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //3.1
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
+            //3.2
+            Rectangle{
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "green"
+
+                    Button{
+                        text: qsTr("get lon config")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+                                font.pointSize: 20
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("readSimnum");
+                        }
+                    }
+            }
+
+            //3.3
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Text {
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
+//----------------------
+
+            //--------------------
+            //4.0
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("get photo id")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //4.1
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+//----------------------
+            //4.2
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("get postcode")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //4.3
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
+            //4.2
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("get FTPAdrr")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //4.3
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+            //4.2
+            Rectangle{
+//                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+
+                    Button{
+                        text: qsTr("postcodePWD")
+                            anchors.fill: parent
+                            style: ButtonStyle {
+                                  label: Text {
+                                    renderType: Text.NativeRendering
+                                    verticalAlignment: Text.AlignVCenter
+                                    horizontalAlignment: Text.AlignHCenter
+        //                            font.family: "Helvetica"
+                                    font.pointSize: 20
+        //                            color: "blue"
+                                    text: control.text
+                                  }
+                            }
+
+
+                            onClicked:{
+                                console.log("lat");
+                            }
+                    }
+            }
+
+            //4.3
+            Rectangle{
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
         }
     }
 }

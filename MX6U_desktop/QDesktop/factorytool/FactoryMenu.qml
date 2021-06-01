@@ -14,13 +14,6 @@ Rectangle {
     property int grid_w: Screen.desktopAvailableWidth/4;   //100
     property int grid_h: Screen.desktopAvailableHeight/4;         //60
 
-    //property var UartObj: 0
-//    signal login_verify_signal(string name, string pwd)
-//    Component.onCompleted:
-//    {
-//        login_verify_signal.connect(lg.login_verift_slot);
-//    }
-
 
     //gridlayout
     GridLayout{

@@ -70,7 +70,7 @@ Rectangle {
 
     //gridlayout
     Rectangle{
-        color: "red"
+        color: "blue"
         anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
@@ -158,7 +158,7 @@ Rectangle {
 //                                                if(currentIndex==1){
 //                                                     console.debug("1")
 //                                                }
-                                }
+                                                    }
                                 }
             }
 

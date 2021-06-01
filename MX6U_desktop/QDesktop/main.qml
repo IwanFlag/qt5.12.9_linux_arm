@@ -56,6 +56,6 @@ ApplicationWindow {
         id: compLogin
         visible: true
         anchors.fill: parent
-        color: "gray"
+        color: "blue"
     }
 }

@@ -10,7 +10,11 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
-//productMenu
+//!!!!!!!!!!!!!!
+
+// Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
+
+//SettingMenu
 Rectangle {
     id: compSettingMenu
     visible: true
@@ -19,249 +23,308 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
-
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
 
 
-    Button{
-        id: bt_return
-        x: parent.width - bt_return.width
-        //y:compFactoryStatusBar.height
-        //anchors.top: compFactoryStatusBar.bottom
-        text: "return"
-        height: compFactoryStatusBar.height
-        onClicked:{
-            console.log("bt_return");
-            //close present page
-            compSettingMenu.visible = false;
-            compFactoryMenu.visible = true;
+    //title
+    Rectangle{
+        id:compFactoryTitleBar
+        width: parent.width
+        height: 50
+
+
+        Row{
+            anchors.fill: parent
+            Rectangle{
+                width: parent.width/2
+                height: 50
+                //color: "red"
+                Label{
+                    //id: name
+                    text: qsTr("Product")
+                    //anchors.fill: parent
+                    //anchors.centerIn: parent
+                    font.pointSize: 20
+                    }
+                }
+
+            Rectangle{
+                //color: "green"
+
+                width: parent.width/2
+                height: 50
+
+                Button{
+                    id: bt_return
+                    text: "return"
+                    anchors.fill: parent
+                    onClicked:{
+                        console.log("bt_return");
+                        compSettingMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    }
+                }
+            }
         }
     }
 
     //gridlayout
-    GridLayout{
-        id: menu_grid;
-        columns: 4;
-        rows: 4;
-        anchors.top: bt_return.bottom
+    Rectangle{
+        color: "blue"
+        anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
-//        anchors.fill: parent
-        anchors.margins: 5;
-        columnSpacing: 50;
-        rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
 
 
-        //1.1 readImei
-        Rectangle{
-                id: readImei
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+        GridLayout{
+            columns: 2;
+            anchors.fill: parent
+            anchors.margins: 5;
+            columnSpacing: 10;
+            rowSpacing: 10;
 
-                Button{
-                    id: bt_readImei
-                    text: "readImei"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
+                //wifi
+                GridLayout{
+                    columns: 3;
 
-                    onClicked:{
-                        console.log("readImei");
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+//                                Layout.preferredWidth: 1
+                                Layout.columnSpan: 3
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                    Text {
+                                        //id: name
+                                        text: qsTr("Setting WIFI")
+                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                    }
+                        }
 
-//                        // 隐藏登录页面
-//                        compFactoryTool.visible = false;
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                    Text {
+                                        //id: name
+                                        text: qsTr("WIFI Num")
+                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                    }
+                        }
 
-//                        // 在主窗口（mainWindow）上显示主页面
-//                        var compFactorytoolPage = Qt.createComponent("qrc:/factorytool/Product.qml").createObject(mainWindow, {});
-                    }
-                }
-        }
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                TextInput {
+                                            id: val_user_pwd
+                                            anchors.fill: parent
+                                            font.pointSize:              14;
+                                }
+                        }
 
-        //1.2 showImei
-        Rectangle{
-                id: showImei
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    id: txt_showImei
-                    text: qsTr("txt_showImei")
-                    anchors.centerIn: parent
-                    font.pointSize:              14;
-                }
-        }
 
-        //1.3 readSimnum
-        Rectangle{
-                id: readSimnum
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
 
-                Button{
-                    id: bt_readSimnum
-                    text: "readSimnum"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("readSimnum");
-                    }
-                }
-        }
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                    Text {
+                                        //id: name
+                                        text: qsTr("WIFI pwd")
+                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                    }
+                        }
 
-        //1.4 showSimnum
-        Rectangle{
-                id: showSimnum
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                TextInput {
+                                            //id: val_user_pwd
+                                            anchors.fill: parent
+                                            font.pointSize:              14;
+                                }
+                        }
 
-                Button{
-                    id: bt_showSimnum
-                    text: "showSimnum"
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("showSimnum");
-                    }
-                }
-        }
+                        //Set
+                        Rectangle{
+//                            Layout.row:  4
+//                            Layout.column: 4
+//                            Layout.preferredWidth: 20
+                            Layout.columnSpan: 1
 
-        //2.1 re_TwoCode
-        Rectangle{
-                id: re_TwoCode
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                    Text {
-                        //id: name
-                        text: qsTr("TwoCode")
+                                Layout.fillWidth: true;
+                                Layout.fillHeight: true;
+                                Button{
+                                    id: bt_unbind
+                                    text: qsTr("Set")
+                                    anchors.fill: parent
+                                    style: ButtonStyle {
+                                          label: Text {
+                                            renderType: Text.NativeRendering
+                                            verticalAlignment: Text.AlignVCenter
+                                            horizontalAlignment: Text.AlignHCenter
+                //                            font.family: "Helvetica"
+                                            font.pointSize: 20
+                //                            color: "blue"
+                                            text: control.text
+                                          }
+                                    }
+
+                                    onClicked:{
+                                        console.log("bt_unbind");
+                                    }
+                                }
+                        }
+
+                        //Clear
+                        Rectangle{
+                            Layout.row:  3
+                            Layout.column: 2
+//                            Layout.preferredWidth: 20
+                            Layout.columnSpan: 1
+
+                                Layout.fillWidth: true;
+                                Layout.fillHeight: true;
+                                Button{
+                                    //id: bt_unbind
+                                    text: qsTr("unbind")
+                                    anchors.fill: parent
+                                    style: ButtonStyle {
+                                          label: Text {
+                                            renderType: Text.NativeRendering
+                                            verticalAlignment: Text.AlignVCenter
+                                            horizontalAlignment: Text.AlignHCenter
+                //                            font.family: "Helvetica"
+                                            font.pointSize: 20
+                //                            color: "blue"
+                                            text: control.text
+                                          }
+                                    }
+
+                                    onClicked:{
+                                        console.log("bt_unbind");
+                                    }
+                                }
                         }
                 }
 
-        //2.2 showTwoCode
-        Rectangle{
-                id: showTwoCode
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showTwoCode")
-                }
-        }
+                //ip
+                GridLayout{
+                    columns: 3;
 
-        //2.3 re_adaptor
-        Rectangle{
-                id: re_adaptor
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                    Text {
-                        //id: name
-                        text: qsTr("adaptor")
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+//                                Layout.preferredWidth: 1
+                                Layout.columnSpan: 3
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                    Text {
+                                        //id: name
+                                        text: qsTr("Setting IP")
+                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                    }
+                        }
+
+
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                    Text {
+                                        //id: name
+                                        text: qsTr("WIFI pwd")
+                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                    }
+                        }
+
+                        Rectangle{
+                                //id: readImei
+                                color: "blue";
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true     //占据为其分配的所有高度
+                                TextInput {
+                                            //id: val_user_pwd
+                                            anchors.fill: parent
+                                            font.pointSize:              14;
+                                }
+                        }
+
+                        //Set
+                        Rectangle{
+//                            Layout.row:  4
+//                            Layout.column: 4
+//                            Layout.preferredWidth: 20
+                            Layout.columnSpan: 1
+
+                                Layout.fillWidth: true;
+                                Layout.fillHeight: true;
+                                Button{
+                                    //id: bt_unbind
+                                    text: qsTr("Set")
+                                    anchors.fill: parent
+                                    style: ButtonStyle {
+                                          label: Text {
+                                            renderType: Text.NativeRendering
+                                            verticalAlignment: Text.AlignVCenter
+                                            horizontalAlignment: Text.AlignHCenter
+                //                            font.family: "Helvetica"
+                                            font.pointSize: 20
+                //                            color: "blue"
+                                            text: control.text
+                                          }
+                                    }
+
+                                    onClicked:{
+                                        console.log("bt_unbind");
+                                    }
+                                }
+                        }
+
+                        //Clear
+                        Rectangle{
+                            //Layout.row:  3
+                            Layout.column: 2
+//                            Layout.preferredWidth: 20
+                            Layout.columnSpan: 1
+
+                                Layout.fillWidth: true;
+                                Layout.fillHeight: true;
+                                Button{
+                                    //id: bt_unbind
+                                    text: qsTr("Clear")
+                                    anchors.fill: parent
+                                    style: ButtonStyle {
+                                          label: Text {
+                                            renderType: Text.NativeRendering
+                                            verticalAlignment: Text.AlignVCenter
+                                            horizontalAlignment: Text.AlignHCenter
+                //                            font.family: "Helvetica"
+                                            font.pointSize: 20
+                //                            color: "blue"
+                                            text: control.text
+                                          }
+                                    }
+
+                                    onClicked:{
+                                        console.log("bt_unbind");
+                                    }
+                                }
                         }
                 }
-
-        //2.4 showAdaptor
-        Rectangle{
-                id: showAdaptor
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showAdaptor")
-                }
-        }
-
-        //3.1 ??
-        Rectangle{
-                id: lineTxt_show
-                width: compSettingMenu.grid_w * 2
-                height: compSettingMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Layout.columnSpan: 4
-                Text {
-                    //id: name
-                    text: qsTr("lineTxt_show")
-                    }
-                }
-
-        //4.1 clear
-        Button{
-            id: bt_clear
-            text: "clear"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_clear");
-            }
-        }
-
-        //4.2 bind
-        Button{
-            id: bt_bind
-            text: "bind"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_bind");
-            }
-        }
-
-        //4.3 unbind
-        Button{
-            id: bt_unbind
-            text: "unbind"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_unbind");
-            }
-        }
-
-        //4.4 popup
-        Button{
-            id: bt_popup
-            text: "popup"
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_popup");
-            }
         }
     }
+
 }

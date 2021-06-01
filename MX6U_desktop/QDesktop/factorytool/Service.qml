@@ -10,7 +10,11 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
-//productMenu
+//!!!!!!!!!!!!!!
+
+// Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
+
+//compServiceMenu
 Rectangle {
     id: compServiceMenu
     visible: true
@@ -19,142 +23,209 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
-
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
 
 
-    Button{
-        id: bt_return
-        x: parent.width - bt_return.width
-        //y:compFactoryStatusBar.height
-        //anchors.top: compFactoryStatusBar.bottom
-        text: "return"
-        height: compFactoryStatusBar.height
-        onClicked:{
-            console.log("bt_return");
-            //close present page
-            compServiceMenu.visible = false;
-            compFactoryMenu.visible = true;
+    //title
+    Rectangle{
+        id:compFactoryTitleBar
+        width: parent.width
+        height: 50
+
+
+        Row{
+            anchors.fill: parent
+            Rectangle{
+                width: parent.width/2
+                height: 50
+                //color: "red"
+                Label{
+                    text: qsTr("SendOut")
+                    font.pointSize: 20
+                    }
+                }
+
+            Rectangle{
+                //color: "green"
+                width: parent.width/2
+                height: 50
+
+                Button{
+                    id: bt_return
+                    text: "return"
+                    anchors.fill: parent
+                    onClicked:{
+                        console.log("bt_return");
+                        compServiceMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    }
+                }
+            }
         }
     }
 
     //gridlayout
-    GridLayout{
-        id: menu_grid;
-        columns: 4;
-        rows: 4;
-        anchors.top: bt_return.bottom
+    Rectangle{
+        color: "blue"
+        anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
-//        anchors.fill: parent
-        anchors.margins: 5;
-        columnSpacing: 50;
-        rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
+
+        GridLayout{
+            columns: 4;
+            anchors.fill: parent
+            anchors.margins: 5;
+            columnSpacing: 10;
+            rowSpacing: 10;
 
 
-        //1.1 setWIFI
-        Rectangle{
-                width: compServiceMenu.grid_w * 2
-                height: compServiceMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //0.1 file
+            Rectangle{
+//                Layout.preferredWidth: 20
+                Layout.columnSpan: 1
+//                Layout.row:  0
+//                Layout.column: 4
 
-                Button{
-                    id: bt_readImei
-                    text: qsTr("txt_setWIFI")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("txt_setWIFI");
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_bind
+                        text: qsTr("WiFi Config")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_file");
+                        }
                     }
-                }
-        }
+            }
 
-        //1.2 txt_showWIFI
-        Rectangle{
-                width: compServiceMenu.grid_w * 2
-                height: compServiceMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    id: txt_showWIFI
-                    text: qsTr("txt_showWIFI")
-                    anchors.centerIn: parent
-                    font.pointSize:              14;
-                }
-        }
 
-        //2.1 setAPN
-        Rectangle{
-                width: compServiceMenu.grid_w * 2
-                height: compServiceMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //0.2
+            Rectangle{
+                    //id: showImei
+                    Layout.preferredWidth: 3
+                    Layout.columnSpan: 3
 
-                Button{
-                    id: bt_readImei
-                    text: qsTr("txt_setAPN")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("txt_setAPN");
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        //id: txt_showImei
+                        //text: qsTr("txt_showImei")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
                     }
-                }
-        }
+            }
 
-        //2.2 setFactoryWIFI
-        Rectangle{
-                width: compServiceMenu.grid_w * 2
-                height: compServiceMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
 
-                Button{
-                    text: qsTr("txt_setFactoryWIFI")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("setFactoryWIFI");
+            //1.1 APN Config
+            Rectangle{
+//                    Layout.preferredWidth: 20
+//                    Layout.columnSpan: 1
+                Layout.row:  1
+                Layout.column: 1
+                Layout.columnSpan: 2
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_clear
+                        text: qsTr("APN Config")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                                         }
+                            }
+                        onClicked:{
+                            console.log("bt_clear");
+                        }
                     }
-                }
-        }
 
+            }
 
-        //2.2 clearWIFI
-        Rectangle{
-                width: compServiceMenu.grid_w * 2
-                height: compServiceMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //1.1 FactoryWIFISet
+            Rectangle{
+//                Layout.preferredWidth: 20
+//                Layout.columnSpan: 1
+//                Layout.row:  3
+//                Layout.column: 3
+                Layout.row:  2
+                Layout.column: 1
+                Layout.columnSpan: 2
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        //id: bt_bind
+                        text: qsTr("FactoryWIFISet")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
 
-                Button{
-                    text: qsTr("txt_clearWIFI")
-                    width: parent.width
-                    height: parent.height
-                    Layout.columnSpan: 2
-                    onClicked:{
-                        console.log("clearWIFI");
+                        onClicked:{
+                            console.log("bt_bind");
+                        }
                     }
-                }
+            }
+
+            //2.2 SweepCode
+            Rectangle{
+//                Layout.preferredWidth: 20
+//                Layout.columnSpan: 1
+                Layout.row:  3
+                Layout.column: 1
+                Layout.columnSpan: 2
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        //id: bt_bind
+                        text: qsTr("ClearWIFI")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_bind");
+                        }
+                    }
+            }
         }
     }
 }

@@ -10,7 +10,11 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 
 
-//PacketMenu
+//!!!!!!!!!!!!!!
+
+// Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
+
+//Packet menu
 Rectangle {
     id: compPacketMenu
     visible: true
@@ -19,127 +23,357 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: 60 //Screen.desktopAvailableHeight/4         //60
 
-    //
-//        signal login_verify_signal(string name, string pwd)
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-//            login_verify_signal.connect(lg.login_verift_slot);
-    }
 
-    Button{
-        id: bt_return
-        x: parent.width - bt_return.width
-        text: "return"
-        height: compFactoryStatusBar.height
-        onClicked:{
-            console.log("bt_return");
-            //close present page
-            compPacketMenu.visible = false;
-            compFactoryMenu.visible = true;
+    //title
+    Rectangle{
+        id:compFactoryTitleBar
+        width: parent.width
+        height: 50
+
+
+        Row{
+            anchors.fill: parent
+            Rectangle{
+                width: parent.width/2
+                height: 50
+                //color: "red"
+                Label{
+                    //id: name
+                    text: qsTr("Product")
+                    //anchors.fill: parent
+                    //anchors.centerIn: parent
+                    font.pointSize: 20
+                    }
+                }
+
+            Rectangle{
+                //color: "green"
+
+                width: parent.width/2
+                height: 50
+
+                Button{
+                    id: bt_return
+                    text: "return"
+                    anchors.fill: parent
+                    onClicked:{
+                        console.log("bt_return");
+                        compPacketMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    }
+                }
+            }
         }
     }
 
     //gridlayout
-    GridLayout{
-        id: menu_grid;
-        columns: 4;
-        rows: 4;
-        anchors.top: bt_return.bottom
+    Rectangle{
+        color: "blue"
+        anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
-//        anchors.fill: parent
-        anchors.margins: 5;
-        columnSpacing: 50;
-        rowSpacing: 50;
-        //anchors.centerIn: parent
-        anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
+
+        GridLayout{
+//            id: menu_grid;
+            columns: 5;
+//            rows: 4;
+//            width: parent.width
+//            height: parent.height
+            anchors.fill: parent
+            anchors.margins: 5;
+            columnSpacing: 10;
+            rowSpacing: 10;
 
 
-        //1.1 re_TwoCode
-        Rectangle{
-                id: re_TwoCode
-                width: compPacketMenu.grid_w * 2
-                height: compPacketMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+            //1.1 readImei
+            Rectangle{
+                    id: readImei
+//                    color: "blue";
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
                     Text {
-                        //id: name
-                        text: qsTr("TwoCode")
-                        }
-                }
+                        id: txt_showImei
+                        text: qsTr("pls sweep TwoCode")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
 
-        //1.2 showTwoCode
-        Rectangle{
-                id: showTwoCode
-                width: compPacketMenu.grid_w * 2
-                height: compPacketMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showTwoCode")
-                }
-        }
+            //1.2
+            Rectangle{
+                    id: showImei
+                    Layout.preferredWidth: 4
+                    Layout.columnSpan: 4
 
-        //1.3 re_adaptor
-        Rectangle{
-                id: re_adaptor
-                width: compPacketMenu.grid_w * 2
-                height: compPacketMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
                     Text {
-                        //id: name
-                        text: qsTr("adaptor")
+                        //id: txt_showImei
+                        //text: qsTr("txt_showImei")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
+
+            //2.1
+            Rectangle{
+                    //id: readImei
+//                    color: "blue";
+                    Layout.preferredWidth: 1
+                    Layout.columnSpan: 1
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+                    Text {
+                        //id: txt_showImei
+                        text: qsTr("pls sweep TwoCode")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+                        font.pointSize:              14;
+                    }
+            }
+
+            //2.2 showImei
+            Rectangle{
+                    //id: showImei
+                    Layout.preferredWidth: 4
+                    Layout.columnSpan: 4
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //占据为其分配的所有高度
+
+//                    color: "yellow"
+                    Text {
+                        //id: txt_showImei
+                        //text: qsTr("txt_showImei")
+                        //anchors.centerIn: parent
+                        anchors.fill: parent
+
+                        font.pointSize:              14;
+                    }
+            }
+
+
+            //3.1 clear
+            Rectangle{
+//                    Layout.preferredWidth: 20
+//                    Layout.columnSpan: 1
+                Layout.row:  3
+                Layout.column: 1
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_clear
+                        text: qsTr("clear")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                                         }
+                            }
+                        onClicked:{
+                            console.log("bt_clear");
                         }
-                }
+                    }
 
-        //1.4 showAdaptor
-        Rectangle{
-                id: showAdaptor
-                width: compPacketMenu.grid_w * 2
-                height: compPacketMenu.grid_h
-                //color: "blue";
-                Layout.fillWidth: true;
-                Layout.fillHeight: true;
-                Text {
-                    //id: name
-                    text: qsTr("showAdaptor")
-                }
-        }
+            }
+
+            //3.2 print
+            Rectangle{
+//                Layout.preferredWidth: 20
+//                Layout.columnSpan: 1
+                Layout.row:  3
+                Layout.column: 3
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+                    Button{
+                        id: bt_bind
+                        text: qsTr("bind")
+                        anchors.fill: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_bind");
+                        }
+                    }
+            }
+
+            //4.1
+            Rectangle{
+                Layout.row:  4
+                Layout.column: 0
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //
+
+                    //uart select
+                        ComboBox {
+                                id:combox
+                                anchors.centerIn: parent
+                                currentIndex: 0
+                                model: ListModel {
+                                    id: cbItems
+                                    ListElement { text: "1 page"; color: "Yellow" }
+                                    ListElement { text: "2 page"; color: "Yellow" }
+                                    ListElement { text: "3 page"; color: "Yellow" }
+
+                                }
+                                //width: 160
+                                onCurrentIndexChanged: {
+//                                                if(currentIndex==0){
+//                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
+//                                                    console.debug("0")
+//                                                }
+//                                                if(currentIndex==1){
+//                                                     console.debug("1")
+//                                                }
+                                                    }
+                                }
+            }
+
+            //4.2
+            Rectangle{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //
+
+                    //uart select
+                        ComboBox {
+                                //id:combox
+                                anchors.centerIn: parent
+                                currentIndex: 0
+                                model: ListModel {
+                                    //id: cbItems
+                                    ListElement { text: "2 into 1"; color: "Yellow" }
+                                    ListElement { text: "3 into 1"; color: "Yellow" }
+                                    ListElement { text: "4 into 1"; color: "Yellow" }
+
+                                }
+                                //width: 160
+                                onCurrentIndexChanged: {
+//                                                if(currentIndex==0){
+//                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
+//                                                    console.debug("0")
+//                                                }
+//                                                if(currentIndex==1){
+//                                                     console.debug("1")
+//                                                }
+                                                    }
+                                }
+            }
+
+            //4.2
+            Rectangle{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //
+
+                    //uart select
+                        ComboBox {
+                                //id:combox
+                                anchors.centerIn: parent
+                                currentIndex: 0
+                                model: ListModel {
+                                    //id: cbItems
+                                    ListElement { text: "small printer"; color: "Yellow" }
+                                    ListElement { text: "big printer"; color: "Yellow" }
+
+                                }
+                                //width: 160
+                                onCurrentIndexChanged: {
+//                                                if(currentIndex==0){
+//                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
+//                                                    console.debug("0")
+//                                                }
+//                                                if(currentIndex==1){
+//                                                     console.debug("1")
+//                                                }
+                                                    }
+                                }
+            }
 
 
-        //2.1 clear
-        Button{
-            id: bt_clear
-            text:qsTr("clear")
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            Layout.columnSpan: 2
-            onClicked:{
-                console.log("bt_clear");
+            //4.3
+            Rectangle{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //
+
+                    //uart select
+                        ComboBox {
+                                //id:combox
+                                anchors.centerIn: parent
+                                currentIndex: 0
+                                model: ListModel {
+                                    //id: cbItems
+                                    ListElement { text: "CN"; color: "Yellow" }
+                                    ListElement { text: "USA"; color: "Yellow" }
+
+                                }
+                                //width: 160
+                                onCurrentIndexChanged: {
+//                                                if(currentIndex==0){
+//                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
+//                                                    console.debug("0")
+//                                                }
+//                                                if(currentIndex==1){
+//                                                     console.debug("1")
+//                                                }
+                                                    }
+                                }
+            }
+
+            //4.4
+            Rectangle{
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //
+
+                    //uart select
+                        ComboBox {
+                                //id:combox
+                                anchors.centerIn: parent
+                                currentIndex: 0
+                                model: ListModel {
+                                    //id: cbItems
+                                    ListElement { text: "CutPaper"; color: "Yellow" }
+                                    ListElement { text: "NoCutPaper"; color: "Yellow" }
+
+                                }
+                                //width: 160
+                                onCurrentIndexChanged: {
+//                                                if(currentIndex==0){
+//                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
+//                                                    console.debug("0")
+//                                                }
+//                                                if(currentIndex==1){
+//                                                     console.debug("1")
+//                                                }
+                                                    }
+                                }
             }
         }
-
-        //2.2 print
-        Button{
-            id: bt_bind
-            text: qsTr("print");
-            width: compLogin.grid_w / 2
-            height: compLogin.grid_h
-            onClicked:{
-                console.log("bt_bind");
-            }
-        }
-
-
     }
 }

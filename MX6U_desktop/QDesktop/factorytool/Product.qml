@@ -69,7 +69,7 @@ Rectangle {
 
     //gridlayout
     Rectangle{
-        color: "red"
+        color: "blue"
         anchors.top: compFactoryTitleBar.bottom
         width: parent.width;
         height: parent.height - bt_return.height
