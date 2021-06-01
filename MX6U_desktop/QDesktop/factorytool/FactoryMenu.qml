@@ -11,8 +11,10 @@ import QtQuick.Layouts 1.1
 
 
 Rectangle {
-    property int grid_w: Screen.desktopAvailableWidth/4   //100
-    property int grid_h: Screen.desktopAvailableHeight/4         //60
+    property int grid_w: Screen.desktopAvailableWidth/4;   //100
+    property int grid_h: Screen.desktopAvailableHeight/4;         //60
+
+    //property var UartObj: 0
 //    signal login_verify_signal(string name, string pwd)
 //    Component.onCompleted:
 //    {
@@ -284,6 +286,8 @@ Rectangle {
 
         //8.uart config
         Rectangle{
+           // var UartObj;
+
                 //id: sweepCode_menu
                 Layout.fillWidth: true;
                 Layout.fillHeight: true;
@@ -311,7 +315,7 @@ Rectangle {
                         //
                         compFactoryMenu.visible = false;
                         // 在主窗口（mainWindow）上显示主页面
-                        Qt.createComponent("qrc:/uart/Uart.qml").createObject(mainWindow, {});
+                        var UartObjex = Qt.createComponent("qrc:/uart/Uart.qml").createObject(mainWindow, {});
                         compFactoryTool.sonMenuIndex = 8;
                     }
                 }

@@ -8,7 +8,7 @@ import QtQuick.Controls 1.2
 import "../helpbutton"
 import myDesktop 1.0
 import QtQuick.Layouts 1.1
-
+import "../factorytool"
 
 //!!!!!!!!!!!!!!
 
@@ -16,7 +16,7 @@ import QtQuick.Layouts 1.1
 
 //productMenu
 Rectangle {
-    id: compUart
+    id: compUartMenu
     visible: true
     x: compFactoryStatusBar.x
     y: compFactoryStatusBar.height         //50//compFactoryStatusBar.bottom
@@ -59,9 +59,9 @@ Rectangle {
                     anchors.fill: parent
                     onClicked:{
                         console.log("bt_return");
-                        //compProductMenu.visible = false;
-                        //compFactoryMenu.visible = true;
-
+                        compUartMenu.visible = false;
+                        compFactoryMenu.visible = true;
+                    //UartObj.destory()
                     }
                 }
             }
@@ -76,7 +76,8 @@ Rectangle {
         height: parent.height - bt_return.height
 
         GridLayout{
-            columns: 8;
+//            row: 8
+            columns: 4;
             anchors.fill: parent
             anchors.margins: 5;
             columnSpacing: 10;
@@ -87,10 +88,11 @@ Rectangle {
             Rectangle{
                     //id: readImei
 //                    color: "blue";
-                    Layout.preferredWidth: 1
-                    Layout.columnSpan: 1
+                    //Layout.preferredWidth: 1
+//                Layout.preferredHeight: 50
+                    //Layout.columnSpan: 1
                     Layout.fillWidth: true
-                    Layout.fillHeight: true     //占据为其分配的所有高度
+                    Layout.fillHeight: true     //艕藕啪脻脦艦膯盲藝脰墓盲木脛脣暖脫膼赂脽艣膶
 
 
                     Button{
@@ -99,6 +101,8 @@ Rectangle {
                         //                    width: parent.width
                         //                    height: parent.height
                             //anchors.fill: parent
+                        anchors.centerIn: parent
+
                             style: ButtonStyle {
                                   label: Text {
                                     renderType: Text.NativeRendering
@@ -116,20 +120,37 @@ Rectangle {
                                 console.log("readImei");
                             }
                     }
-                //uart select
-                    ComboBox {
-                                            id:combox
-                                            anchors.top: bt_find.bottom
-                                            //x: structureTab_label2.x+structureTab_label2.width+5
-                                            //y: structureTab_label2.y
-                                            currentIndex: 0
-                                            model: ListModel {
-                                                id: cbItems
-                                                ListElement { text: "?????"; color: "Yellow" }
-                                                ListElement { text: "?????"; color: "Green" }
-                                            }
-                                            width: 160
-                                            onCurrentIndexChanged: {
+
+            }
+
+            //1.2 showImei
+            Rectangle{
+                    //id: showImei
+                    //Layout.preferredWidth: 1
+//                Layout.preferredHeight: 50
+
+                    //Layout.columnSpan: 1
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true     //艕藕啪脻脦艦膯盲藝脰墓盲木脛脣暖脫膼赂脽艣膶
+
+                    //uart select
+                        ComboBox {
+                                id:combox
+                                //x: structureTab_label2.x+structureTab_label2.width+5
+                                //y: structureTab_label2.y
+                                anchors.centerIn: parent
+
+                                currentIndex: 0
+                                model: ListModel {
+                                    id: cbItems
+                                    ListElement { text: "uart0"; color: "Yellow" }
+                                    ListElement { text: "uart1"; color: "Yellow" }
+                                    ListElement { text: "uart2"; color: "Yellow" }
+
+                                }
+                                //width: 160
+                                onCurrentIndexChanged: {
 //                                                if(currentIndex==0){
 //                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
 //                                                    console.debug("0")
@@ -137,233 +158,65 @@ Rectangle {
 //                                                if(currentIndex==1){
 //                                                     console.debug("1")
 //                                                }
-                                            }
-                            }
-            }
-
-            //1.2 showImei
-            Rectangle{
-                    //id: showImei
-                    Layout.preferredWidth: 3
-                    Layout.columnSpan: 3
-
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true     //占据为其分配的所有高度
-
-//                    color: "yellow"
-                    Text {
-                        id: txt_showImei
-                        //text: qsTr("txt_showImei")
-                        //anchors.centerIn: parent
-                        anchors.fill: parent
-                        font.pointSize:              14;
-                    }
+                                }
+                                }
             }
 
             //1.3 readSimnum
             Rectangle{
                     id: readSimnum
-                    Layout.preferredWidth: 1
-                    Layout.columnSpan: 1
+                    //Layout.preferredWidth: 1
+//                    Layout.preferredHeight: 50
+
+                    //Layout.columnSpan: 1
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
 //                    color: "green"
 
-                    Button{
-                        id: bt_readSimnum
-                        text: qsTr("readSimnum")
-    //                    width: parent.width
-    //                    height: parent.height
-                        anchors.fill: parent
-                        style: ButtonStyle {
-                              label: Text {
-                                renderType: Text.NativeRendering
-                                verticalAlignment: Text.AlignVCenter
-                                horizontalAlignment: Text.AlignHCenter
-    //                            font.family: "Helvetica"
-                                font.pointSize: 20
-    //                            color: "blue"
-                                text: control.text
-                              }
-                        }
+                    //uart select
+                        ComboBox {
+                                    id:combox_bound_select
+                                    //x: structureTab_label2.x+structureTab_label2.width+5
+                                    //y: structureTab_label2.y
+                                    anchors.centerIn: parent
 
-                        onClicked:{
-                            console.log("readSimnum");
-                        }
+                                    currentIndex: 0
+                                    model: ListModel {
+                                        //id: cbItems
+                                        ListElement { text: "4800"; color: "Yellow" }
+                                        ListElement { text: "9600"; color: "Green" }
+                                        ListElement { text: "115200"; color: "Green" }
+
+                                    }
+                                    //width: 160
+                                    onCurrentIndexChanged: {
+//                                                if(currentIndex==0){
+//                                                    console.debug(cbItems.get(currentIndex).text + ", " + cbItems.get(currentIndex).color)
+//                                                    console.debug("0")
+//                                                }
+//                                                if(currentIndex==1){
+//                                                     console.debug("1")
+//                                                }
+                                    }
+                                }
                     }
-            }
+
 
             //1.4 showSimnum
             Rectangle{
                     id: showSimnum
-                    Layout.preferredWidth: 3
-                    Layout.columnSpan: 3
+                    //Layout.preferredWidth: 1
+//                    Layout.preferredHeight: 50
+
+                    //Layout.columnSpan: 1
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
 //                    color: "orange"
-                    Text {
-                        //id: txt_showImei
-                        //text: qsTr("txt_showImei")
-                        //anchors.centerIn: parent
-                        anchors.fill: parent
-                        font.pointSize:              14;
-                    }
-            }
-
-            //2.1 re_TwoCode
-            Rectangle{
-                    id: re_TwoCode
-                    Layout.preferredWidth: 1
-                    Layout.columnSpan: 1
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                        Label{
-                            //id: name
-                            text: qsTr("pls sweep TwoCode:")
-                            //anchors.fill: parent
-                            anchors.centerIn: parent
-                            font.pointSize: 20
-                            }
-                    }
-
-            //2.2 showTwoCode
-            Rectangle{
-                    id: showTwoCode
-                    Layout.preferredWidth: 3
-                    Layout.columnSpan: 3
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                    Text {
-                            //id: name
-                            //text: qsTr("showTwoCode")
-                            anchors.fill: parent
-                    }
-            }
-
-            //2.3 re_adaptor
-            Rectangle{
-                    id: re_adaptor
-                    Layout.preferredWidth: 1
-                    Layout.columnSpan: 1
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                    Label{
-                        //id: name
-                        text: qsTr("adaptor:")
+                    Button{
+                        id: bt_open_close
+                        text: qsTr("open")
                         //anchors.fill: parent
                         anchors.centerIn: parent
-                        font.pointSize: 20
-                        }
-                    }
-
-            //2.4 showAdaptor
-            Rectangle{
-                    id: showAdaptor
-                    Layout.preferredWidth: 3
-                    Layout.columnSpan: 3
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-
-                    Text {
-                        //id: name
-                        //text: qsTr("showAdaptor")
-                        anchors.fill: parent
-
-                    }
-            }
-
-            //3.1 ??
-            Rectangle{
-                    id: lineTxt_show
-                    Layout.row:  3
-                    Layout.column: 1
-                    Layout.preferredWidth: 6
-                    Layout.columnSpan: 6
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                    Text {
-                        //id: name
-                        //text: qsTr("lineTxt_show")
-                        anchors.fill: parent
-
-                        }
-                    }
-
-            //4.1 clear
-            Rectangle{
-                Layout.row:  4
-                Layout.column: 2
-                    Layout.preferredWidth: 20
-                    Layout.columnSpan: 1
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                    Button{
-                        id: bt_clear
-                        text: qsTr("clear")
-                        anchors.fill: parent
-                        style: ButtonStyle {
-                              label: Text {
-                                renderType: Text.NativeRendering
-                                verticalAlignment: Text.AlignVCenter
-                                horizontalAlignment: Text.AlignHCenter
-    //                            font.family: "Helvetica"
-                                font.pointSize: 20
-    //                            color: "blue"
-                                text: control.text
-                                         }
-                            }
-                        onClicked:{
-                            console.log("bt_clear");
-                        }
-                    }
-
-            }
-
-            //4.2 bind
-            Rectangle{
-                Layout.row:  4
-                Layout.column: 3
-                Layout.preferredWidth: 20
-                Layout.columnSpan: 1
-
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                    Button{
-                        id: bt_bind
-                        text: qsTr("bind")
-                        anchors.fill: parent
-                        style: ButtonStyle {
-                              label: Text {
-                                renderType: Text.NativeRendering
-                                verticalAlignment: Text.AlignVCenter
-                                horizontalAlignment: Text.AlignHCenter
-    //                            font.family: "Helvetica"
-                                font.pointSize: 20
-    //                            color: "blue"
-                                text: control.text
-                              }
-                        }
-
-                        onClicked:{
-                            console.log("bt_bind");
-                        }
-                    }
-            }
-
-
-            //4.3 unbind
-            Rectangle{
-                Layout.row:  4
-                Layout.column: 4
-                Layout.preferredWidth: 20
-                Layout.columnSpan: 1
-
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-                    Button{
-                        id: bt_unbind
-                        text: qsTr("unbind")
-                        anchors.fill: parent
                         style: ButtonStyle {
                               label: Text {
                                 renderType: Text.NativeRendering
@@ -383,19 +236,59 @@ Rectangle {
             }
 
 
-            //4.4 popup
+            //recevie
             Rectangle{
-                Layout.row:  4
-                Layout.column: 5
-                Layout.preferredWidth: 20
-                Layout.columnSpan: 1
+                    id: text_into_recevie
+                    //Layout.preferredWidth: 1
+//                    Layout.preferredHeight: 50
+
+                    Layout.columnSpan: 4
+                    Layout.rowSpan: 2
 
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
+//                    color: "orange"
+                    Text {
+                        //id: name
+                        text: qsTr("text")
+
+                    }
+            }
+
+            //send
+            Rectangle{
+                    id: text_into_send
+                    //Layout.preferredWidth: 1
+//                    Layout.preferredHeight: 50
+
+                    Layout.columnSpan: 4
+                    Layout.rowSpan: 2
+
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "orange"
+                    Text {
+                        //id: name
+                        text: qsTr("text")
+
+                    }
+            }
+
+            //3.1 bt_uart_clear
+            Rectangle{
+                    id: bt_uart_clear
+                    //Layout.preferredWidth: 1
+//                    Layout.preferredHeight: 50
+
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "orange"
                     Button{
-                        id: bt_popup
-                        text: qsTr("popup")
-                        anchors.fill: parent
+                        //id: bt_open_close
+                        text: qsTr("clear")
+                        //anchors.fill: parent
+                        anchors.centerIn: parent
                         style: ButtonStyle {
                               label: Text {
                                 renderType: Text.NativeRendering
@@ -409,10 +302,45 @@ Rectangle {
                         }
 
                         onClicked:{
-                            console.log("bt_popup");
+                            console.log("bt_uart_clear");
                         }
                     }
             }
+
+            //3.2 bt_uart_send
+            Rectangle{
+                    id: bt_uart_send
+                    //Layout.preferredWidth: 1
+//                    Layout.preferredHeight: 50
+
+                    Layout.columnSpan: 2
+                    Layout.fillWidth: true;
+                    Layout.fillHeight: true;
+//                    color: "orange"
+                    Button{
+                        //id: bt_open_close
+                        text: qsTr("send")
+                        //anchors.fill: parent
+                        anchors.centerIn: parent
+                        style: ButtonStyle {
+                              label: Text {
+                                renderType: Text.NativeRendering
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
+    //                            font.family: "Helvetica"
+                                font.pointSize: 20
+    //                            color: "blue"
+                                text: control.text
+                              }
+                        }
+
+                        onClicked:{
+                            console.log("bt_uart_send");
+                        }
+                    }
+            }
+
         }
+
     }
 }
