@@ -33,11 +33,12 @@ Rectangle {
 
 
         Row{
+
             anchors.fill: parent
             Rectangle{
                 width: parent.width/2
                 height: 50
-                //color: "red"
+                color: "lightgray"
                 Label{
                     //id: name
                     text: qsTr("Product")
@@ -48,7 +49,7 @@ Rectangle {
                 }
 
             Rectangle{
-                //color: "green"
+                color: "lightgray"
 
                 width: parent.width/2
                 height: 50
@@ -85,24 +86,27 @@ Rectangle {
                 //wifi
                 GridLayout{
                     columns: 3;
-
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
-//                                Layout.preferredWidth: 1
+                                color: "lightgray"
                                 Layout.columnSpan: 3
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
                                     Text {
                                         //id: name
                                         text: qsTr("Setting WIFI")
-                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                        anchors.fill: parent
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
+            //                            font.family: "Helvetica"
+                                        font.pointSize: 20
+
                                     }
                         }
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
+                            color: "lightgray"
                                 Layout.columnSpan: 1
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
@@ -115,14 +119,15 @@ Rectangle {
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
+                            //color: "lightgray"
                                 Layout.columnSpan: 2
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
                                 TextInput {
-                                            id: val_user_pwd
-                                            anchors.fill: parent
-                                            font.pointSize:              14;
+                                        id: val_user_pwd
+                                        anchors.fill: parent
+                                        font.pointSize:              14;
+                                        color: "lightgray"
                                 }
                         }
 
@@ -130,20 +135,22 @@ Rectangle {
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
+                            color: "lightgray"
                                 Layout.columnSpan: 1
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
                                     Text {
                                         //id: name
                                         text: qsTr("WIFI pwd")
-                                        Layout.alignment: horizontalCenter|  verticalCenter
+//                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                        color: "lightgray"
+
                                     }
                         }
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
+                            //color: "lightgray"
                                 Layout.columnSpan: 2
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
@@ -156,9 +163,6 @@ Rectangle {
 
                         //Set
                         Rectangle{
-//                            Layout.row:  4
-//                            Layout.column: 4
-//                            Layout.preferredWidth: 20
                             Layout.columnSpan: 1
 
                                 Layout.fillWidth: true;
@@ -189,14 +193,13 @@ Rectangle {
                         Rectangle{
                             Layout.row:  3
                             Layout.column: 2
-//                            Layout.preferredWidth: 20
                             Layout.columnSpan: 1
 
                                 Layout.fillWidth: true;
                                 Layout.fillHeight: true;
                                 Button{
                                     //id: bt_unbind
-                                    text: qsTr("unbind")
+                                    text: qsTr("clear")
                                     anchors.fill: parent
                                     style: ButtonStyle {
                                           label: Text {
@@ -223,7 +226,7 @@ Rectangle {
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
+                            color: "lightgray"
 //                                Layout.preferredWidth: 1
                                 Layout.columnSpan: 3
                                 Layout.fillWidth: true
@@ -231,14 +234,18 @@ Rectangle {
                                     Text {
                                         //id: name
                                         text: qsTr("Setting IP")
-                                        Layout.alignment: horizontalCenter|  verticalCenter
+                                        anchors.fill: parent
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
+            //                            font.family: "Helvetica"
+                                        font.pointSize: 20
                                     }
                         }
 
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
+                            color: "lightgray"
                                 Layout.columnSpan: 1
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
@@ -251,7 +258,6 @@ Rectangle {
 
                         Rectangle{
                                 //id: readImei
-                                color: "blue";
                                 Layout.columnSpan: 2
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true     //占据为其分配的所有高度
@@ -264,8 +270,8 @@ Rectangle {
 
                         //Set
                         Rectangle{
-//                            Layout.row:  4
-//                            Layout.column: 4
+                            Layout.row:  3
+                            Layout.column: 0
 //                            Layout.preferredWidth: 20
                             Layout.columnSpan: 1
 
@@ -295,7 +301,7 @@ Rectangle {
 
                         //Clear
                         Rectangle{
-                            //Layout.row:  3
+                            Layout.row:  3
                             Layout.column: 2
 //                            Layout.preferredWidth: 20
                             Layout.columnSpan: 1

@@ -293,6 +293,7 @@ DIST          = /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linu
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/qt_config.prf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++/qmake.conf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/exclusive_builds.prf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/toolchain.prf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/default_pre.prf \
@@ -520,6 +521,7 @@ Makefile: ../../QDesktop.pro /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-n
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/qt_config.prf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++/qmake.conf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/exclusive_builds.prf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/toolchain.prf \
 		/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/default_pre.prf \
@@ -695,6 +697,7 @@ Makefile: ../../QDesktop.pro /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-n
 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/qt_config.prf:
 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++/qmake.conf:
 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/exclusive_builds.prf:
 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/toolchain.prf:
 /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/default_pre.prf:
@@ -936,6 +939,7 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../radio/images/next.png \
 		../../radio/images/preview.png \
 		../../radio/images/button.png \
+		../../uart/Uart.qml \
 		../../weather/WeatherPage1.qml \
 		../../weather/Weather.qml \
 		../../weather/WeatherPage2.qml \

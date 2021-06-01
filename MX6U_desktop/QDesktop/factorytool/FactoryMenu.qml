@@ -47,7 +47,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -82,7 +82,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -118,7 +118,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -153,7 +153,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -189,7 +189,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -225,7 +225,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -260,7 +260,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }
@@ -297,7 +297,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: "Helvetica"
-                            font.pointSize: 36
+                            font.pointSize: 20
 //                            color: "blue"
                             text: control.text
                           }

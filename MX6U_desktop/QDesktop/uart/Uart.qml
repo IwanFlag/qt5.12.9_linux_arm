@@ -84,24 +84,17 @@ Rectangle {
             rowSpacing: 10;
 
 
-            //1.1 readImei
+            //1.1 searchUart
             Rectangle{
-                    //id: readImei
-//                    color: "blue";
-                    //Layout.preferredWidth: 1
-//                Layout.preferredHeight: 50
-                    //Layout.columnSpan: 1
                     Layout.fillWidth: true
-                    Layout.fillHeight: true     //ŐźžÝÎŞĆäˇÖĹäľÄËůÓĐ¸ßśČ
+                    Layout.fillHeight: true
 
 
                     Button{
-                        id: bt_find
-                        text: qsTr("find uart")
-                        //                    width: parent.width
-                        //                    height: parent.height
-                            //anchors.fill: parent
+                        id: bt_searchUart
+                        text: qsTr("searchUart")
                         anchors.centerIn: parent
+                        anchors.fill: parent
 
                             style: ButtonStyle {
                                   label: Text {
@@ -110,14 +103,14 @@ Rectangle {
                                     horizontalAlignment: Text.AlignHCenter
         //                            font.family: "Helvetica"
                                     font.pointSize: 20
-        //                            color: "blue"
                                     text: control.text
                                   }
                             }
 
 
                             onClicked:{
-                                console.log("readImei");
+                                console.log("bt_searchUart");
+                                //
                             }
                     }
 
@@ -140,6 +133,7 @@ Rectangle {
                                 //x: structureTab_label2.x+structureTab_label2.width+5
                                 //y: structureTab_label2.y
                                 anchors.centerIn: parent
+                                anchors.fill: parent
 
                                 currentIndex: 0
                                 model: ListModel {
@@ -179,6 +173,7 @@ Rectangle {
                                     //x: structureTab_label2.x+structureTab_label2.width+5
                                     //y: structureTab_label2.y
                                     anchors.centerIn: parent
+                                    anchors.fill: parent
 
                                     currentIndex: 0
                                     model: ListModel {
@@ -217,6 +212,8 @@ Rectangle {
                         text: qsTr("open")
                         //anchors.fill: parent
                         anchors.centerIn: parent
+                        anchors.fill: parent
+
                         style: ButtonStyle {
                               label: Text {
                                 renderType: Text.NativeRendering
@@ -239,15 +236,11 @@ Rectangle {
             //recevie
             Rectangle{
                     id: text_into_recevie
-                    //Layout.preferredWidth: 1
-//                    Layout.preferredHeight: 50
-
                     Layout.columnSpan: 4
-                    Layout.rowSpan: 2
+                    Layout.rowSpan: 3
 
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
-//                    color: "orange"
                     Text {
                         //id: name
                         text: qsTr("text")
@@ -258,9 +251,6 @@ Rectangle {
             //send
             Rectangle{
                     id: text_into_send
-                    //Layout.preferredWidth: 1
-//                    Layout.preferredHeight: 50
-
                     Layout.columnSpan: 4
                     Layout.rowSpan: 2
 
@@ -270,15 +260,12 @@ Rectangle {
                     Text {
                         //id: name
                         text: qsTr("text")
-
                     }
             }
 
             //3.1 bt_uart_clear
             Rectangle{
                     id: bt_uart_clear
-                    //Layout.preferredWidth: 1
-//                    Layout.preferredHeight: 50
 
                     Layout.columnSpan: 2
                     Layout.fillWidth: true;
@@ -287,7 +274,7 @@ Rectangle {
                     Button{
                         //id: bt_open_close
                         text: qsTr("clear")
-                        //anchors.fill: parent
+                        anchors.fill: parent
                         anchors.centerIn: parent
                         style: ButtonStyle {
                               label: Text {
@@ -320,7 +307,7 @@ Rectangle {
                     Button{
                         //id: bt_open_close
                         text: qsTr("send")
-                        //anchors.fill: parent
+                        anchors.fill: parent
                         anchors.centerIn: parent
                         style: ButtonStyle {
                               label: Text {
