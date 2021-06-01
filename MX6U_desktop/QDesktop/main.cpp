@@ -49,6 +49,11 @@ Copyright © Deng Zhimao Co., Ltd. 1990-2030. All rights reserved.
 #include "login/login.h"
 
 
+#include <QQmlContext>
+//#include "./Control/serialPort.h"
+#include "./uart/UartThread.h"
+
+
 int main(int argc, char *argv[])
 {
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
@@ -82,6 +87,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<FileIO, 1>("fileIO", 1, 0, "FileIO");
     qmlRegisterType<CameraMedia, 1>("MyCameraMedia", 1, 0, "CameraMedia");
     qmlRegisterType<Login>("login", 1, 0, "Login");
+    qmlRegisterType<QSerialPortInfo>("QSerialPortInfo", 1, 0, "QSerialPortInfo");
+    qmlRegisterType<UartThread>("UartThread", 1, 0, "UartThread");
 
     QQmlApplicationEngine engine;
 
@@ -108,6 +115,10 @@ int main(int argc, char *argv[])
 
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    //seria com init
+    UartThread * uartThreat = new UartThread;
+    engine.rootContext()->setContextProperty("UartThread", uartThreat);
 
 
     if (engine.rootObjects().isEmpty())

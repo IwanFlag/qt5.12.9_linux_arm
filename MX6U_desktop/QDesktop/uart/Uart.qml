@@ -10,6 +10,7 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 import "../factorytool"
 
+import QSerialPortInfo 1.1
 //!!!!!!!!!!!!!!
 
 // Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
@@ -23,6 +24,14 @@ Rectangle {
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
     color: "gray"
+
+
+    signal uart_search_port()
+    Component.onCompleted:
+    {
+        //qml 信号 连接 c++ slot
+        uart_search_port.connect(UartThread.uart_search_com_slots);
+    }
 
 
     //title
@@ -111,38 +120,37 @@ Rectangle {
                             onClicked:{
                                 console.log("bt_searchUart");
                                 //
+                                //uart_search_port();
+                                //QList<QSerialPortInfo> list = availablePorts()
                             }
                     }
-
             }
 
-            //1.2 showImei
+            //1.2 uart select
             Rectangle{
-                    //id: showImei
-                    //Layout.preferredWidth: 1
-//                Layout.preferredHeight: 50
-
-                    //Layout.columnSpan: 1
-
                     Layout.fillWidth: true
-                    Layout.fillHeight: true     //ŐźžÝÎŞĆäˇÖĹäľÄËůÓĐ¸ßśČ
+                    Layout.fillHeight: true     //
 
                     //uart select
                         ComboBox {
-                                id:combox
-                                //x: structureTab_label2.x+structureTab_label2.width+5
-                                //y: structureTab_label2.y
                                 anchors.centerIn: parent
                                 anchors.fill: parent
 
                                 currentIndex: 0
-                                model: ListModel {
-                                    id: cbItems
-                                    ListElement { text: "uart0"; color: "Yellow" }
-                                    ListElement { text: "uart1"; color: "Yellow" }
-                                    ListElement { text: "uart2"; color: "Yellow" }
+//                                model: ListModel {
+//                                    id: cbItems
+//                                    ListElement { text: "uart0"; color: "Yellow" }
+//                                    ListElement { text: "uart1"; color: "Yellow" }
+//                                    ListElement { text: "uart2"; color: "Yellow" }
 
+//                                }
+
+                                id:serialName
+                                //model: serial.querySerialInfo()// [ "Banana", "Apple", "Coconut" ]
+                                onActivated: {
+                                    //serial.setPortName(currentText)
                                 }
+
                                 //width: 160
                                 onCurrentIndexChanged: {
 //                                                if(currentIndex==0){
@@ -159,10 +167,6 @@ Rectangle {
             //1.3 readSimnum
             Rectangle{
                     id: readSimnum
-                    //Layout.preferredWidth: 1
-//                    Layout.preferredHeight: 50
-
-                    //Layout.columnSpan: 1
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
 //                    color: "green"
@@ -170,19 +174,23 @@ Rectangle {
                     //uart select
                         ComboBox {
                                     id:combox_bound_select
-                                    //x: structureTab_label2.x+structureTab_label2.width+5
-                                    //y: structureTab_label2.y
                                     anchors.centerIn: parent
                                     anchors.fill: parent
 
-                                    currentIndex: 0
-                                    model: ListModel {
-                                        //id: cbItems
-                                        ListElement { text: "4800"; color: "Yellow" }
-                                        ListElement { text: "9600"; color: "Green" }
-                                        ListElement { text: "115200"; color: "Green" }
+//                                    currentIndex: 0
+//                                    model: ListModel {
+//                                        //id: cbItems
+//                                        ListElement { text: "4800"; color: "Yellow" }
+//                                        ListElement { text: "9600"; color: "Green" }
+//                                        ListElement { text: "115200"; color: "Green" }
 
+//                                    }
+
+                                    model: [ "9600", "19200", "38400", "57600","115200"]
+                                    onActivated: {
+                                        //serial.setBaud(currentText)
                                     }
+
                                     //width: 160
                                     onCurrentIndexChanged: {
 //                                                if(currentIndex==0){
@@ -199,11 +207,7 @@ Rectangle {
 
             //1.4 showSimnum
             Rectangle{
-                    id: showSimnum
-                    //Layout.preferredWidth: 1
-//                    Layout.preferredHeight: 50
-
-                    //Layout.columnSpan: 1
+                    //id: showSimnum
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
 //                    color: "orange"
@@ -241,11 +245,21 @@ Rectangle {
 
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
-                    Text {
-                        //id: name
-                        text: qsTr("text")
+//                    Text {
+//                        //id: name
+//                        text: qsTr("text")
 
-                    }
+
+//                    }
+                    TextField {
+                         //text: backend.userName
+                         placeholderText: qsTr("receive data")
+                         anchors.centerIn: parent
+
+                         onTextChanged:{
+                             //backend.userName = text
+                         }
+                     }
             }
 
             //send
@@ -327,6 +341,12 @@ Rectangle {
                     }
             }
 
+
+
+            Component.onCompleted: {
+                //serial.setPortName(serialName.currentText)
+                //serial.setBaud(baud.currentText)
+            }
         }
 
     }

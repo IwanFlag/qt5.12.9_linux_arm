@@ -6,7 +6,7 @@
 #* @email         1252699831@qq.com
 #* @date          2020-06-01
 #*******************************************************************/
-QT += quick core qml network positioning widgets quickcontrols2 widgets multimedia
+QT += quick core qml network positioning widgets quickcontrols2 widgets multimedia serialport xml
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -27,6 +27,7 @@ SOURCES += \
     fileview/fileio.cpp \
     login/login.cpp \
         main.cpp \
+    uart/UartThread.cpp \
     weather/myjsonparse.cpp \
     weather/mymodel.cpp \
     weather/weatherdata.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     factorytool/factorytool.h \
     fileview/fileio.h \
     login/login.h \
+    uart/UartThread.h \
     weather/myjsonparse.h \
     weather/mymodel.h \
     weather/weatherdata.h \
