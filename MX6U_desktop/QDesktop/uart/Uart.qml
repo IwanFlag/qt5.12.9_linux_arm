@@ -28,6 +28,7 @@ Rectangle {
 
     signal uart_search_port()
     signal uart_open_close_signals(string txt, string portName, string bound)
+    signal uart_sendData_signals(string data)
 
 
     //title
@@ -134,7 +135,7 @@ Rectangle {
 //                        ListElement { text: "uart0"; color: "Yellow" }
 //                        ListElement { text: "uart1"; color: "Yellow" }
 //                        ListElement { text: "uart2"; color: "Yellow" }
-                            ListElement { text: "uart0"}
+//                            ListElement { text: "uart0"}
                     }
 
                     //uart select
@@ -240,68 +241,8 @@ Rectangle {
                     }
             }
 
-
-//            //recevie
-//            Rectangle{
-//                    id: text_into_recevie
-//                    Layout.columnSpan: 4
-//                    Layout.rowSpan: 3
-
-//                    Layout.fillWidth: true;
-//                    Layout.fillHeight: true;
-////                    Text {
-////                        //id: name
-////                        text: qsTr("text")
-
-
-////                    }
-//                    Text{
-//                         //text: backend.userName
-////                         placeholderText: qsTr("receive data")
-//                         anchors.centerIn: parent
-//                        wrapMode: Text.WrapAnywhere
-//                        elide: Text.ElideRight
-//                        maximumLineCount:2
-//                        color: "lightgray"
-//                         onTextChanged:{
-//                             //backend.userName = text
-//                         }
-//                     }
-//            }
-
-            //send
-//            Rectangle{
-//                    id: text_into_send
-//                    Layout.columnSpan: 4
-//                    Layout.rowSpan: 2
-
-//                    Layout.fillWidth: true;
-//                    Layout.fillHeight: true;
-////                    color: "orange"
-//                    TextField {
-//                        //id: name
-//                        placeholderText: qsTr("input data")
-//                        anchors.fill: parent
-//                        style: TextFieldStyle{
-//                               background: Rectangle{
-//                               //color: ""
-//                               border.color: "gray"
-//                               radius: 5
-//                               }//设置风格为蓝底灰边，圆角
-//                               //但是TextField不能定制光标
-//                    }
-//                }
-//            }
-
-
-
             Rectangle {
                 id: receiveData
-                //anchors.top: parent.top
-                //anchors.left: parent.left
-//                border.color: "#d7cfcf"
-//                height: parent.height/1.5
-//                width: parent.width
                 Layout.columnSpan: 4
                 Layout.rowSpan: 3
 
@@ -326,24 +267,30 @@ Rectangle {
 //                            contentY = r.y+r.height-height;
 //                    }
 
-                    TextEdit {
-                        id: editReceive
+                    TextArea  {
+                        id: txt_receiveEdit
                         width: flickReceive.width
                         focus: false
+                        enabled: false
+                        selectByKeyboard: false
                         wrapMode: TextEdit.Wrap
+                        anchors.fill: parent
 //                        onCursorRectangleChanged: flickReceive.ensureVisible(cursorRectangle)
-                        color: "red"
+                        style: TextAreaStyle {
+
+                            backgroundColor: "lightgray"
+                            textColor: "black"
+//                            font.pixelSize: 18
+                            selectedTextColor: "red"
+                            selectionColor: "blue"
+                        }
                     }
 
                 }
             }
 
             Rectangle {
-                id: sendData
-//                width: parent.width
-//                height: parent.height-receiveData.height-buttons.height
-//                border.color: "#d7cfcf"
-//                anchors.top: receiveData.bottom
+                id: txt_sendData
                 Layout.columnSpan: 4
                 Layout.rowSpan: 3
 
@@ -369,7 +316,9 @@ Rectangle {
 //                    }
 
                     TextEdit {
-                        id: editSend
+                        id: txt_sendEdit
+                        anchors.fill: parent
+
                         width: flickSend.width
                         focus: true
                         wrapMode: TextEdit.Wrap
@@ -406,6 +355,8 @@ Rectangle {
 
                         onClicked:{
                             console.log("bt_uart_clear");
+                            txt_sendEdit.clear();
+                            txt_receiveEdit.clear();
                         }
                     }
             }
@@ -439,6 +390,7 @@ Rectangle {
 
                         onClicked:{
                             console.log("bt_uart_send");
+                            uart_sendData_signals(txt_sendEdit.text);
                         }
                     }
             }
@@ -449,6 +401,7 @@ Rectangle {
             //qml 信号 连接 c++ slot
             uart_search_port.connect(UartThread.uart_search_com_slots);
             uart_open_close_signals.connect(UartThread.uart_open_close_slots);
+            uart_sendData_signals.connect(UartThread.Uart_sendData_slots);
         }
 
 
@@ -456,9 +409,18 @@ Rectangle {
               target: UartThread;
               onUart_vaild_ports_to_qml:{
                   console.log("hhahah");
-                  combobox_items.clear();
+                  //combobox_items.clear();
                   combobox_items.append({ text: port});
                   console.log("port:%s", port);
+              }
+          }
+
+
+        Connections {
+              target: UartThread;
+              onSendDataToQml:{
+                  console.log("recevie data:%s", data);
+                  txt_receiveEdit.append(data)
               }
           }
     }

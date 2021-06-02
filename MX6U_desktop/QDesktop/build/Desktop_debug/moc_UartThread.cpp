@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_UartThread_t {
     QByteArrayData data[13];
-    char stringdata0[173];
+    char stringdata0[170];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,21 +32,21 @@ struct qt_meta_stringdata_UartThread_t {
 static const qt_meta_stringdata_UartThread_t qt_meta_stringdata_UartThread = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "UartThread"
-QT_MOC_LITERAL(1, 11, 16), // "sendDataToWdiget"
-QT_MOC_LITERAL(2, 28, 0), // ""
-QT_MOC_LITERAL(3, 29, 4), // "data"
-QT_MOC_LITERAL(4, 34, 23), // "uart_vaild_ports_to_qml"
-QT_MOC_LITERAL(5, 58, 4), // "port"
-QT_MOC_LITERAL(6, 63, 21), // "Uart_ready_read_slots"
-QT_MOC_LITERAL(7, 85, 19), // "Uart_sendData_slots"
-QT_MOC_LITERAL(8, 105, 21), // "uart_search_com_slots"
-QT_MOC_LITERAL(9, 127, 21), // "uart_open_close_slots"
-QT_MOC_LITERAL(10, 149, 8), // "now_text"
-QT_MOC_LITERAL(11, 158, 8), // "portName"
-QT_MOC_LITERAL(12, 167, 5) // "bound"
+QT_MOC_LITERAL(1, 11, 13), // "sendDataToQml"
+QT_MOC_LITERAL(2, 25, 0), // ""
+QT_MOC_LITERAL(3, 26, 4), // "data"
+QT_MOC_LITERAL(4, 31, 23), // "uart_vaild_ports_to_qml"
+QT_MOC_LITERAL(5, 55, 4), // "port"
+QT_MOC_LITERAL(6, 60, 21), // "Uart_ready_read_slots"
+QT_MOC_LITERAL(7, 82, 19), // "Uart_sendData_slots"
+QT_MOC_LITERAL(8, 102, 21), // "uart_search_com_slots"
+QT_MOC_LITERAL(9, 124, 21), // "uart_open_close_slots"
+QT_MOC_LITERAL(10, 146, 8), // "now_text"
+QT_MOC_LITERAL(11, 155, 8), // "portName"
+QT_MOC_LITERAL(12, 164, 5) // "bound"
 
     },
-    "UartThread\0sendDataToWdiget\0\0data\0"
+    "UartThread\0sendDataToQml\0\0data\0"
     "uart_vaild_ports_to_qml\0port\0"
     "Uart_ready_read_slots\0Uart_sendData_slots\0"
     "uart_search_com_slots\0uart_open_close_slots\0"
@@ -83,7 +83,7 @@ static const uint qt_meta_data_UartThread[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QByteArray,    3,
+    QMetaType::Void, QMetaType::QString,    3,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   10,   11,   12,
 
@@ -96,10 +96,10 @@ void UartThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<UartThread *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->sendDataToWdiget((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->sendDataToQml((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->uart_vaild_ports_to_qml((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->Uart_ready_read_slots(); break;
-        case 3: _t->Uart_sendData_slots((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
+        case 3: _t->Uart_sendData_slots((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 4: _t->uart_search_com_slots(); break;
         case 5: _t->uart_open_close_slots((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
         default: ;
@@ -108,7 +108,7 @@ void UartThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (UartThread::*)(QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UartThread::sendDataToWdiget)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&UartThread::sendDataToQml)) {
                 *result = 0;
                 return;
             }
@@ -164,7 +164,7 @@ int UartThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void UartThread::sendDataToWdiget(QString _t1)
+void UartThread::sendDataToQml(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

@@ -15,7 +15,6 @@ UartThread::UartThread()
     serialPort = new QSerialPort;                                 //init one uart port
 }
 
-
 /**
  * @brief UartThread::run
  * 重写，初始化
@@ -161,7 +160,7 @@ void UartThread::Uart_ready_read_slots()
 
     //重新显示
     //g_widget->tab_uart_manager->recv_plain_text->setPlainText(recv);
-//    emit sendDataToWdiget(recv);
+    emit sendDataToQml(recv);
 }
 
 /**
@@ -169,9 +168,9 @@ void UartThread::Uart_ready_read_slots()
  *                  app send data to
  * @param data
  */
-void UartThread::Uart_sendData_slots(QByteArray data)
+void UartThread::Uart_sendData_slots(QString data)
 {
-    qDebug("[UartThread--%s]:>>", __func__);
+    qDebug("[UartThread--%s]:>>data:%s", __func__, qPrintable(data));
 //    g_widget->tab_uart_manager->uart_send_HEX_byte(data);
 }
 
@@ -194,6 +193,7 @@ void UartThread::uart_search_com_slots()
         m_ports.append(info.portName());
         //info.description();         //描述符号
         //info.manufacturer();        //设备制造商
+        emit uart_vaild_ports_to_qml(info.portName());
     }
 
     if(!m_ports.isEmpty())
@@ -201,7 +201,8 @@ void UartThread::uart_search_com_slots()
         qDebug("[UartThread--%s]:>>vaild port", __func__);
 
         //QObject::connect(item, SIGNAL(qmlSignal(QString)),&myClass, SLOT(cppSlot(QString)));
-        emit uart_vaild_ports_to_qml(m_ports[0]);
+//        emit uart_vaild_ports_to_qml(m_ports[0]);
+
         //m_port = m_ports[0];
 
 //        QObject *rect = object->findChild<QObject*>("combobox_bound_select");

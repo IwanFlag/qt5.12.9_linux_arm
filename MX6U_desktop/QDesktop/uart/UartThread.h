@@ -14,13 +14,14 @@ class UartThread : public QThread
 
 
 signals:
-    void sendDataToWdiget(QString data);
+    void sendDataToQml(QString data);
     void uart_vaild_ports_to_qml(QString port);
+//    void uart_vaild_ports_to_qml(QStringList port);
 
 
 public slots:
     void Uart_ready_read_slots();
-    void Uart_sendData_slots(QByteArray data);
+    void Uart_sendData_slots(QString data);
     void uart_search_com_slots();
     void uart_open_close_slots(QString now_text, QString portName, QString bound);
 
@@ -36,6 +37,7 @@ private:
     QSerialPort *serialPort;    //float data;
     QList<QString> m_ports;
     QString m_port;
+    QStringList m_strPorts;
 
 };
 

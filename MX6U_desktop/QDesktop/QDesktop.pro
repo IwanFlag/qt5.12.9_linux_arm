@@ -23,6 +23,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     cameramedia/cameramedia.cpp \
+    common/common_fun.cpp \
     factorytool/factorytool.cpp \
     fileview/fileio.cpp \
     login/login.cpp \
@@ -62,6 +63,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     cameramedia/cameramedia.h \
+    common/common_fun.h \
     factorytool/factorytool.h \
     fileview/fileio.h \
     login/login.h \

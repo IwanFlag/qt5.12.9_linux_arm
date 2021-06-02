@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Login>("login", 1, 0, "Login");
 //    qmlRegisterType<QSerialPortInfo>("QSerialPortInfo", 1, 0, "QSerialPortInfo");
     qmlRegisterType<UartThread>("UartThread", 1, 0, "UartThread");
+//    qmlRegisterType<QStringList>("QStringList", 1, 0, "QStringList");
 
     QQmlApplicationEngine engine;
 
