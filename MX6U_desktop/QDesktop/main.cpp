@@ -60,12 +60,10 @@ int main(int argc, char *argv[])
 
     //QT consoal code
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     //QGuiApplication app(argc, argv);
     QApplication app(argc, argv);
 
     QDir::setCurrent(QCoreApplication::applicationDirPath());
-
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 
     qmlRegisterType<IndexData>("an.weather", 1, 0, "IndexData");
@@ -87,7 +85,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<FileIO, 1>("fileIO", 1, 0, "FileIO");
     qmlRegisterType<CameraMedia, 1>("MyCameraMedia", 1, 0, "CameraMedia");
     qmlRegisterType<Login>("login", 1, 0, "Login");
-    qmlRegisterType<QSerialPortInfo>("QSerialPortInfo", 1, 0, "QSerialPortInfo");
+//    qmlRegisterType<QSerialPortInfo>("QSerialPortInfo", 1, 0, "QSerialPortInfo");
     qmlRegisterType<UartThread>("UartThread", 1, 0, "UartThread");
 
     QQmlApplicationEngine engine;
@@ -114,11 +112,30 @@ int main(int argc, char *argv[])
     myPhoto->add(QCoreApplication::applicationDirPath() + "/src/images/");
 
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     //seria com init
     UartThread * uartThreat = new UartThread;
     engine.rootContext()->setContextProperty("UartThread", uartThreat);
+
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+//    QList<QObject*> objs = engine.rootObjects();
+//    foreach (QObject* obj, objs)
+//    {
+//        QObject *ret = obj->findChild<QObject*>("combobox_bound_select");
+//        if(ret)
+//        {
+//            qDebug("[UartThread--%s]:>>vvvvvvvvvvvvvvcccccccccccccccc", __func__);
+
+//        }
+//    }
+//    QObject *rect = object->findChild<QObject*>("combobox_bound_select");
+
+
+//    if(rect)
+//    {
+//        qDebug("[UartThread--%s]:>>vvvvvvvvvvvvvvcccccccccccccccc", __func__);
+//    }
 
 
     if (engine.rootObjects().isEmpty())

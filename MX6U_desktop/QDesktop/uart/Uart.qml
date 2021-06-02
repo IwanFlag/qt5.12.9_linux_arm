@@ -10,7 +10,7 @@ import myDesktop 1.0
 import QtQuick.Layouts 1.1
 import "../factorytool"
 
-import QSerialPortInfo 1.1
+//import QSerialPortInfo 1.1
 //!!!!!!!!!!!!!!
 
 // Grid bu ju ,zhi you quan bu peizhi wancheng  ,caihui  youshengxiao "columSPAN",diu
@@ -27,11 +27,7 @@ Rectangle {
 
 
     signal uart_search_port()
-    Component.onCompleted:
-    {
-        //qml 信号 连接 c++ slot
-        uart_search_port.connect(UartThread.uart_search_com_slots);
-    }
+    signal uart_open_close_signals(string txt, string portName, string bound)
 
 
     //title
@@ -47,6 +43,7 @@ Rectangle {
                 width: parent.width/2
                 height: 50
                 //color: "red"
+
                 Label{
                     //id: name
                     text: qsTr("Uart")
@@ -54,6 +51,7 @@ Rectangle {
                     //anchors.centerIn: parent
                     font.pointSize: 20
                     }
+
                 }
 
             Rectangle{
@@ -119,9 +117,8 @@ Rectangle {
 
                             onClicked:{
                                 console.log("bt_searchUart");
-                                //
-                                //uart_search_port();
-                                //QList<QSerialPortInfo> list = availablePorts()
+                                uart_search_port();
+                                //cbItems.append(UartThread.m_port);
                             }
                     }
             }
@@ -131,23 +128,28 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true     //
 
+
+                    ListModel{
+                        id: combobox_items
+//                        ListElement { text: "uart0"; color: "Yellow" }
+//                        ListElement { text: "uart1"; color: "Yellow" }
+//                        ListElement { text: "uart2"; color: "Yellow" }
+                            ListElement { text: "uart0"}
+                    }
+
                     //uart select
                         ComboBox {
+                                id: combobox_bound_select
+                                objectName: "combobox_bound_select"
                                 anchors.centerIn: parent
                                 anchors.fill: parent
 
                                 currentIndex: 0
-//                                model: ListModel {
-//                                    id: cbItems
-//                                    ListElement { text: "uart0"; color: "Yellow" }
-//                                    ListElement { text: "uart1"; color: "Yellow" }
-//                                    ListElement { text: "uart2"; color: "Yellow" }
-
-//                                }
-
-                                id:serialName
+                                model:{combobox_items}
+                                //id:serialName
                                 //model: serial.querySerialInfo()// [ "Banana", "Apple", "Coconut" ]
-                                onActivated: {
+                                //model: UartThread.m_port
+                                onActivated:{
                                     //serial.setPortName(currentText)
                                 }
 
@@ -205,15 +207,15 @@ Rectangle {
                     }
 
 
-            //1.4 showSimnum
+            //1.4 open
             Rectangle{
-                    //id: showSimnum
+                    //id: bt_open_close
                     Layout.fillWidth: true;
                     Layout.fillHeight: true;
 //                    color: "orange"
                     Button{
                         id: bt_open_close
-                        text: qsTr("open")
+                        text: qsTr("Open")
                         //anchors.fill: parent
                         anchors.centerIn: parent
                         anchors.fill: parent
@@ -231,52 +233,152 @@ Rectangle {
                         }
 
                         onClicked:{
-                            console.log("bt_unbind");
+                            console.log("bt_open_close");
+                            //bt_open_close.text
+                            uart_open_close_signals(bt_open_close.text, combobox_bound_select.currentText, combox_bound_select.currentText);
                         }
                     }
             }
 
 
-            //recevie
-            Rectangle{
-                    id: text_into_recevie
-                    Layout.columnSpan: 4
-                    Layout.rowSpan: 3
+//            //recevie
+//            Rectangle{
+//                    id: text_into_recevie
+//                    Layout.columnSpan: 4
+//                    Layout.rowSpan: 3
 
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-//                    Text {
-//                        //id: name
-//                        text: qsTr("text")
+//                    Layout.fillWidth: true;
+//                    Layout.fillHeight: true;
+////                    Text {
+////                        //id: name
+////                        text: qsTr("text")
 
 
-//                    }
-                    TextField {
-                         //text: backend.userName
-                         placeholderText: qsTr("receive data")
-                         anchors.centerIn: parent
-
-                         onTextChanged:{
-                             //backend.userName = text
-                         }
-                     }
-            }
+////                    }
+//                    Text{
+//                         //text: backend.userName
+////                         placeholderText: qsTr("receive data")
+//                         anchors.centerIn: parent
+//                        wrapMode: Text.WrapAnywhere
+//                        elide: Text.ElideRight
+//                        maximumLineCount:2
+//                        color: "lightgray"
+//                         onTextChanged:{
+//                             //backend.userName = text
+//                         }
+//                     }
+//            }
 
             //send
-            Rectangle{
-                    id: text_into_send
-                    Layout.columnSpan: 4
-                    Layout.rowSpan: 2
+//            Rectangle{
+//                    id: text_into_send
+//                    Layout.columnSpan: 4
+//                    Layout.rowSpan: 2
 
-                    Layout.fillWidth: true;
-                    Layout.fillHeight: true;
-//                    color: "orange"
-                    Text {
-                        //id: name
-                        text: qsTr("text")
+//                    Layout.fillWidth: true;
+//                    Layout.fillHeight: true;
+////                    color: "orange"
+//                    TextField {
+//                        //id: name
+//                        placeholderText: qsTr("input data")
+//                        anchors.fill: parent
+//                        style: TextFieldStyle{
+//                               background: Rectangle{
+//                               //color: ""
+//                               border.color: "gray"
+//                               radius: 5
+//                               }//设置风格为蓝底灰边，圆角
+//                               //但是TextField不能定制光标
+//                    }
+//                }
+//            }
+
+
+
+            Rectangle {
+                id: receiveData
+                //anchors.top: parent.top
+                //anchors.left: parent.left
+//                border.color: "#d7cfcf"
+//                height: parent.height/1.5
+//                width: parent.width
+                Layout.columnSpan: 4
+                Layout.rowSpan: 3
+
+                Layout.fillWidth: true;
+                Layout.fillHeight: true;
+
+                Flickable {
+                    id: flickReceive
+                    anchors.fill: parent
+                    clip: true
+                    anchors.margins: 5
+
+//                    function ensureVisible(r)
+//                    {
+//                        if (contentX >= r.x)
+//                            contentX = r.x;
+//                        else if (contentX+width <= r.x+r.width)
+//                            contentX = r.x+r.width-width;
+//                        if (contentY >= r.y)
+//                            contentY = r.y;
+//                        else if (contentY+height <= r.y+r.height)
+//                            contentY = r.y+r.height-height;
+//                    }
+
+                    TextEdit {
+                        id: editReceive
+                        width: flickReceive.width
+                        focus: false
+                        wrapMode: TextEdit.Wrap
+//                        onCursorRectangleChanged: flickReceive.ensureVisible(cursorRectangle)
+                        color: "red"
                     }
+
+                }
             }
 
+            Rectangle {
+                id: sendData
+//                width: parent.width
+//                height: parent.height-receiveData.height-buttons.height
+//                border.color: "#d7cfcf"
+//                anchors.top: receiveData.bottom
+                Layout.columnSpan: 4
+                Layout.rowSpan: 3
+
+                Layout.fillWidth: true;
+                Layout.fillHeight: true;
+
+                Flickable {
+                    id: flickSend
+                    anchors.fill: parent
+                    clip: true
+                    anchors.margins: 5
+
+//                    function ensureVisible(r)
+//                    {
+//                        if (contentX >= r.x)
+//                            contentX = r.x;
+//                        else if (contentX+width <= r.x+r.width)
+//                            contentX = r.x+r.width-width;
+//                        if (contentY >= r.y)
+//                            contentY = r.y;
+//                        else if (contentY+height <= r.y+r.height)
+//                            contentY = r.y+r.height-height;
+//                    }
+
+                    TextEdit {
+                        id: editSend
+                        width: flickSend.width
+                        focus: true
+                        wrapMode: TextEdit.Wrap
+//                        onCursorRectangleChanged: flickSend.ensureVisible(cursorRectangle)
+                        color: "green"
+
+                    }
+                }
+    }
             //3.1 bt_uart_clear
             Rectangle{
                     id: bt_uart_clear
@@ -340,14 +442,24 @@ Rectangle {
                         }
                     }
             }
-
-
-
-            Component.onCompleted: {
-                //serial.setPortName(serialName.currentText)
-                //serial.setBaud(baud.currentText)
-            }
         }
 
+
+        Component.onCompleted: {
+            //qml 信号 连接 c++ slot
+            uart_search_port.connect(UartThread.uart_search_com_slots);
+            uart_open_close_signals.connect(UartThread.uart_open_close_slots);
+        }
+
+
+        Connections {
+              target: UartThread;
+              onUart_vaild_ports_to_qml:{
+                  console.log("hhahah");
+                  combobox_items.clear();
+                  combobox_items.append({ text: port});
+                  console.log("port:%s", port);
+              }
+          }
     }
 }

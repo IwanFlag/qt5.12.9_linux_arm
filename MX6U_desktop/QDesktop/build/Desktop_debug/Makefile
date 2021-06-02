@@ -1288,6 +1288,12 @@ moc_UartThread.cpp: ../../uart/UartThread.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontainerfwd.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject_impl.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiodevice.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		moc_predefs.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/bin/moc
 	/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/bin/moc $(DEFINES) --include /home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/build/Desktop_debug/moc_predefs.h -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++ -I/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuickControls2 -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQuick -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtMultimedia -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtQml -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtPositioning -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtXml -I/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../../uart/UartThread.h -o moc_UartThread.cpp
@@ -3097,7 +3103,13 @@ main.o: ../../main.cpp /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QG
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontmetrics.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qfontinfo.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qsizepolicy.h \
-		../../login/login.h
+		../../login/login.h \
+		../../uart/UartThread.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 UartThread.o: ../../uart/UartThread.cpp ../../uart/UartThread.h \
@@ -3152,11 +3164,16 @@ UartThread.o: ../../uart/UartThread.cpp ../../uart/UartThread.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontainerfwd.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject_impl.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiodevice.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPortInfo \
+		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportinfo.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qdebug.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhash.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmap.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtextstream.h \
-		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiodevice.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlocale.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvariant.h \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qshareddata.h \
