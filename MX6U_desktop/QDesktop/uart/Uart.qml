@@ -118,6 +118,7 @@ Rectangle {
 
                             onClicked:{
                                 console.log("bt_searchUart");
+                                combobox_items.clear();
                                 uart_search_port();
                                 //cbItems.append(UartThread.m_port);
                             }
@@ -237,6 +238,7 @@ Rectangle {
                             console.log("bt_open_close");
                             //bt_open_close.text
                             uart_open_close_signals(bt_open_close.text, combobox_bound_select.currentText, combox_bound_select.currentText);
+                            //bt_open_close.text = "aaa"
                         }
                     }
             }
@@ -315,16 +317,34 @@ Rectangle {
 //                            contentY = r.y+r.height-height;
 //                    }
 
-                    TextEdit {
+//                    TextEdit {
+//                        id: txt_sendEdit
+//                        anchors.fill: parent
+
+//                        width: flickSend.width
+//                        focus: true
+//                        wrapMode: TextEdit.Wrap
+////                        onCursorRectangleChanged: flickSend.ensureVisible(cursorRectangle)
+//                        color: "green"
+
+//                    }
+                    TextArea  {
                         id: txt_sendEdit
-                        anchors.fill: parent
-
-                        width: flickSend.width
-                        focus: true
+                        width: flickReceive.width
+                        focus: false
+                        //enabled: false
+                        selectByKeyboard: false
                         wrapMode: TextEdit.Wrap
-//                        onCursorRectangleChanged: flickSend.ensureVisible(cursorRectangle)
-                        color: "green"
+                        anchors.fill: parent
+//                        onCursorRectangleChanged: flickReceive.ensureVisible(cursorRectangle)
+                        style: TextAreaStyle {
 
+                            //backgroundColor: "lightgray"
+                            textColor: "green"
+//                            font.pixelSize: 18
+                            selectedTextColor: "red"
+                            selectionColor: "blue"
+                        }
                     }
                 }
     }
@@ -421,6 +441,31 @@ Rectangle {
               onSendDataToQml:{
                   console.log("recevie data:%s", data);
                   txt_receiveEdit.append(data)
+              }
+          }
+
+        //open flag
+        Connections {
+              target: UartThread;
+              onUart_open_flag_signals:{
+                  console.log("onUart_open_flag_signals:%d", flag);
+                    if(flag)
+                    {
+                        bt_open_close.text = qsTr("Close")
+                    }
+              }
+          }
+
+        //close flag
+        Connections {
+              target: UartThread;
+              onUart_close_flag_signals:{
+                  console.log("onUart_closed_flag_signals:%d", flag);
+//                  txt_receiveEdit.append(data)
+                  if(flag)
+                  {
+                      bt_open_close.text = qsTr("Open")
+                  }
               }
           }
     }

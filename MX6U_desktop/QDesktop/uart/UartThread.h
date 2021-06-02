@@ -17,6 +17,8 @@ signals:
     void sendDataToQml(QString data);
     void uart_vaild_ports_to_qml(QString port);
 //    void uart_vaild_ports_to_qml(QStringList port);
+    void uart_open_flag_signals(int flag);              //0:fail 1:sucess
+    void uart_close_flag_signals(int flag);             //0:fail 1:sucess
 
 
 public slots:

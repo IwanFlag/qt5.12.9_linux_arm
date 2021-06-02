@@ -2,6 +2,7 @@
 #include "qdebug.h"
 //#include "main.h"
 #include <QMessageBox>
+#include <QString>
 
 
 /**
@@ -67,9 +68,14 @@ void UartThread::uart_open_close(QString now_text, QString portName, QString bou
         serialPort->setFlowControl(QSerialPort::NoFlowControl);
 
         //打开串口
-        if(!serialPort->open(QIODevice::ReadWrite))
+        if(serialPort->open(QIODevice::ReadWrite))
+        {
+            uart_open_flag_signals(1);
+        }
+        else
         {
             QMessageBox::about(NULL, tr("Uart Tip"), tr("Can not open uart"));
+            uart_open_flag_signals(0);
             return;
         }
         //isUartOpenFlag = true;
@@ -110,6 +116,8 @@ void UartThread::uart_open_close(QString now_text, QString portName, QString bou
         //终止串口子线程
         //printerSerialThread->terminate();
         this->terminate();
+        //QMessageBox::about(NULL, tr("UartThread"), tr("close"));
+        uart_close_flag_signals(1);
 
 //        //控件使能
 //        uart_select_cb->setEnabled(true);
@@ -181,6 +189,7 @@ void UartThread::Uart_sendData_slots(QString data)
 void UartThread::uart_search_com_slots()
 {
     qDebug("[UartThread--%s]:>>", __func__);
+    QString str;
 
     //清除选项
     //this->uart_select_cb->clear();
@@ -191,10 +200,14 @@ void UartThread::uart_search_com_slots()
 //        this->uart_select_cb->addItem(info.portName());
         qDebug("[UartThread--%s]:>>portName:%ss", __func__, qPrintable(info.portName()));
         m_ports.append(info.portName());
+        str += info.portName() + "/";
         //info.description();         //描述符号
         //info.manufacturer();        //设备制造商
         emit uart_vaild_ports_to_qml(info.portName());
     }
+
+
+    //QMessageBox::about(NULL, tr("UartThread"), str);
 
     if(!m_ports.isEmpty())
     {
