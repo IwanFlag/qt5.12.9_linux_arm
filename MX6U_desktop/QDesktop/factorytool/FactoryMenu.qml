@@ -8,6 +8,7 @@ import QtQuick.Controls 1.2
 import "../helpbutton"
 import myDesktop 1.0
 import QtQuick.Layouts 1.1
+import "../tcpclient"
 
 
 Rectangle {
@@ -310,6 +311,45 @@ Rectangle {
                         // 在主窗口（mainWindow）上显示主页面
                         var UartObjex = Qt.createComponent("qrc:/uart/Uart.qml").createObject(mainWindow, {});
                         compFactoryTool.sonMenuIndex = 8;
+                    }
+                }
+        }
+
+        //9.uart config
+        Rectangle{
+           // var UartObj;
+
+                //id: sweepCode_menu
+                Layout.fillWidth: true;
+                Layout.fillHeight: true;
+
+                Button{
+                    //id: bt_sweepCode_menu
+                    text: qsTr("TCP/IP")
+                    width: parent.width
+                    height: parent.height
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 20
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
+                    onClicked:{
+                        console.log("TCP/IP");
+                        //
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var TcpIPClientObjex = Qt.createComponent("qrc:/tcpclient/TcpClient.qml").createObject(mainWindow, {});
+                        TcpIPClientObjex.visible = true;
+                        //TcpClient{};
+                        compFactoryTool.sonMenuIndex = 9;
                     }
                 }
         }
