@@ -3,6 +3,8 @@
 //#include "main.h"
 #include <QMessageBox>
 #include <QString>
+#include <QIODevice>
+#include <QObject>
 
 
 /**
@@ -12,7 +14,7 @@ UartThread::UartThread()
 {
     qDebug("[UartThread--%s]:>>", __func__);
     //m_port = port;
-//    QObject::connect(g_widget->tab_uart_manager->printerSerialPort, &QSerialPort::readyRead, this, &printerUart_ready_read_slots);
+//    QObject::connect(g_widget->tab_uart_manager->printerSerialPort, &QSerialPort::readyRead, this, &printeruart_ready_read_slots);
     serialPort = new QSerialPort;                                 //init one uart port
 }
 
@@ -23,8 +25,8 @@ UartThread::UartThread()
 void UartThread::run()
 {
     qDebug("[UartThread--%s]:>>", __func__);
-//    QObject::connect(g_widget->tab_uart_manager->printerSerialPort, &QSerialPort::readyRead, this, &printerUart_ready_read_slots);
-    //QObject::connect(&g_widget->tab_uart_manager->printerSerialPort, &QSerialPort::errorOccurred, this, &printerUart_ready_read_slots);
+//    QObject::connect(g_widget->tab_uart_manager->printerSerialPort, &QSerialPort::readyRead, this, &printeruart_ready_read_slots);
+    //QObject::connect(&g_widget->tab_uart_manager->printerSerialPort, &QSerialPort::errorOccurred, this, &printeruart_ready_read_slots);
     QThread::exec();
 }
 
@@ -43,6 +45,8 @@ void UartThread::uart_open_close(QString now_text, QString portName, QString bou
 
     if(QString::compare(now_text, tr("Open"), Qt::CaseInsensitive) == 0)
     {
+        QString MSG_STR;
+        MSG_STR += now_text+"/" + portName+"/" + bound;
         qDebug("[UartTabWidget--%s]:>>ready open uart", __func__);
         //设置串口名
         serialPort->setPortName(portName);
@@ -71,10 +75,11 @@ void UartThread::uart_open_close(QString now_text, QString portName, QString bou
         if(serialPort->open(QIODevice::ReadWrite))
         {
             uart_open_flag_signals(1);
+            QMessageBox::about(NULL, tr("Uart Tip"), MSG_STR);
         }
         else
         {
-            QMessageBox::about(NULL, tr("Uart Tip"), tr("Can not open uart"));
+            QMessageBox::about(NULL, tr("Uart Tip"), tr("warning:Can not open uart"));
             uart_open_flag_signals(0);
             return;
         }
@@ -85,7 +90,7 @@ void UartThread::uart_open_close(QString now_text, QString portName, QString bou
 
         //qDebug("[UartTabWidget--%s]:>>11b:%d", __func__, b);
         //串口接收
-        //bool b = QObject::connect(serialPort, &QSerialPort::readyRead, printerSerialThread, &PrinterUartThread::printerUart_ready_read_slots);
+        connect(serialPort, &QSerialPort::readyRead, this, &UartThread::uart_ready_read_slots, Qt::QueuedConnection);
         //串口发送
         //connect(g_widget, SIGNAL(printerUart_sendDataToPrinter(QByteArray)), g_widget->tab_uart_manager->printerSerialThread, SLOT(printerUart_sendDataToPrinter_slots(QByteArray)), Qt::QueuedConnection);
 
@@ -136,50 +141,48 @@ void UartThread::uart_open_close(QString now_text, QString portName, QString bou
     }
 }
 
-
-void UartThread::Uart_ready_read_slots()
+/**
+ * @brief UartThread::uart_ready_read_slots
+ * recevie
+ */
+void UartThread::uart_ready_read_slots()
 {
     qDebug("[UartThread--%s]:>>", __func__);
 
 
-    //QMessageBox::about(NULL, tr("UartThread"), tr("printerUart_ready_read_slots"));
+    //QMessageBox::about(NULL, tr("UartThread"), tr("printeruart_ready_read_slots"));
 
     //从接收缓冲区中读取数据
     QByteArray buffer = serialPort->readAll();
 
-//    //遍历打印试试
-//    for(int i = 0; i < buffer.size(); i++)
-//    {
-//        qDebug("[UartThread--%s]:>>recv data:\n%02x", __func__, buffer.at(i));
-//    }
 
     //QByteArray转为大写QSting
     QString str(buffer.toHex().toUpper());//toUpper()大写
 
 //    //从界面中读取以前收到的数据
 //    QString recv = g_widget->tab_uart_manager->recv_plain_text->toPlainText();
-    QString recv;
+//    QString recv;
 
 //    recv += QString(str);
-    recv += "\n";           //加一个换行符
+//    recv += "\n";           //加一个换行符
+        str+= "\n";
 
-    //清空以前的显示
-    //g_widget->tab_uart_manager->recv_plain_text->clear();
-
-    //重新显示
-    //g_widget->tab_uart_manager->recv_plain_text->setPlainText(recv);
-    emit sendDataToQml(recv);
+    QMessageBox::about(NULL, tr("Uart recevie:"), str);
+    emit sendDataToQml(str);
 }
 
 /**
- * @brief UartThread::Uart_sendData_slots
+ * @brief UartThread::uart_sendData_slots
  *                  app send data to
  * @param data
  */
-void UartThread::Uart_sendData_slots(QString data)
+void UartThread::uart_sendData_slots(QString data)
 {
     qDebug("[UartThread--%s]:>>data:%s", __func__, qPrintable(data));
 //    g_widget->tab_uart_manager->uart_send_HEX_byte(data);
+    QMessageBox::about(NULL, tr("Uart send"), data);
+    //serialPort->writeData(ch, ba.size());
+    serialPort->write(data.toLatin1());
 }
 
 /**

@@ -40,8 +40,8 @@ QT_MOC_LITERAL(5, 55, 4), // "port"
 QT_MOC_LITERAL(6, 60, 22), // "uart_open_flag_signals"
 QT_MOC_LITERAL(7, 83, 4), // "flag"
 QT_MOC_LITERAL(8, 88, 23), // "uart_close_flag_signals"
-QT_MOC_LITERAL(9, 112, 21), // "Uart_ready_read_slots"
-QT_MOC_LITERAL(10, 134, 19), // "Uart_sendData_slots"
+QT_MOC_LITERAL(9, 112, 21), // "uart_ready_read_slots"
+QT_MOC_LITERAL(10, 134, 19), // "uart_sendData_slots"
 QT_MOC_LITERAL(11, 154, 21), // "uart_search_com_slots"
 QT_MOC_LITERAL(12, 176, 21), // "uart_open_close_slots"
 QT_MOC_LITERAL(13, 198, 8), // "now_text"
@@ -52,8 +52,8 @@ QT_MOC_LITERAL(15, 216, 5) // "bound"
     "UartThread\0sendDataToQml\0\0data\0"
     "uart_vaild_ports_to_qml\0port\0"
     "uart_open_flag_signals\0flag\0"
-    "uart_close_flag_signals\0Uart_ready_read_slots\0"
-    "Uart_sendData_slots\0uart_search_com_slots\0"
+    "uart_close_flag_signals\0uart_ready_read_slots\0"
+    "uart_sendData_slots\0uart_search_com_slots\0"
     "uart_open_close_slots\0now_text\0portName\0"
     "bound"
 };
@@ -109,8 +109,8 @@ void UartThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->uart_vaild_ports_to_qml((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->uart_open_flag_signals((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->uart_close_flag_signals((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->Uart_ready_read_slots(); break;
-        case 5: _t->Uart_sendData_slots((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->uart_ready_read_slots(); break;
+        case 5: _t->uart_sendData_slots((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 6: _t->uart_search_com_slots(); break;
         case 7: _t->uart_open_close_slots((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
         default: ;

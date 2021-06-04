@@ -141,8 +141,8 @@ Rectangle {
 
                     //uart select
                         ComboBox {
-                                id: combobox_bound_select
-                                objectName: "combobox_bound_select"
+                                id: combobox_uart_select
+                                objectName: "combobox_uart_select"
                                 anchors.centerIn: parent
                                 anchors.fill: parent
 
@@ -177,7 +177,7 @@ Rectangle {
 
                     //uart select
                         ComboBox {
-                                    id:combox_bound_select
+                                    id:combobox_bound_select
                                     anchors.centerIn: parent
                                     anchors.fill: parent
 
@@ -237,7 +237,7 @@ Rectangle {
                         onClicked:{
                             console.log("bt_open_close");
                             //bt_open_close.text
-                            uart_open_close_signals(bt_open_close.text, combobox_bound_select.currentText, combox_bound_select.currentText);
+                            uart_open_close_signals(bt_open_close.text, combobox_uart_select.currentText, combobox_bound_select.currentText);
                             //bt_open_close.text = "aaa"
                         }
                     }
@@ -383,7 +383,7 @@ Rectangle {
 
             //3.2 bt_uart_send
             Rectangle{
-                    id: bt_uart_send
+                    //id: bt_uart_send
                     //Layout.preferredWidth: 1
 //                    Layout.preferredHeight: 50
 
@@ -392,7 +392,8 @@ Rectangle {
                     Layout.fillHeight: true;
 //                    color: "orange"
                     Button{
-                        //id: bt_open_close
+                        id: bt_uart_send
+                        enabled: false;
                         text: qsTr("send")
                         anchors.fill: parent
                         anchors.centerIn: parent
@@ -421,7 +422,7 @@ Rectangle {
             //qml 信号 连接 c++ slot
             uart_search_port.connect(UartThread.uart_search_com_slots);
             uart_open_close_signals.connect(UartThread.uart_open_close_slots);
-            uart_sendData_signals.connect(UartThread.Uart_sendData_slots);
+            uart_sendData_signals.connect(UartThread.uart_sendData_slots);
         }
 
 
@@ -451,7 +452,12 @@ Rectangle {
                   console.log("onUart_open_flag_signals:%d", flag);
                     if(flag)
                     {
-                        bt_open_close.text = qsTr("Close")
+                        bt_open_close.text = qsTr("Close");
+                        //disabled
+                        bt_searchUart.enabled = false;
+                        combobox_uart_select.enabled = false;
+                        combobox_bound_select.enabled = false;
+                        bt_uart_send.enabled = true;
                     }
               }
           }
@@ -465,6 +471,12 @@ Rectangle {
                   if(flag)
                   {
                       bt_open_close.text = qsTr("Open")
+                      //enabled
+                      bt_searchUart.enabled = true;
+                      combobox_uart_select.enabled = true;
+                      combobox_bound_select.enabled = true;
+                      bt_uart_send.enabled = false;
+
                   }
               }
           }

@@ -113,30 +113,13 @@ int main(int argc, char *argv[])
     myPhoto->add(QCoreApplication::applicationDirPath() + "/src/images/");
 
 
-
     //seria com init
     UartThread * uartThreat = new UartThread;
     engine.rootContext()->setContextProperty("UartThread", uartThreat);
 
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-//    QList<QObject*> objs = engine.rootObjects();
-//    foreach (QObject* obj, objs)
-//    {
-//        QObject *ret = obj->findChild<QObject*>("combobox_bound_select");
-//        if(ret)
-//        {
-//            qDebug("[UartThread--%s]:>>vvvvvvvvvvvvvvcccccccccccccccc", __func__);
 
-//        }
-//    }
-//    QObject *rect = object->findChild<QObject*>("combobox_bound_select");
-
-
-//    if(rect)
-//    {
-//        qDebug("[UartThread--%s]:>>vvvvvvvvvvvvvvcccccccccccccccc", __func__);
-//    }
 
 
     if (engine.rootObjects().isEmpty())

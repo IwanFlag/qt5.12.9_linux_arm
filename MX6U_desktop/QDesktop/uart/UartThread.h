@@ -22,8 +22,8 @@ signals:
 
 
 public slots:
-    void Uart_ready_read_slots();
-    void Uart_sendData_slots(QString data);
+    void uart_ready_read_slots();
+    void uart_sendData_slots(QString data);
     void uart_search_com_slots();
     void uart_open_close_slots(QString now_text, QString portName, QString bound);
 
