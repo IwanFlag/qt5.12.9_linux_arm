@@ -21,6 +21,9 @@ Item {
     id: window
     property string netWorkInfo: ""
     property string connectSate : "请先与服务端连接"
+    width: parent.width
+    height: parent.height
+
 
     HelpMessages {
         anchors.fill: parent

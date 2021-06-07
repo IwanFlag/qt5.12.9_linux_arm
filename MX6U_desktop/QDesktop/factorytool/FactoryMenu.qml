@@ -14,7 +14,7 @@ import "../tcpclient"
 Rectangle {
     property int grid_w: Screen.desktopAvailableWidth/4;   //100
     property int grid_h: Screen.desktopAvailableHeight/4;         //60
-
+    color:"blue"
 
     //gridlayout
     GridLayout{

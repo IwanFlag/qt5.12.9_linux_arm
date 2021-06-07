@@ -16,7 +16,7 @@ Rectangle {
     visible: true
     width:parent.width
     height: parent.height
-    color: "gray"
+    color: "blue"
     property int sonMenuIndex: 0              //0:mei you jin ru zicai dan
 
 

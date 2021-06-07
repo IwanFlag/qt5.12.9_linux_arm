@@ -53,6 +53,7 @@ Rectangle{
     anchors.fill: parent
     property bool smallScreen: width == 480 ? true : false
 
+
     //flags:Qt.FramelessWindowHint
 
     MyDesktop {
@@ -122,13 +123,11 @@ Rectangle{
             drag.target: backBtn
             drag.minimumX: 0
             drag.minimumY: 0
-            drag.maximumX: mainWindow.width - 60
-            drag.maximumY: mainWindow.height - 60
+            drag.maximumX: compHomeMenu.width - 60
+            drag.maximumY: compHomeMenu.height - 60
             onClicked: {
-                //if()
                 console.log("bb,backFlag=%d", backFlag);
 
-                {
                     if (mainSwipeView.currentIndex == 3)
                     {
                         mainSwipeView.currentIndex = 0
@@ -149,11 +148,7 @@ Rectangle{
                         console.log("cc");
 
                     }
-                }
-//                else
-//                {
 
-//                }
 
 
 
@@ -404,9 +399,9 @@ Rectangle{
     //delete this @ysheng
 //    Item {
 //        id: topMenu
-//        anchors.top: mainWindow.top
-//        anchors.left: mainWindow.left
-//        width: mainWindow.width
+//        anchors.top: compHomeMenu.top
+//        anchors.left: compHomeMenu.left
+//        width: compHomeMenu.width
 //        height: 30
 //        Rectangle {
 //            anchors.fill: topMenu
