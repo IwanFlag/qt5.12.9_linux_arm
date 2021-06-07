@@ -55,6 +55,7 @@ OBJECTS_DIR   = ./
 SOURCES       = ../../cameramedia/cameramedia.cpp \
 		../../common/common_fun.cpp \
 		../../factorytool/factorytool.cpp \
+		../../factorytool/psonserver.cpp \
 		../../fileview/fileio.cpp \
 		../../login/login.cpp \
 		../../main.cpp \
@@ -78,6 +79,7 @@ SOURCES       = ../../cameramedia/cameramedia.cpp \
 		../../iotest/keysthread.cpp \
 		../../radio/radio.cpp qrc_qml.cpp \
 		moc_cameramedia.cpp \
+		moc_psonserver.cpp \
 		moc_fileio.cpp \
 		moc_login.cpp \
 		moc_UartThread.cpp \
@@ -101,6 +103,7 @@ SOURCES       = ../../cameramedia/cameramedia.cpp \
 OBJECTS       = cameramedia.o \
 		common_fun.o \
 		factorytool.o \
+		psonserver.o \
 		fileio.o \
 		login.o \
 		main.o \
@@ -125,6 +128,7 @@ OBJECTS       = cameramedia.o \
 		radio.o \
 		qrc_qml.o \
 		moc_cameramedia.o \
+		moc_psonserver.o \
 		moc_fileio.o \
 		moc_login.o \
 		moc_UartThread.o \
@@ -341,7 +345,9 @@ DIST          = /home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pre.pr
 		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/lex.prf \
 		../../../../QDesktop.pro ../../cameramedia/cameramedia.h \
 		../../common/common_fun.h \
+		../../factorytool/common_factoryTool.h \
 		../../factorytool/factorytool.h \
+		../../factorytool/psonserver.h \
 		../../fileview/fileio.h \
 		../../login/login.h \
 		../../uart/UartThread.h \
@@ -365,6 +371,7 @@ DIST          = /home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pre.pr
 		../../radio/radio.h ../../cameramedia/cameramedia.cpp \
 		../../common/common_fun.cpp \
 		../../factorytool/factorytool.cpp \
+		../../factorytool/psonserver.cpp \
 		../../fileview/fileio.cpp \
 		../../login/login.cpp \
 		../../main.cpp \
@@ -807,8 +814,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameramedia/cameramedia.h ../../common/common_fun.h ../../factorytool/factorytool.h ../../fileview/fileio.h ../../login/login.h ../../uart/UartThread.h ../../weather/myjsonparse.h ../../weather/mymodel.h ../../weather/weatherdata.h ../../music/lyricmodel.h ../../music/playlistmodel.h ../../media/mediaListModel.h ../../wireless/wirelessmodel.h ../../tcpclient/mytcpclient.h ../../tcpserver/mytcpserver.h ../../desktop/desktop.h ../../udpchat/udpreciver.h ../../udpchat/udpsender.h ../../photoview/photolistmodel.h ../../iotest/beep.h ../../sensor/ap3216c.h ../../sensor/icm20608.h ../../iotest/keysthread.h ../../radio/radio.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameramedia/cameramedia.cpp ../../common/common_fun.cpp ../../factorytool/factorytool.cpp ../../fileview/fileio.cpp ../../login/login.cpp ../../main.cpp ../../uart/UartThread.cpp ../../weather/myjsonparse.cpp ../../weather/mymodel.cpp ../../weather/weatherdata.cpp ../../music/lyricmodel.cpp ../../music/playlistmodel.cpp ../../media/mediaListModel.cpp ../../wireless/wirelessmodel.cpp ../../tcpclient/mytcpclient.cpp ../../tcpserver/mytcpserver.cpp ../../desktop/desktop.cpp ../../udpchat/udpreciver.cpp ../../udpchat/udpsend.cpp ../../photoview/photolistmodel.cpp ../../iotest/beep.cpp ../../sensor/ap3216c.cpp ../../sensor/icm20608.cpp ../../iotest/keysthread.cpp ../../radio/radio.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameramedia/cameramedia.h ../../common/common_fun.h ../../factorytool/common_factoryTool.h ../../factorytool/factorytool.h ../../factorytool/psonserver.h ../../fileview/fileio.h ../../login/login.h ../../uart/UartThread.h ../../weather/myjsonparse.h ../../weather/mymodel.h ../../weather/weatherdata.h ../../music/lyricmodel.h ../../music/playlistmodel.h ../../media/mediaListModel.h ../../wireless/wirelessmodel.h ../../tcpclient/mytcpclient.h ../../tcpserver/mytcpserver.h ../../desktop/desktop.h ../../udpchat/udpreciver.h ../../udpchat/udpsender.h ../../photoview/photolistmodel.h ../../iotest/beep.h ../../sensor/ap3216c.h ../../sensor/icm20608.h ../../iotest/keysthread.h ../../radio/radio.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameramedia/cameramedia.cpp ../../common/common_fun.cpp ../../factorytool/factorytool.cpp ../../factorytool/psonserver.cpp ../../fileview/fileio.cpp ../../login/login.cpp ../../main.cpp ../../uart/UartThread.cpp ../../weather/myjsonparse.cpp ../../weather/mymodel.cpp ../../weather/weatherdata.cpp ../../music/lyricmodel.cpp ../../music/playlistmodel.cpp ../../media/mediaListModel.cpp ../../wireless/wirelessmodel.cpp ../../tcpclient/mytcpclient.cpp ../../tcpserver/mytcpserver.cpp ../../desktop/desktop.cpp ../../udpchat/udpreciver.cpp ../../udpchat/udpsend.cpp ../../photoview/photolistmodel.cpp ../../iotest/beep.cpp ../../sensor/ap3216c.cpp ../../sensor/icm20608.cpp ../../iotest/keysthread.cpp ../../radio/radio.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1034,9 +1041,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_cameramedia.cpp moc_fileio.cpp moc_login.cpp moc_UartThread.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
+compiler_moc_header_make_all: moc_cameramedia.cpp moc_psonserver.cpp moc_fileio.cpp moc_login.cpp moc_UartThread.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_cameramedia.cpp moc_fileio.cpp moc_login.cpp moc_UartThread.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
+	-$(DEL_FILE) moc_cameramedia.cpp moc_psonserver.cpp moc_fileio.cpp moc_login.cpp moc_UartThread.cpp moc_mymodel.cpp moc_weatherdata.cpp moc_lyricmodel.cpp moc_playlistmodel.cpp moc_mediaListModel.cpp moc_wirelessmodel.cpp moc_mytcpclient.cpp moc_mytcpserver.cpp moc_desktop.cpp moc_udpreciver.cpp moc_udpsender.cpp moc_photolistmodel.cpp moc_beep.cpp moc_ap3216c.cpp moc_icm20608.cpp moc_keysthread.cpp moc_radio.cpp
 moc_cameramedia.cpp: ../../cameramedia/cameramedia.h \
 		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
 		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
@@ -1096,6 +1103,62 @@ moc_cameramedia.cpp: ../../cameramedia/cameramedia.h \
 		moc_predefs.h \
 		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/bin/moc
 	/home/ysheng/Qt5.12.9/5.12.9/gcc_64/bin/moc $(DEFINES) --include /home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/build/Desktop_debug/moc_predefs.h -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++ -I/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtQuickControls2 -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtQuick -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtMultimedia -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtGui -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtQml -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtPositioning -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtXml -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../../cameramedia/cameramedia.h -o moc_cameramedia.cpp
+
+moc_psonserver.cpp: ../../factorytool/psonserver.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnamespace.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobal.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtcore-config.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsysinfo.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlogging.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qflags.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmutex.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnumeric.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qversiontagging.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstring.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qchar.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearray.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qrefcount.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qarraydata.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringliteral.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringview.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlist.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qalgorithms.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiterator.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpair.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringlist.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qregexp.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcoreevent.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmetatype.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject_impl.h \
+		../../factorytool/common_factoryTool.h \
+		moc_predefs.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/bin/moc
+	/home/ysheng/Qt5.12.9/5.12.9/gcc_64/bin/moc $(DEFINES) --include /home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop/build/Desktop_debug/moc_predefs.h -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++ -I/home/ysheng/code/qt5.12.9/MX6U_desktop/QDesktop -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtQuickControls2 -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtQuick -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtMultimedia -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtGui -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtQml -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtNetwork -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtPositioning -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtXml -I/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../../factorytool/psonserver.h -o moc_psonserver.cpp
 
 moc_fileio.cpp: ../../fileview/fileio.h \
 		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
@@ -2783,6 +2846,75 @@ common_fun.o: ../../common/common_fun.cpp ../../common/common_fun.h \
 
 factorytool.o: ../../factorytool/factorytool.cpp ../../factorytool/factorytool.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factorytool.o ../../factorytool/factorytool.cpp
+
+psonserver.o: ../../factorytool/psonserver.cpp ../../factorytool/psonserver.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnamespace.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobal.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qconfig.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtcore-config.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsysinfo.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlogging.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qflags.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmutex.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qnumeric.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qversiontagging.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstring.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qchar.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearray.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qrefcount.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qarraydata.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringliteral.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringview.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlist.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qalgorithms.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiterator.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpair.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringlist.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qregexp.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcoreevent.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmetatype.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qobject_impl.h \
+		../../factorytool/common_factoryTool.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qdebug.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qhash.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qmap.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qtextstream.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qiodevice.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qlocale.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvariant.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qshareddata.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qvector.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qpoint.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qset.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/qsharedpointer_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o psonserver.o ../../factorytool/psonserver.cpp
 
 fileio.o: ../../fileview/fileio.cpp ../../fileview/fileio.h \
 		/home/ysheng/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QObject \
@@ -4829,6 +4961,9 @@ qrc_qml.o: qrc_qml.cpp
 
 moc_cameramedia.o: moc_cameramedia.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cameramedia.o moc_cameramedia.cpp
+
+moc_psonserver.o: moc_psonserver.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_psonserver.o moc_psonserver.cpp
 
 moc_fileio.o: moc_fileio.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_fileio.o moc_fileio.cpp

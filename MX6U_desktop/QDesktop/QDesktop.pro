@@ -25,6 +25,7 @@ SOURCES += \
     cameramedia/cameramedia.cpp \
     common/common_fun.cpp \
     factorytool/factorytool.cpp \
+    factorytool/psonserver.cpp \
     fileview/fileio.cpp \
     login/login.cpp \
         main.cpp \
@@ -64,7 +65,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     cameramedia/cameramedia.h \
     common/common_fun.h \
+    factorytool/common_factoryTool.h \
     factorytool/factorytool.h \
+    factorytool/psonserver.h \
     fileview/fileio.h \
     login/login.h \
     uart/UartThread.h \
