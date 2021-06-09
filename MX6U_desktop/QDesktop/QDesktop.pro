@@ -30,6 +30,7 @@ SOURCES += \
     login/login.cpp \
         main.cpp \
     uart/UartThread.cpp \
+    usb/UsbThread.cpp \
     weather/myjsonparse.cpp \
     weather/mymodel.cpp \
     weather/weatherdata.cpp \
@@ -71,6 +72,7 @@ HEADERS += \
     fileview/fileio.h \
     login/login.h \
     uart/UartThread.h \
+    usb/UsbThread.h \
     weather/myjsonparse.h \
     weather/mymodel.h \
     weather/weatherdata.h \
@@ -88,6 +90,15 @@ HEADERS += \
     sensor/ap3216c.h \
     sensor/icm20608.h \
     iotest/keysthread.h \
-    radio/radio.h
+    radio/radio.h \
+    libusb.h
 
-DISTFILES +=
+
+DISTFILES += \
+    usb/Usb.qml
+
+
+#USB
+LIBS += -L"/usr/local/lib" -lusb-1.0
+INCLUDEPATH += /usr/local/include/libusb-1.0
+

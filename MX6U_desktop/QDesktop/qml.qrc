@@ -189,5 +189,6 @@
         <file>factorytool/FactoryStatusBar.qml</file>
         <file>Homemenu.qml</file>
         <file>uart/Uart.qml</file>
+        <file>usb/Usb.qml</file>
     </qresource>
 </RCC>

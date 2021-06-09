@@ -52,6 +52,7 @@ Copyright © Deng Zhimao Co., Ltd. 1990-2030. All rights reserved.
 #include <QQmlContext>
 //#include "./Control/serialPort.h"
 #include "./uart/UartThread.h"
+#include "./usb/UsbThread.h"
 
 
 int main(int argc, char *argv[])
@@ -114,18 +115,20 @@ int main(int argc, char *argv[])
 
 
     //seria com init
-    UartThread * uartThreat = new UartThread;
-    engine.rootContext()->setContextProperty("UartThread", uartThreat);
+    UartThread * uartThread = new UartThread;
+    engine.rootContext()->setContextProperty("UartThread", uartThread);
+
+    //usb
+    UsbThread * usbThread = new UsbThread;
+    engine.rootContext()->setContextProperty("UsbThread", usbThread);
 
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 //    engine.load(QUrl(QStringLiteral("qrc:/Homemenu.qml")));
 
 
-
     if (engine.rootObjects().isEmpty())
         return -1;
-
 
 
     return app.exec();

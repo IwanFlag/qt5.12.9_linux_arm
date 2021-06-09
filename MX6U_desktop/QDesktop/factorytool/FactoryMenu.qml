@@ -353,5 +353,41 @@ Rectangle {
                     }
                 }
         }
+
+
+        //10.usb config
+        Rectangle{
+                //id: sweepCode_menu
+                Layout.fillWidth: true;
+                Layout.fillHeight: true;
+
+                Button{
+                    //id: bt_sweepCode_menu
+                    text: qsTr("USB")
+                    width: parent.width
+                    height: parent.height
+                    Layout.columnSpan: 1
+                    style: ButtonStyle {
+                          label: Text {
+                            renderType: Text.NativeRendering
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            font.family: "Helvetica"
+                            font.pointSize: 20
+//                            color: "blue"
+                            text: control.text
+                          }
+                    }
+
+                    onClicked:{
+                        console.log("usb");
+                        //
+                        compFactoryMenu.visible = false;
+                        // 在主窗口（mainWindow）上显示主页面
+                        var UsbObjex = Qt.createComponent("qrc:/usb/Usb.qml").createObject(mainWindow, {});
+                        compFactoryTool.sonMenuIndex = 10;
+                    }
+                }
+        }
     }
 }

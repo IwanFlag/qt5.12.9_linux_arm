@@ -23,7 +23,7 @@ Rectangle {
     y: compFactoryStatusBar.height         //50//compFactoryStatusBar.bottom
     width: parent.width
     height: parent.height - compFactoryStatusBar.height
-    color: "gray"
+    color: "blue"
 
 
     signal uart_search_port()
