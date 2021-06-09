@@ -204,6 +204,12 @@ QString utf8Tgb2312(QString data);
  */
 QString gb2312Tutf8(QString data);
 
-
+/**
+ * @brief uncharToQstring
+ * @param data
+ *          unchar 转Qstring
+ * @return
+ */
+QString uncharToQstring(unsigned char * id,int len);
 
 #endif // COMMON_FUN_H

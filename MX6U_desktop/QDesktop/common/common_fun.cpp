@@ -462,3 +462,24 @@ QString gb2312Tutf8(QString data)
     return QString::fromLocal8Bit(ByteUTF8);
 }
 
+
+/**
+ * @brief uncharToQstring
+ * @param data
+ *          unchar 转Qstring
+ * @return
+ */
+QString uncharToQstring(unsigned char * id,int len)
+{
+    QString temp,msg;
+    int j = 0;
+
+    while (j<len)
+    {
+        temp = QString("%1").arg((int)id[j], 2, 16, QLatin1Char('0'));
+        msg.append(temp);
+        j++;
+    }
+
+    return msg;
+}
