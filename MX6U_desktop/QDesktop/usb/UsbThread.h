@@ -26,6 +26,7 @@ private:
     libusb_device *dev;
     int OutSize;
     libusb_device_handle *handle;
+    libusb_device **dev_lists;           //devices
 
     void print_devs(libusb_device **devs);
 
