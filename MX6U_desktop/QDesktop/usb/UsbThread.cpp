@@ -9,6 +9,7 @@
 #include "./common/common_fun.h"
 
 
+UsbThread * UsbThread::g_static_this = nullptr;
 /**
  * @brief UsbThread::UsbThread
  * @param parent
@@ -16,9 +17,21 @@
 UsbThread::UsbThread()
 {
     qDebug("[UsbThread--%s]:>>", __func__);
-    //开启串口子线程
-    //this->start();
+    g_static_this = this;
+    ctx = nullptr;
+    usb_init();
 
+//    //开启串口子线程
+//    this->start();
+    int pri = (int)this->priority();
+    qDebug("[UsbThread--%s]:>>pri:%d,currentThreadId:%d", __func__, pri, currentThreadId());
+
+}
+
+UsbThread::~UsbThread()
+{
+    libusb_hotplug_deregister_callback(NULL, usb_arrived_handle);
+    libusb_hotplug_deregister_callback(NULL, usb_left_handle);
 }
 
 /**
@@ -29,19 +42,53 @@ void UsbThread::run()
 {
     while(1)
     {
-        qDebug("[UsbThread--%s]:>>", __func__);
-    //    QObject::connect(g_widget->tab_usb_manager->printerSerialPort, &QSerialPort::readyRead, this, &printerusb_ready_read_slots);
-        //QObject::connect(&g_widget->tab_usb_manager->printerSerialPort, &QSerialPort::errorOccurred, this, &printerusb_ready_read_slots);
-        unsigned char rec_data[200];
-        int rec_len = 10;
+        unsigned char rec_data[20];
         int actual_len;
-        unsigned int timeout_MS = 1000;
+        unsigned int timeout_MS = 100;
 //        libusb_interrupt_read(handle, endpoint_in, rec_data, rec_len, &actual_len, timeout_MS);        //HID -> Host
-//        libusb_interrupt_read();
-        QString str = uncharToQstring(rec_data, 200);
+        libusb_handle_events(ctx);     //event hand
+//        libusb_clear_halt(handle, endpoint_in);
+
+//        libusb_interrupt_transfer(handle, endpoint_in, rec_data, sizeof(rec_data), &actual_len, timeout_MS);
+        //libusb_interrupt_transfer(handle, (endpoint_in | LIBUSB_ENDPOINT_IN), rec_data, sizeof(rec_data), &actual_len, timeout_MS);
+        QString str = uncharToQstring(rec_data, sizeof(rec_data));
+
         qDebug("[UsbThread--%s]:>>str:%s", __func__, qPrintable(str));
+        //msleep(10);
     }
+
     //QThread::exec();
+}
+
+int UsbThread::usb_init(void)
+{
+    int r;     //return value
+    ssize_t cnt;
+    //libusb_context *ctx = nullptr; //context 上下文
+    qDebug("[UsbThread--%s]:>>", __func__);
+
+    r = libusb_init(&ctx); //init 初始化libusb
+    if(r<0 || ctx == Q_NULLPTR)
+    {
+        QMessageBox::about(NULL, tr("usb:"), tr("failed to init libusb!"));
+        return -1;
+    }
+
+    libusb_get_pollfds(ctx);
+
+    void *user_data;
+    r = libusb_hotplug_register_callback(ctx, LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED, LIBUSB_HOTPLUG_ENUMERATE,\
+                                     HIL_USB_VID, HIL_USB_PID, LIBUSB_HOTPLUG_MATCH_ANY,
+                                     libusb_hotplug_register_callback_arrived_handle,\
+                                     NULL, &usb_arrived_handle);
+
+    qDebug("[UsbThread--%s]:>>r :%d", __func__,r );
+
+
+    r = libusb_hotplug_register_callback(ctx, LIBUSB_HOTPLUG_EVENT_DEVICE_LEFT, LIBUSB_HOTPLUG_ENUMERATE,\
+                                     HIL_USB_VID, HIL_USB_PID, LIBUSB_HOTPLUG_MATCH_ANY, libusb_hotplug_register_callback_left_handle,\
+                                     NULL, &usb_left_handle);
+    qDebug("[UsbThread--%s]:>>r :%d", __func__,r );
 }
 
 QString UsbThread::getPort()
@@ -79,9 +126,7 @@ void UsbThread::usb_open_close(QString now_text, QString usbName)
         pid = usbNameInfos.at(3).toInt(&ok, 16);
         qDebug("[UsbThread--%s]:>>vid:%d,pid:%d\n", __func__,vid,pid);
 
-
-        libusb_context *ctx;
-        handle = libusb_open_device_with_vid_pid(NULL, vid, pid);
+        handle = libusb_open_device_with_vid_pid(ctx, vid, pid);
         if(handle == Q_NULLPTR)
         {
             QMessageBox::about(NULL, tr("usb:"), tr("handle NULL!"));
@@ -89,11 +134,11 @@ void UsbThread::usb_open_close(QString now_text, QString usbName)
         }
 
 
-        if(libusb_kernel_driver_active(handle, 0) == 1)//查看当前的接口是否被占用
+        if(libusb_kernel_driver_active(handle, USB_IFACE_NUM) == 1)//查看当前的接口是否被占用
         {
             //find out if kernel driver is attached
             qDebug("Kernel Driver Active\n");
-            if(libusb_detach_kernel_driver(handle, 0) == 0) //detach it,detach sys driver,use app,解除占用
+            if(libusb_detach_kernel_driver(handle, USB_IFACE_NUM) == 0) //detach it,detach sys driver,use app,解除占用
             {
                 qDebug("Kernel Driver Detached!\n");
             }
@@ -134,17 +179,25 @@ void UsbThread::usb_open_close(QString now_text, QString usbName)
                   for (int k=0; k<conf_desc->interface[i].altsetting[j].bNumEndpoints; k++)  //4.ep nums
                   {
                       // if is interface 0
-                      if(conf_desc->interface[i].altsetting[j].bInterfaceNumber == 0)
+                      if(conf_desc->interface[i].altsetting[j].bInterfaceNumber == USB_IFACE_NUM)
                       {
+                          qDebug("[UsbThread--%s]:>>aaa \n", __func__);
+
                           const struct libusb_endpoint_descriptor *endpoint = &conf_desc->interface[i].altsetting[j].endpoint[k];
-                          if(endpoint->bmAttributes == 3)
+                          if(endpoint->bmAttributes == LIBUSB_TRANSFER_TYPE_INTERRUPT)
                           {
+                              qDebug("[UsbThread--%s]:>>bbb \n", __func__);
+
                               if (endpoint->bEndpointAddress & LIBUSB_ENDPOINT_IN)
                               {
+                                  qDebug("[UsbThread--%s]:>>ccc \n", __func__);
+
                                   endpoint_in = endpoint->bEndpointAddress;
                               }
                               else
                               {
+                                  qDebug("[UsbThread--%s]:>>dddd \n", __func__);
+
                                   endpoint_out = endpoint->bEndpointAddress;
                               }
                           }
@@ -152,49 +205,189 @@ void UsbThread::usb_open_close(QString now_text, QString usbName)
                   }
               }
             }
-    }
+            //must free
+            libusb_free_config_descriptor(conf_desc);
+        }
 
 
-        r = libusb_set_configuration(handle, conf_desc->bConfigurationValue);
+        r = libusb_set_configuration(handle, USB_CONFIG_NUM);
+        qDebug("[UsbThread--%s]:>>libusb_strerror:%s \n", __func__, libusb_strerror((libusb_error)r));
+        if(r < 0)
+        {
+            QMessageBox::about(NULL, tr("usb:"), tr("configuer fail!"));
+            return;
+        }
 
-          qDebug("[UsbThread--%s]:>>libusb_strerror:%s \n", __func__, libusb_strerror((libusb_error)r));
-          if(r < 0)
-          {
-                QMessageBox::about(NULL, tr("usb:"), tr("configuer fail!"));
-                return;
-          }
 
+        //libusb_get_config_descriptor(dev, 0, &conf_desc);
 
-          //libusb_get_config_descriptor(dev, 0, &conf_desc);
+        r = libusb_claim_interface(handle, USB_IFACE_NUM);            //claim one interface
+        if (r < 0)
+        {
+          //qDebug("设备申请接口失败 ！", r);
+          QMessageBox::about(NULL, tr("usb:"), tr("libusb_claim_interface fail"));
+          return;
+        }
 
-          r = libusb_claim_interface(handle, 0);            //claim one interface
-          if (r < 0)
-          {
-              //qDebug("设备申请接口失败 ！", r);
-              QMessageBox::about(NULL, tr("usb:"), tr("libusb_claim_interface fail"));
-              return;
-          }
+        usb_open_flag_signals(1);
 
-          usb_open_flag_signals(1);
-
-        //开启串口子线程
-        this->start();
+//        //开启串口子线程
+//        this->start();
     }
     else
     {
-        //关闭串口
-        libusb_close(handle);
-        libusb_free_config_descriptor(conf_desc);
-        libusb_exit(NULL);
 
-
-        //QMessageBox::about(NULL, tr("UsbThread"), tr("close"));
-        usb_close_flag_signals(1);
+        usb_close();
 
         //终止串口子线程
         //this->terminate();
         quit();
     }
+}
+
+int UsbThread::usb_open()
+{
+    qDebug("[UsbThread--%s]:>>", __func__);
+    struct libusb_device_descriptor dev_desc;
+    int r;
+
+
+    handle = libusb_open_device_with_vid_pid(ctx, HIL_USB_VID, HIL_USB_PID);
+    qDebug("[UsbThread--%s]:>>HIL_USB_VID:%X,HIL_USB_PID:%X", __func__, HIL_USB_VID, HIL_USB_PID);
+
+    if(handle == Q_NULLPTR)
+    {
+        QMessageBox::about(NULL, tr("usb:"), tr("handle NULL!"));
+        return - 1;
+    }
+
+
+    if(libusb_kernel_driver_active(handle, USB_IFACE_NUM) == 1)//查看当前的接口是否被占用
+    {
+        //find out if kernel driver is attached
+        qDebug("Kernel Driver Active\n");
+        if(libusb_detach_kernel_driver(handle, USB_IFACE_NUM) == 0) //detach it,detach sys driver,use app,解除占用
+        {
+            qDebug("Kernel Driver Detached!\n");
+        }
+        else
+        {
+            QMessageBox::about(NULL, tr("usb:"), tr("Detached Failed!"));
+            return -2;
+        }
+    }
+
+
+    dev = libusb_get_device(handle);
+    if(dev == Q_NULLPTR)
+    {
+        QMessageBox::about(NULL, tr("usb:"), tr("dev NULL!"));
+    }
+
+
+    libusb_get_device_descriptor(dev, &dev_desc);
+    qDebug("[UsbThread--%s]:>>bNumConfigurations:%d \n", __func__, dev_desc.bNumConfigurations);
+
+
+    for(int n = 0; n < dev_desc.bNumConfigurations; ++n)    //1.config nums
+    {
+        r = libusb_get_config_descriptor(dev, n, &conf_desc);
+        qDebug("[UsbThread--%s]:>>r:%d,bDeviceClass:%d \n", __func__, r, dev_desc.bDeviceClass);
+        if(r < 0)
+        {
+            QMessageBox::about(NULL, tr("usb:"), tr("libusb_get_config_descriptor failed!"));
+            return -3;
+        }
+
+        qDebug("[UsbThread--%s]:>>conf_desc->bNumInterfaces:%d \n", __func__, conf_desc->bNumInterfaces);
+        for(int i=0; i<conf_desc->bNumInterfaces; i++)      //2.interface nums
+        {
+          for (int j=0; j<conf_desc->interface[i].num_altsetting; j++)  //3.altsettinhg nums
+          {
+              for (int k=0; k<conf_desc->interface[i].altsetting[j].bNumEndpoints; k++)  //4.ep nums
+              {
+                  // if is interface 0
+                  if(conf_desc->interface[i].altsetting[j].bInterfaceNumber == USB_IFACE_NUM)
+                  {
+                      qDebug("[UsbThread--%s]:>>aaa \n", __func__);
+
+                      const struct libusb_endpoint_descriptor *endpoint = &conf_desc->interface[i].altsetting[j].endpoint[k];
+                      if(endpoint->bmAttributes == LIBUSB_TRANSFER_TYPE_INTERRUPT)
+                      {
+                          qDebug("[UsbThread--%s]:>>bbb \n", __func__);
+
+                          if (endpoint->bEndpointAddress & LIBUSB_ENDPOINT_IN)
+                          {
+
+                              endpoint_in = endpoint->bEndpointAddress;
+                              qDebug("[UsbThread--%s]:>>ccc:%X \n", __func__,endpoint_in);
+
+                          }
+                          else
+                          {
+
+                              endpoint_out = endpoint->bEndpointAddress;
+                              qDebug("[UsbThread--%s]:>>ddd:%X \n", __func__, endpoint_out);
+
+                          }
+                      }
+                  }
+              }
+          }
+        }
+        //must free
+        libusb_free_config_descriptor(conf_desc);
+    }
+
+
+//    r = libusb_set_configuration(handle, USB_CONFIG_NUM);
+//    qDebug("[UsbThread--%s]:>>libusb_strerror:%s \n", __func__, libusb_strerror((libusb_error)r));
+//    if(r < 0)
+//    {
+//        QMessageBox::about(NULL, tr("usb:"), tr("configuer fail!"));
+//        return -4;
+//    }
+
+
+    //libusb_get_config_descriptor(dev, 0, &conf_desc);
+
+    r = libusb_claim_interface(handle, USB_IFACE_NUM);            //claim one interface
+    if (r < 0)
+    {
+      //qDebug("设备申请接口失败 ！", r);
+      QMessageBox::about(NULL, tr("usb:"), tr("libusb_claim_interface fail"));
+      return - 5;
+    }
+
+    usb_open_flag_signals(1);
+
+    return r;
+}
+
+int UsbThread::usb_close()
+{
+    qDebug("[UsbThread--%s]:>>", __func__);
+
+    //关闭usb
+    if(handle)
+    libusb_release_interface(handle, USB_IFACE_NUM);
+
+    if(conf_desc)
+    libusb_free_config_descriptor(conf_desc);
+
+    if(handle)
+    libusb_attach_kernel_driver(handle, USB_IFACE_NUM); //加载内核驱动，usb将重新出现在设备文件里
+
+    if(handle)
+    libusb_close(handle);
+
+
+    if(ctx)
+    libusb_exit(ctx);
+
+    usb_close_flag_signals(1);
+
+    return 0;
 }
 
 /**
@@ -350,6 +543,31 @@ QString UsbThread::get_bDeviceClassString(quint16 bDeviceClass)
     }
 }
 
+int UsbThread::libusb_hotplug_register_callback_left_handle(libusb_context *ctx, libusb_device *device, libusb_hotplug_event event, void *user_data)
+{
+    qDebug("[UsbThread--%s]:>>!!!left", __func__);
+//    if(handle)
+//    {
+//        handle = libusb_open_device_with_vid_pid(ctx, HIL_USB_VID, HIL_USB_PID);
+//        if(handle == Q_NULLPTR)
+//        {
+//            QMessageBox::about(NULL, tr("usb:"), tr("handle NULL!"));
+//            return;
+//        }
+//        libusb_set_auto_detach_kernel_driver(handle,1);
+//        libusb_claim_interface(handle, USB_IFACE_NUM);  //请求接口之前先卸载内核驱动
+
+//    }
+    //g_static_this->usb_close();
+}
+
+int UsbThread::libusb_hotplug_register_callback_arrived_handle(libusb_context *ctx, libusb_device *device, libusb_hotplug_event event, void *user_data)
+{
+    qDebug("[UsbThread--%s]:>>!!!plug", __func__);
+//    g_static_this->usb_close();
+    g_static_this->usb_open();
+}
+
 /**
  * @brief UsbThread::usb_ready_read_slots
  * recevie
@@ -396,16 +614,20 @@ void UsbThread::usb_search_com_slots()
 //    libusb_device **dev_lists;           //devices
     int r;     //return value
     ssize_t cnt;
-    libusb_context *ctx = nullptr; //context 上下文
+    //libusb_context *ctx = nullptr; //context 上下文
 
-    r = libusb_init(&ctx); //init 初始化libusb
-    if(r<0)
-    {
-        QMessageBox::about(NULL, tr("usb:"), tr("failed to init libusb!"));
-        return;
-    }
 
-    cnt = libusb_get_device_list(nullptr, &dev_lists); //获取设备列表
+    r = libusb_has_capability(LIBUSB_CAP_HAS_HOTPLUG);
+    qDebug("[UsbThread--%s]:>>LIBUSB_CAP_HAS_HOTPLUG:%d", __func__, r);
+
+    r = libusb_has_capability(LIBUSB_CAP_HAS_HID_ACCESS );
+    qDebug("[UsbThread--%s]:>>LIBUSB_CAP_HAS_HID_ACCESS:%d", __func__, r);
+
+    r = libusb_has_capability(LIBUSB_CAP_SUPPORTS_DETACH_KERNEL_DRIVER );
+    qDebug("[UsbThread--%s]:>>LIBUSB_CAP_SUPPORTS_DETACH_KERNEL_DRIVER :%d", __func__, r);
+
+
+    cnt = libusb_get_device_list(ctx, &dev_lists); //获取设备列表
     qDebug("[UsbThread--%s]:>>cnt:%d", __func__, cnt);
 
     if (cnt <= 0)
@@ -428,14 +650,14 @@ void UsbThread::usb_search_com_slots()
            return;
         }
 
-        qDebug("==================i = [%d] desc=======\n",            i);
-        qDebug("bDescriptorType = %d\n",            desc.bDescriptorType);
-        qDebug("bcdUSB = %d\n",            desc.bcdUSB);
-        qDebug("bDeviceClass    = %d\n",            desc.bDeviceClass);
-        qDebug("bDeviceSubClass    = %d\n",            desc.bDeviceSubClass);
-        qDebug("bDeviceProtocol    = %d\n",            desc.bDeviceProtocol);
+//        qDebug("==================i = [%d] desc=======\n",            i);
+//        qDebug("bDescriptorType = %d\n",            desc.bDescriptorType);
+//        qDebug("bcdUSB = %d\n",            desc.bcdUSB);
+//        qDebug("bDeviceClass    = %d\n",            desc.bDeviceClass);
+//        qDebug("bDeviceSubClass    = %d\n",            desc.bDeviceSubClass);
+//        qDebug("bDeviceProtocol    = %d\n",            desc.bDeviceProtocol);
 
-        qDebug("device:          %04x:%04x\n",       desc.idVendor,desc.idProduct);
+//        qDebug("device:          %04x:%04x\n",       desc.idVendor,desc.idProduct);
         useName = get_bcdUSBString(desc.bcdUSB);
         useName += "-";
         useName += get_bDeviceClassString(desc.bDeviceClass);

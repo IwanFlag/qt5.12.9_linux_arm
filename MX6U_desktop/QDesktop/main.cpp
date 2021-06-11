@@ -121,6 +121,8 @@ int main(int argc, char *argv[])
     //usb
     UsbThread * usbThread = new UsbThread;
     engine.rootContext()->setContextProperty("UsbThread", usbThread);
+    //开启串口子线程
+    usbThread->start();
 
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
@@ -130,6 +132,10 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
+
+    //set pri
+    QThread::currentThread()->setPriority(QThread::HighPriority);
+    qDebug("[main--%s]:>>pri:%d,currentThreadId:%d", __func__, QThread::currentThread()->priority(), QThread::currentThreadId());
 
     return app.exec();
 }
