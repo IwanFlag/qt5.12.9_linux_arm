@@ -53,6 +53,8 @@ Copyright © Deng Zhimao Co., Ltd. 1990-2030. All rights reserved.
 //#include "./Control/serialPort.h"
 #include "./uart/UartThread.h"
 #include "./usb/UsbThread.h"
+#include "./usb/usbhidhost.h"
+#include "./usb/usbhidhosttimer.h"
 
 
 int main(int argc, char *argv[])
@@ -118,11 +120,16 @@ int main(int argc, char *argv[])
     UartThread * uartThread = new UartThread;
     engine.rootContext()->setContextProperty("UartThread", uartThread);
 
-    //usb
-    UsbThread * usbThread = new UsbThread;
-    engine.rootContext()->setContextProperty("UsbThread", usbThread);
-    //开启串口子线程
-    usbThread->start();
+    //USB
+//    UsbThread * usbThread = new UsbThread;
+//    engine.rootContext()->setContextProperty("UsbThread", usbThread);
+
+    //USB comm  to HID
+    UsbHidHost * usbHidHost = new UsbHidHost;
+    usbHidHost->start();
+
+//    UsbHidHostTimer * usbHidHost = new UsbHidHostTimer;
+
 
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

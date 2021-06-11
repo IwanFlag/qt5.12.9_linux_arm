@@ -31,6 +31,10 @@ SOURCES += \
         main.cpp \
     uart/UartThread.cpp \
     usb/UsbThread.cpp \
+    usb/hidapi-libusb.c \
+    usb/hidinterface.c \
+    usb/usbhidhost.cpp \
+    usb/usbhidhosttimer.cpp \
     weather/myjsonparse.cpp \
     weather/mymodel.cpp \
     weather/weatherdata.cpp \
@@ -65,6 +69,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     cameramedia/cameramedia.h \
+    common/common_def.h \
     common/common_fun.h \
     factorytool/common_factoryTool.h \
     factorytool/factorytool.h \
@@ -73,6 +78,10 @@ HEADERS += \
     login/login.h \
     uart/UartThread.h \
     usb/UsbThread.h \
+    usb/hidapi.h \
+    usb/hidinterface.h \
+    usb/usbhidhost.h \
+    usb/usbhidhosttimer.h \
     weather/myjsonparse.h \
     weather/mymodel.h \
     weather/weatherdata.h \
