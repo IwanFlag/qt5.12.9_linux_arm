@@ -107,7 +107,10 @@ DISTFILES += \
     usb/Usb.qml
 
 
-#USB
-LIBS += -L"/usr/local/lib" -lusb-1.0
-INCLUDEPATH += /usr/local/include/libusb-1.0
+#pc-linux USB
+#LIBS += -L"/usr/local/lib" -lusb-1.0
+#INCLUDEPATH += /usr/local/include/libusb-1.0
 
+#armr-linux USB
+LIBS += -L"/usr/local/arm/arm_linux/lib" -lusb-1.0
+INCLUDEPATH += /usr/local/arm/arm_linux/include/libusb-1.0

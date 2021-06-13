@@ -454,7 +454,7 @@ DIST          = ../../usb/Usb.qml \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
-		../../.qmake.stash \
+		../../../../.qmake.stash \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -722,7 +722,7 @@ Makefile: ../../QDesktop.pro /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/li
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
+		../../.qmake.stash \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		/home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -919,7 +919,7 @@ Makefile: ../../QDesktop.pro /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/li
 /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf:
 /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
+../../.qmake.stash:
 /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf:
 /home/ysheng/tool/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf:
@@ -970,7 +970,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
