@@ -372,7 +372,7 @@ DIST          = ../../usb/Usb.qml \
 		../../sensor/icm20608.h \
 		../../iotest/keysthread.h \
 		../../radio/radio.h \
-		/usr/local/arm/arm_linux/include/libusb-1.0/libusb.h ../../cameramedia/cameramedia.cpp \
+		libusb.h ../../cameramedia/cameramedia.cpp \
 		../../common/common_fun.cpp \
 		../../factorytool/factorytool.cpp \
 		../../factorytool/psonserver.cpp \
@@ -783,7 +783,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi/usr/lib/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../cameramedia/cameramedia.h ../../common/common_def.h ../../common/common_fun.h ../../factorytool/common_factoryTool.h ../../factorytool/factorytool.h ../../factorytool/psonserver.h ../../fileview/fileio.h ../../login/login.h ../../uart/UartThread.h ../../usb/UsbThread.h ../../usb/hidapi.h ../../usb/hidinterface.h ../../usb/usbhidhost.h ../../usb/usbhidhosttimer.h ../../weather/myjsonparse.h ../../weather/mymodel.h ../../weather/weatherdata.h ../../music/lyricmodel.h ../../music/playlistmodel.h ../../media/mediaListModel.h ../../wireless/wirelessmodel.h ../../tcpclient/mytcpclient.h ../../tcpserver/mytcpserver.h ../../desktop/desktop.h ../../udpchat/udpreciver.h ../../udpchat/udpsender.h ../../photoview/photolistmodel.h ../../iotest/beep.h ../../sensor/ap3216c.h ../../sensor/icm20608.h ../../iotest/keysthread.h ../../radio/radio.h /usr/local/arm/arm_linux/include/libusb-1.0/libusb.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../cameramedia/cameramedia.h ../../common/common_def.h ../../common/common_fun.h ../../factorytool/common_factoryTool.h ../../factorytool/factorytool.h ../../factorytool/psonserver.h ../../fileview/fileio.h ../../login/login.h ../../uart/UartThread.h ../../usb/UsbThread.h ../../usb/hidapi.h ../../usb/hidinterface.h ../../usb/usbhidhost.h ../../usb/usbhidhosttimer.h ../../weather/myjsonparse.h ../../weather/mymodel.h ../../weather/weatherdata.h ../../music/lyricmodel.h ../../music/playlistmodel.h ../../media/mediaListModel.h ../../wireless/wirelessmodel.h ../../tcpclient/mytcpclient.h ../../tcpserver/mytcpserver.h ../../desktop/desktop.h ../../udpchat/udpreciver.h ../../udpchat/udpsender.h ../../photoview/photolistmodel.h ../../iotest/beep.h ../../sensor/ap3216c.h ../../sensor/icm20608.h ../../iotest/keysthread.h ../../radio/radio.h libusb.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../cameramedia/cameramedia.cpp ../../common/common_fun.cpp ../../factorytool/factorytool.cpp ../../factorytool/psonserver.cpp ../../fileview/fileio.cpp ../../login/login.cpp ../../main.cpp ../../uart/UartThread.cpp ../../usb/UsbThread.cpp ../../usb/hidapi-libusb.c ../../usb/hidinterface.c ../../usb/usbhidhost.cpp ../../usb/usbhidhosttimer.cpp ../../weather/myjsonparse.cpp ../../weather/mymodel.cpp ../../weather/weatherdata.cpp ../../music/lyricmodel.cpp ../../music/playlistmodel.cpp ../../media/mediaListModel.cpp ../../wireless/wirelessmodel.cpp ../../tcpclient/mytcpclient.cpp ../../tcpserver/mytcpserver.cpp ../../desktop/desktop.cpp ../../udpchat/udpreciver.cpp ../../udpchat/udpsend.cpp ../../photoview/photolistmodel.cpp ../../iotest/beep.cpp ../../sensor/ap3216c.cpp ../../sensor/icm20608.cpp ../../iotest/keysthread.cpp ../../radio/radio.cpp $(DISTDIR)/
 
 
